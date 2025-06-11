@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import {  HeaderProps } from './header.type';
 
 const Styled = {
   Header: styled.header`
@@ -6,7 +7,7 @@ const Styled = {
   `,
 };
 
-export default function Header(props) {
+export default function Header(props: HeaderProps) {
   console.log('header: ', props);
 
   return (

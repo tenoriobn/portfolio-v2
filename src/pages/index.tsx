@@ -64,6 +64,129 @@ export async function getStaticProps() {
                 href
               }
             }
+            ... on SkillsSectionBlockRecord {
+              id
+              title
+              description
+              skills {
+                id
+                linkName
+                href
+                icon {
+                  url
+                }
+              }
+            }
+            ... on ProjectsSectionBlockRecord {
+              id
+              title
+              description
+              projects {
+                id
+                projectTitle
+                projectDescription
+                modalButtonLabel
+                appliedSolutions {
+                  title
+                  solution {
+                    id
+                    solution
+                  }
+                }
+                challenges {
+                  title
+                  challenge {
+                    id
+                    solution
+                  }
+                }
+                skills {
+                  title
+                  skill {
+                    id
+                    linkName
+                    href
+                    icon {
+                      url
+                    }
+                  }
+                }
+                projectLinks {
+                  demonstration {
+                    id
+                    linkName
+                    href
+                    icon {
+                      url
+                    }
+                  }
+                  sourceCode {
+                    id
+                    linkName
+                    href
+                    icon {
+                      url
+                    }
+                  }
+                }
+              }
+            }
+            ... on AboutMeSectionBlockRecord {
+              id
+              title
+              socialLink {
+                id
+                linkName
+                href
+                icon {
+                  url
+                }
+              }
+              description {
+                value
+              }
+            }
+            ... on ExperienceSectionBlockRecord {
+              id
+              title
+              description
+              experienceContent {
+                experiencies {
+                  id
+                  companyName
+                  roleArea
+                  period
+                  jobDescription
+                  companyLogo {
+                    url
+                  }
+                }
+              }
+            }
+            ... on ContactSectionBlockRecord {
+              id
+              title
+              description
+              socialLink {
+                id
+                linkName
+                href
+                icon {
+                  url
+                }
+                dropdown {
+                  id
+                  text
+                  icon {
+                    url
+                  }
+                }
+              }
+            }
+            ... on FooterBlockRecord {
+              id
+              copyrighttext
+            }
           }
         }
       }
@@ -78,7 +201,7 @@ export async function getStaticProps() {
   };
 }
 
-export default function Home<T>({cmsContent, year}: HomeProps<T>) {
+export default function Home({cmsContent, year}: HomeProps) {
   return (
     <>
       <DefaultSEO />
