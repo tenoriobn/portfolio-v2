@@ -1,7 +1,8 @@
 import { ReactNode } from 'react';
+import { LandingPage } from 'src/types/cmsContent.type';
 
-export interface CMSContextType<T = unknown> {
-  cmsContent: T;
+export interface CMSContextType {
+  cmsContent: LandingPage;
   year: number;
 }
 
