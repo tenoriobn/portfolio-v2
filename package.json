@@ -6,11 +6,15 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "deploy:prod": "npm run deploy:staging --prod",
+    "deploy:staging": "npm run build && npx vercel --confirm --no-clipboard --token=$VERCEL_TOKEN",
+    "deploy:preview": "node ./scripts/pullRequestPreview"
   },
   "dependencies": {
     "lodash": "^4.17.21",
     "next": "15.3.2",
+    "node-fetch": "^3.3.2",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "styled-components": "^6.1.18"
