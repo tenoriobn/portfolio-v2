@@ -8,6 +8,7 @@ const Styled = {
 };
 
 export default function Header(props: HeaderProps) {
+  // eslint-disable-next-line no-console
   console.log('header: ', props);
 
   return (
