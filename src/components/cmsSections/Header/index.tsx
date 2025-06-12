@@ -3,7 +3,7 @@ import {  HeaderProps } from './header.type';
 
 const Styled = {
   Header: styled.header`
-    color: red;
+    color: ${({ theme }) => theme.colors['grey-300']};
   `,
 };
 

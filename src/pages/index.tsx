@@ -201,7 +201,7 @@ export async function getStaticProps() {
   };
 }
 
-export default function Home({cmsContent, year}: HomeProps) {
+export default function Home({ cmsContent, year }: HomeProps) {
   return (
     <>
       <DefaultSEO />
