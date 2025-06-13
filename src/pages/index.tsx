@@ -4,13 +4,13 @@ import CMSProvider from 'src/provider/CMSProvider';
 import { cmsService } from 'src/service/cmsService';
 import { HomeProps } from 'src/types/cmsContent.type';
 
-export async function getStaticProps() {
+export async function getStaticProps({ locale }: { locale: string }) {
   const year = new Date().getFullYear();
 
   const  {data: cmsContent} = await cmsService({
     query:`
       query MyQuery {
-        landingPage(locale: pt_BR) {
+        landingPage(locale: ${locale}) {
           pageContent {
             componentName: __typename
             ... on HeaderBlockRecord {
@@ -199,7 +199,7 @@ export async function getStaticProps() {
       year
     }
   };
-}
+};
 
 export default function Home({ cmsContent, year }: HomeProps) {
   return (

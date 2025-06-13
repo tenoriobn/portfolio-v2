@@ -12,6 +12,7 @@
     "deploy:preview": "node ./scripts/pullRequestPreview"
   },
   "dependencies": {
+    "js-cookie": "^3.0.5",
     "lodash": "^4.17.21",
     "next": "15.3.2",
     "node-fetch": "^3.3.2",
@@ -21,6 +22,7 @@
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
+    "@types/js-cookie": "^3.0.6",
     "@types/lodash": "^4.17.17",
     "@types/node": "^20",
     "@types/react": "^19",
