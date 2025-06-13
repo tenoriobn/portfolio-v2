@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 import {  HeaderProps } from './header.type';
-import Link from 'next/link';
-import { useSetLocale } from 'src/service/postLocale';
+import { useChangeLanguage } from './changeLanguage';
 
 const Styled = {
   Header: styled.header`
@@ -16,7 +15,7 @@ const Styled = {
 };
 
 export default function Header(props: HeaderProps) {
-  const { setLocale } = useSetLocale();
+  const { changeLanguage } = useChangeLanguage();
 
   return (
     <header>
@@ -24,9 +23,9 @@ export default function Header(props: HeaderProps) {
       <p>{props.resumeLabel.linkName}</p>
 
       <Styled.Language>
-        <Link href='/' locale="pt_BR" onClick={() => setLocale('pt_BR')}>Portugues</Link>
-        <Link href='/' locale="es" onClick={() => setLocale('es')}>Espanhol</Link>
-        <Link href='/' locale="en" onClick={() => setLocale('en')}>Inglês</Link>
+        <button onClick={() => changeLanguage('pt_BR')}>Português</button>
+        <button onClick={() => changeLanguage('es')}>Espanhol</button>
+        <button onClick={() => changeLanguage('en')}>Inglês</button>
       </Styled.Language>
     </header>
   );
