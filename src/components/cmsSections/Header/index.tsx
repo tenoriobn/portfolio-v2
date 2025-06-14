@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import {  HeaderProps } from './header.type';
-import { useChangeLanguage } from './changeLanguage';
+import { useChangeLanguage } from './useChangeLanguage';
 
 const Styled = {
   Header: styled.header`
