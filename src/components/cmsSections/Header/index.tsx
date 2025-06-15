@@ -1,32 +1,33 @@
 import styled from 'styled-components';
 import {  HeaderProps } from './header.type';
-import { useChangeLanguage } from './useChangeLanguage';
+import { InsetBorder } from 'src/styles';
 
 const Styled = {
-  Header: styled.header`
-    color: ${({ theme }) => theme.colors['grey-300']};
-  `,
+  Button: styled.button`
+    display: grid;
+    place-items: center;
+    border-radius: ${({ theme }) => theme.borderRadius.full};
 
-  Language: styled.div`
-    display: flex;
-    gap: 1rem;
-    margin: 3rem 0;
-  `
+    background-color: ${({ theme }) => theme.colors['grey-800-75%']};
+    color: ${({ theme }) => theme.colors['grey-300']};
+    font-size: 1.25rem;
+    font-weight: 700;
+    width: 48px;
+    height: 48px;
+    padding: .375rem;
+  `,
 };
 
 export default function Header(props: HeaderProps) {
-  const { changeLanguage } = useChangeLanguage();
+  // eslint-disable-next-line no-console
+  console.log(props);
 
   return (
     <header>
-      <Styled.Header>Header</Styled.Header>
-      <p>{props.resumeLabel.linkName}</p>
-
-      <Styled.Language>
-        <button onClick={() => changeLanguage('pt_BR')}>Português</button>
-        <button onClick={() => changeLanguage('es')}>Espanhol</button>
-        <button onClick={() => changeLanguage('en')}>Inglês</button>
-      </Styled.Language>
+      <InsetBorder>
+        <Styled.Button>B</Styled.Button>
+      </InsetBorder>
+      <p>text</p>
     </header>
   );
 }

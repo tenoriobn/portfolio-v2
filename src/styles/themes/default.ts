@@ -10,9 +10,8 @@ export const base = {
     lg: '24px',
   },
   borderRadius: {
-    sm: '4px',
-    md: '8px',
-    lg: '16px',
+    md: '24px',
+    full: '10000px',
   },
   fontSize: {
     sm: '0.875rem',

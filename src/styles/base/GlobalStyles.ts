@@ -22,7 +22,7 @@ export const GlobalStyles = createGlobalStyle`
 
   body {
     background-color: ${({ theme }) => theme.colors['grey-900']};
-    color: ${({ theme }) => theme.colors.white};
+    color:${({ theme }) => theme.colors['grey-300']};
     font-family: ${({ theme }) => theme.font.inter};
     font-size: 16px;
     font-weight: 300;

@@ -5,6 +5,6 @@ export default function ContactSection(props: ContactSectionProps) {
   console.log('ContactSection: ', props);
   
   return (
-    <div>ContactSection</div>
+    <div></div>
   );
 }
