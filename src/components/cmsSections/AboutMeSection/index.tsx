@@ -5,6 +5,6 @@ export default function AboutMeSection(props: AboutMeSectionProps) {
   console.log('AboutMeSection', props);
   
   return (
-    <div>AboutMeSection</div>
+    <div></div>
   );
 }

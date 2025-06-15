@@ -5,6 +5,6 @@ export default function Footer(props: FooterProps) {
   console.log('Footer: ', props);
   
   return (
-    <div>Footer</div>
+    <div></div>
   );
 }

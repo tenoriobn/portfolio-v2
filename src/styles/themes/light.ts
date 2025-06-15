@@ -7,10 +7,18 @@ export const lightTheme: DefaultTheme = {
   colors: {
     black: 'rgb(0, 0, 0)',
     white: 'rgb(255, 255, 255)',
-    'grey-200': 'rgb(222, 222, 222)',
-    'grey-300': 'rgb(195, 196, 200)',
-    'grey-500': 'rgb(134, 135, 139)',
-    'grey-800-75%': 'rgba(51, 51, 51, 0.75)',
-    'grey-900': 'rgb(47, 47, 47)',
+    'grey-200': 'rgb(81, 81, 81)',
+    'grey-300': 'rgb(108, 108, 108)',
+    'grey-500': 'rgb(142, 142, 142)',
+    'grey-800-75%': 'rgba(219, 219, 219, 1)',
+    'grey-900': 'rgb(212, 212, 212)',
   },
+  gradient: {
+    'grey-light-dark': 'linear-gradient(-43deg, rgb(20 20 20 / 15%) 20%, rgb(255 255 255) 80%)',
+    'grey-light-dark-reserve': 'linear-gradient(-43deg, rgb(255 255 255) 20%, rgb(20 20 20 / 24%) 75%)',
+    'grey-dark-light-dark-reserve': 'linear-gradient(-43deg,rgba(31, 31, 31, 1) 0%, rgba(208, 208, 208, 1) 17%, rgba(31, 31, 31, 1) 100%)'
+  },
+  shadow: {
+    sm: '8px 8px 36px 0px rgba(0,0,0,0.32)',
+  }
 };
