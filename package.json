@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "deploy:prod": "npm run deploy:staging --prod",
+    "deploy:prod": "yarn deploy:staging --prod",
     "deploy:staging": "npm run build && npx vercel --confirm --no-clipboard --token=$VERCEL_TOKEN",
     "deploy:preview": "node ./scripts/pullRequestPreview"
   },
