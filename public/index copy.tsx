@@ -1,6 +1,6 @@
 import styled from 'styled-components';
-import {  HeaderProps } from './header.type';
-import { useChangeLanguage } from './useChangeLanguage';
+import {  HeaderProps } from '../src/components/cmsSections/Header/header.type';
+import { useChangeLanguage } from '../src/components/cmsSections/Header/useChangeLanguage';
 
 const Styled = {
   Header: styled.header`
