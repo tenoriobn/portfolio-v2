@@ -14,11 +14,11 @@ export const darkTheme: DefaultTheme = {
     'grey-900': 'rgb(47, 47, 47)',
   },
   gradient: {
-    'grey-light-dark': 'linear-gradient(-43deg, rgba(38, 38, 38, 1) 20%, rgba(204, 204, 204, .3) 100%)',
-    'grey-light-dark-reserve': 'linear-gradient(-43deg, rgba(207, 207, 207, .15) 0%, rgba(38, 38, 38, .8) 75%)',
-    'grey-dark-light-dark-reserve': 'linear-gradient(-43deg,rgba(87, 87, 87, 1) 0%, rgba(207, 207, 207, 1) 17%, rgba(87, 87, 87, 1) 100%);'
+    'grey-light-dark': 'linear-gradient(to left top, rgb(27 27 27) 10%, rgb(204 204 204 / 34%) 100%)',
+    'grey-light-dark-reserve': 'linear-gradient(to left top, rgb(204 204 204 / 24%) 10%, rgb(27 27 27) 90%)',
+    'grey-dark-light-dark-reserve': 'linear-gradient(to left top,rgba(87, 87, 87, 1) 0%, rgba(207, 207, 207, 1) 17%, rgba(87, 87, 87, 1) 100%);'
   },
   shadow: {
-    sm: '8px 8px 36px 0px rgba(0,0,0,0.12)',
+    sm: '8px 8px 18px 0px rgba(0,0,0,0.12)',
   }
 };
