@@ -4,8 +4,8 @@ import { InsetBorder } from 'src/styles';
 import {  HeaderProps } from './header.type';
 import Navbar from './Navbar';
 import ThemeToggle from './ThemeToggle';
-import MenuButtonMobile from './MenuButtonMobile';
-import OptionsButton from './OptionsButton';
+import OptionsToggle from './OptionsToggle';
+import MobileMenuToggle from './MobileMenuToggle';
 
 const Styled = {
   Header: styled(InsetBorder)`   
@@ -24,27 +24,24 @@ const Styled = {
   `,
 };
 
-export default function Header(props: HeaderProps) {
+export default function Header({menu, language, themeOptions, resumeLabel}: HeaderProps) {
   const { isMenuActive, toggleMenu, isMobile } = useResponsiveMenu();
-
-  // eslint-disable-next-line no-console
-  console.log(props);
 
   return (
     <Styled.Header as='header'>
       <Styled.HeaderContent>
-        <OptionsButton />
+        <OptionsToggle {...{ language, themeOptions, resumeLabel }} />
 
-        <Navbar 
-          items={props.menu.items} 
+        <Navbar
+          items={menu.items} 
           isMenuActive={isMenuActive}
           toggleMenu={() => isMobile && toggleMenu()}
           isMobile={isMobile}
         />
 
-        {isMobile && ( <MenuButtonMobile isMenuActive={isMenuActive} toggleMenu={toggleMenu} />)}
-        
-        {!isMobile && ( <ThemeToggle themes={props.themeOptions.theme} /> )}
+        <MobileMenuToggle isMenuActive={isMenuActive} toggleMenu={toggleMenu} />
+      
+        {!isMobile && ( <ThemeToggle themes={themeOptions.theme} /> )}
       </Styled.HeaderContent>
     </Styled.Header>
   );
