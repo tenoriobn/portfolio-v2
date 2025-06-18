@@ -7,13 +7,24 @@ import { HeroSectionBlockRecord } from './HeroSection/heroSection.type';
 import { ProjectsSectionBlockRecord } from './ProjectsSection/projects.type';
 import { SkillsSectionBlockRecord } from './SkillsSection/skills.type';
 
-export type CMSSectionsMap = {
-  HeaderBlockRecord: React.FC<HeaderBlockRecord>;
-  HeroSectionBlockRecord: React.FC<HeroSectionBlockRecord>;
-  SkillsSectionBlockRecord: React.FC<SkillsSectionBlockRecord>;
-  ProjectsSectionBlockRecord: React.FC<ProjectsSectionBlockRecord>;
-  AboutMeSectionBlockRecord: React.FC<AboutMeSectionBlockRecord>;
-  ExperienceSectionBlockRecord: React.FC<ExperienceSectionBlockRecord>;
-  ContactSectionBlockRecord: React.FC<ContactSectionBlockRecord>;
-  FooterBlockRecord: React.FC<FooterBlockRecord>;
+export type ComponentNameMap = {
+  HeaderBlockRecord: HeaderBlockRecord;
+  HeroSectionBlockRecord: HeroSectionBlockRecord;
+  SkillsSectionBlockRecord: SkillsSectionBlockRecord;
+  ProjectsSectionBlockRecord: ProjectsSectionBlockRecord;
+  AboutMeSectionBlockRecord: AboutMeSectionBlockRecord;
+  ExperienceSectionBlockRecord: ExperienceSectionBlockRecord;
+  ContactSectionBlockRecord: ContactSectionBlockRecord;
+  FooterBlockRecord: FooterBlockRecord;
 };
+
+export type PageContentBlock = 
+  HeaderBlockRecord | 
+  HeroSectionBlockRecord | 
+  SkillsSectionBlockRecord |
+  ProjectsSectionBlockRecord | 
+  AboutMeSectionBlockRecord | 
+  ExperienceSectionBlockRecord | 
+  ContactSectionBlockRecord | 
+  FooterBlockRecord
+;
