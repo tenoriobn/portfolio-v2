@@ -1,11 +1,11 @@
 import styled from 'styled-components';
 import useResponsiveMenu from './useResponsiveMenu';
 import { InsetBorder } from 'src/styles';
-import {  HeaderProps } from './header.type';
 import Navbar from './Navbar';
 import ThemeToggle from './ThemeToggle';
 import OptionsToggle from './OptionsToggle';
 import MobileMenuToggle from './MobileMenuToggle';
+import { useCMSSection } from '../useCMSSection.ts';
 
 const Styled = {
   Header: styled(InsetBorder)`   
@@ -24,7 +24,8 @@ const Styled = {
   `,
 };
 
-export default function Header({menu, language, themeOptions, resumeLabel}: HeaderProps) {
+export default function Header() {
+  const { menu, language, themeOptions, resumeLabel } = useCMSSection('HeaderBlockRecord');
   const { isMenuActive, toggleMenu, isMobile } = useResponsiveMenu();
 
   return (

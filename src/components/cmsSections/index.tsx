@@ -16,4 +16,4 @@ export const cmsSections = {
   ExperienceSectionBlockRecord: ExperienceSection,
   ContactSectionBlockRecord: ContactSection,
   FooterBlockRecord: Footer
-};
+} as const;

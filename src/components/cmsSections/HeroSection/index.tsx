@@ -1,10 +1,9 @@
-import { HeroSectionProps } from './heroSection.type';
+import { useCMSSection } from '../useCMSSection.ts';
 
-export default function HeroSection(props: HeroSectionProps) {
-  // eslint-disable-next-line no-console
-  console.log('HeroSectionProps: ', props);
+export default function HeroSection() {
+  const { highlightFixedText } = useCMSSection('HeroSectionBlockRecord');
 
   return (
-    <div></div>
+    <div>{highlightFixedText}</div>
   );
 }

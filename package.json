@@ -12,6 +12,7 @@
     "deploy:preview": "node ./scripts/pullRequestPreview"
   },
   "dependencies": {
+    "@tanstack/react-query": "v4.29.12",
     "js-cookie": "^3.0.5",
     "lodash": "^4.17.21",
     "motion": "^12.18.1",
