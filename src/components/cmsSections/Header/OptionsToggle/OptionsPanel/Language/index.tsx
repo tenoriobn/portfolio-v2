@@ -1,11 +1,15 @@
 import Image from 'next/image';
 import OptionSublist from 'src/components/OptionSublist';
 import { ButtonContainer, ButtonDropdown, OptionsWrapper } from 'src/styles';
-import { LanguageProps } from './language.type';
 import { useChangeLanguage } from './useChangeLanguage';
 import { slideFadeDown } from 'src/utils';
+import { useHeaderStore } from 'src/stores/useHeaderStore';
+import { useOptionsToggleStore } from 'src/stores/useOptionsToggleStore';
 
-export default function Language({ languages, activeOption, setActiveOption }: LanguageProps) {
+export default function Language() {
+  const { language } = useHeaderStore();
+  const setActiveOption = useOptionsToggleStore((s) => s.setActiveOption);
+  const activeOption = useOptionsToggleStore((s) => s.activeOption);
   const { changeLanguage } = useChangeLanguage();
 
   return (
@@ -15,7 +19,7 @@ export default function Language({ languages, activeOption, setActiveOption }: L
       {...slideFadeDown}
     >      
       <OptionSublist onBack={() => setActiveOption('main')}>
-        {languages.map((language) => (
+        {language.options.map((language) => (
           <ButtonContainer 
             key={language.id}
             onClick={() => (changeLanguage(language.href), setActiveOption(null))}

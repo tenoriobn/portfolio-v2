@@ -22,11 +22,11 @@ export const ListOptions = styled.div`
   gap: 1rem;
   background-color: ${({ theme }) => theme.colors['grey-800-75%']};
   border-radius: ${({ theme }) => theme.borderRadius.md};
-  padding: 1rem;
+  padding: .75rem 1rem 1rem 1rem;
 
   @media (min-width: 768px) {
     gap: 1.5rem;
-    padding: 1.5rem;
+    padding: .75rem 1.5rem 1.5rem 1.5rem;
   }
 `;
 
@@ -71,4 +71,5 @@ export const ButtonDropdown = styled(BaseButton)`
   padding: .75rem 1.5rem;
   width: 100%;
   position: relative;
+  height: 48px;
 `;

@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import styled from 'styled-components';
 import useResponsiveMenu from './useResponsiveMenu';
 import { InsetBorder } from 'src/styles';
@@ -6,6 +7,8 @@ import Navbar from './Navbar';
 import ThemeToggle from './ThemeToggle';
 import OptionsToggle from './OptionsToggle';
 import MobileMenuToggle from './MobileMenuToggle';
+import { useHeaderStore } from 'src/stores/useHeaderStore';
+import { useEffect } from 'react';
 
 const Styled = {
   Header: styled(InsetBorder)`   
@@ -26,11 +29,16 @@ const Styled = {
 
 export default function Header({menu, language, themeOptions, resumeLabel}: HeaderProps) {
   const { isMenuActive, toggleMenu, isMobile } = useResponsiveMenu();
+  const setHeaderData = useHeaderStore((state) => state.setHeaderData);
+
+  useEffect(() => {
+    setHeaderData({ menu, language, themeOptions, resumeLabel });
+  }, [menu, language, themeOptions, resumeLabel]);
 
   return (
     <Styled.Header as='header'>
       <Styled.HeaderContent>
-        <OptionsToggle {...{ language, themeOptions, resumeLabel }} />
+        <OptionsToggle />
 
         <Navbar
           items={menu.items} 
