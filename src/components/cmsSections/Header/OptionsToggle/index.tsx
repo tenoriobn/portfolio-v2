@@ -1,21 +1,18 @@
-import { useState } from 'react';
 import { ButtonBorder, ControlButton } from 'src/styles';
-import { ActiveOption, OptionsToggleProps } from './optionsToggle.type';
 import OptionsPanel from './OptionsPanel';
+import { useOptionsToggleStore } from 'src/stores/useOptionsToggleStore';
 
-export default function OptionsToggle({ language, themeOptions, resumeLabel }: OptionsToggleProps) {
-  const [activeOption, setActiveOption] = useState<ActiveOption>(null);
+export default function OptionsToggle() {
+  const activeOption = useOptionsToggleStore((s) => s.activeOption);
+  const setActiveOption = useOptionsToggleStore((s) => s.setActiveOption);
+
   return (
     <>
-      <ButtonBorder onClick={() => setActiveOption(prev => (prev === null ? 'main' : null))}>
+      <ButtonBorder onClick={() => setActiveOption(activeOption === null ? 'main' : null)}>
         <ControlButton>B</ControlButton>
       </ButtonBorder>
 
-      <OptionsPanel
-        activeOption={activeOption} 
-        setActiveOption={setActiveOption}
-        {...{ language, themeOptions, resumeLabel }}
-      />
+      <OptionsPanel />
     </>
   );
 }

@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import styled from 'styled-components';
 import useResponsiveMenu from './useResponsiveMenu';
 import { InsetBorder } from 'src/styles';
@@ -31,7 +32,7 @@ export default function Header() {
   return (
     <Styled.Header as='header'>
       <Styled.HeaderContent>
-        <OptionsToggle {...{ language, themeOptions, resumeLabel }} />
+        <OptionsToggle />
 
         <Navbar
           items={menu.items} 
