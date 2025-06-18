@@ -1,11 +1,14 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import styled from 'styled-components';
 import useResponsiveMenu from './useResponsiveMenu';
 import { InsetBorder } from 'src/styles';
 import {  HeaderProps } from './header.type';
 import Navbar from './Navbar';
 import ThemeToggle from './ThemeToggle';
-import MenuButtonMobile from './MenuButtonMobile';
-import OptionsButton from './OptionsButton';
+import OptionsToggle from './OptionsToggle';
+import MobileMenuToggle from './MobileMenuToggle';
+import { useHeaderStore } from 'src/stores/useHeaderStore';
+import { useEffect } from 'react';
 
 const Styled = {
   Header: styled(InsetBorder)`   
@@ -24,27 +27,29 @@ const Styled = {
   `,
 };
 
-export default function Header(props: HeaderProps) {
+export default function Header({menu, language, themeOptions, resumeLabel}: HeaderProps) {
   const { isMenuActive, toggleMenu, isMobile } = useResponsiveMenu();
+  const setHeaderData = useHeaderStore((state) => state.setHeaderData);
 
-  // eslint-disable-next-line no-console
-  console.log(props);
+  useEffect(() => {
+    setHeaderData({ menu, language, themeOptions, resumeLabel });
+  }, [menu, language, themeOptions, resumeLabel]);
 
   return (
     <Styled.Header as='header'>
       <Styled.HeaderContent>
-        <OptionsButton />
+        <OptionsToggle />
 
-        <Navbar 
-          items={props.menu.items} 
+        <Navbar
+          items={menu.items} 
           isMenuActive={isMenuActive}
           toggleMenu={() => isMobile && toggleMenu()}
           isMobile={isMobile}
         />
 
-        {isMobile && ( <MenuButtonMobile isMenuActive={isMenuActive} toggleMenu={toggleMenu} />)}
-        
-        {!isMobile && ( <ThemeToggle themes={props.themeOptions.theme} /> )}
+        <MobileMenuToggle isMenuActive={isMenuActive} toggleMenu={toggleMenu} />
+      
+        {!isMobile && ( <ThemeToggle themes={themeOptions.theme} /> )}
       </Styled.HeaderContent>
     </Styled.Header>
   );

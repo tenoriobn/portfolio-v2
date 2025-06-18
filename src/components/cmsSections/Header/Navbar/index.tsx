@@ -30,10 +30,14 @@ const Styled = {
   NavList: styled.ul`
     display: flex;
     align-items: center;
-    gap: 1.5rem;
+    gap: 1rem;
 
     @media (max-width: 991px) {
       flex-direction: column;
+    }
+
+    @media (min-width: 768px) {
+      gap: 1.5rem;
     }
   `,
 
@@ -57,6 +61,7 @@ const Styled = {
 
   NavLink: styled(Link)`
     color: ${({ theme }) => theme.colors['grey-500']};
+    white-space: nowrap;
   `,
 
   MenuButtonContainer: styled(ButtonBorder)`

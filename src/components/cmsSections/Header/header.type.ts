@@ -1,5 +1,4 @@
 import { Items } from './Navbar/navbar.type';
-import { Theme } from './ThemeToggle/themeToggle.type';
 
 export interface HeaderBlockRecord extends HeaderProps {
   id: string;
@@ -15,6 +14,7 @@ export interface HeaderProps {
     options: {
       id: string;
       linkName: string;
+      href: string;
       icon: {
         url: string;
       };
@@ -22,7 +22,13 @@ export interface HeaderProps {
   };
   themeOptions: {
     title: string;
-    theme: Theme[];
+    theme: {
+      id: string;
+      linkName: string;
+      icon: {
+        url: string;
+      };
+    }[];
   };
   resumeLabel: {
     linkName: string;

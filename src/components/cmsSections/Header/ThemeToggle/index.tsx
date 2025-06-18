@@ -3,7 +3,7 @@ import Image from 'next/image';
 import { AnimatePresence, motion } from 'motion/react';
 import { useState } from 'react';
 import { scaleFade } from 'src/utils';
-import { Button, ButtonBorder } from 'src/styles';
+import { ControlButton, ButtonBorder } from 'src/styles';
 import { ThemeToggleProps } from './themeToggle.type';
 
 const Styled = {
@@ -20,13 +20,13 @@ export default function ThemeToggle({ themes }: ThemeToggleProps) {
 
   return (
     <Styled.ThemeButtonContainer>
-      <Button onClick={() => setIsDark(!isDark)}>
+      <ControlButton onClick={() => setIsDark(!isDark)}>
         <AnimatePresence mode="wait" initial={false}>
           <motion.span key={isDark ? 'dark' : 'light'} {...scaleFade}>
             <Image src={theme.icon.url} alt={theme.linkName} width={24} height={24} />
           </motion.span>
         </AnimatePresence>
-      </Button>
+      </ControlButton>
     </Styled.ThemeButtonContainer>
   );
 }
