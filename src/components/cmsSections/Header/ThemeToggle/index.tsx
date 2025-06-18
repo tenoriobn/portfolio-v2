@@ -4,7 +4,7 @@ import { AnimatePresence, motion } from 'motion/react';
 import { useState } from 'react';
 import { scaleFade } from 'src/utils';
 import { ControlButton, ButtonBorder } from 'src/styles';
-import { ThemeToggleProps } from './themeToggle.type';
+import { useCMSSection } from '../../useCMSSection.ts';
 
 const Styled = {
   ThemeButtonContainer: styled(ButtonBorder)`
@@ -14,9 +14,10 @@ const Styled = {
   `,
 };
 
-export default function ThemeToggle({ themes }: ThemeToggleProps) {
+export default function ThemeToggle() {
+  const { themeOptions } = useCMSSection('HeaderBlockRecord');
   const [isDark, setIsDark] = useState(true);
-  const theme = themes[isDark ? 0 : 1];
+  const theme = themeOptions.theme[isDark ? 0 : 1];
 
   return (
     <Styled.ThemeButtonContainer>

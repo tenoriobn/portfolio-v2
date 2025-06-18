@@ -2,10 +2,12 @@ import { useQueryClient } from '@tanstack/react-query';
 import { get } from 'lodash';
 import { PageContentBlock } from '../cmsSections/cmsSections.type';
 import { cmsSections } from '../cmsSections';
+import { useRouter } from 'next/router';
 
 export default function RenderCMSSections() {
+  const { locale } = useRouter();
   const queryClient = useQueryClient();
-  const data = queryClient.getQueryData(['cmsContent']);
+  const data = queryClient.getQueryData(['cmsContent', locale]);
   const pageContent = get(data, 'landingPage.pageContent', []) as PageContentBlock[];
 
   return (

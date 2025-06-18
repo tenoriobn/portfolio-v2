@@ -5,7 +5,6 @@ import Navbar from './Navbar';
 import ThemeToggle from './ThemeToggle';
 import OptionsToggle from './OptionsToggle';
 import MobileMenuToggle from './MobileMenuToggle';
-import { useCMSSection } from '../useCMSSection.ts';
 
 const Styled = {
   Header: styled(InsetBorder)`   
@@ -25,16 +24,14 @@ const Styled = {
 };
 
 export default function Header() {
-  const { menu, language, themeOptions, resumeLabel } = useCMSSection('HeaderBlockRecord');
   const { isMenuActive, toggleMenu, isMobile } = useResponsiveMenu();
 
   return (
     <Styled.Header as='header'>
       <Styled.HeaderContent>
-        <OptionsToggle {...{ language, themeOptions, resumeLabel }} />
+        <OptionsToggle />
 
         <Navbar
-          items={menu.items} 
           isMenuActive={isMenuActive}
           toggleMenu={() => isMobile && toggleMenu()}
           isMobile={isMobile}
@@ -42,7 +39,7 @@ export default function Header() {
 
         <MobileMenuToggle isMenuActive={isMenuActive} toggleMenu={toggleMenu} />
       
-        {!isMobile && ( <ThemeToggle themes={themeOptions.theme} /> )}
+        {!isMobile && ( <ThemeToggle /> )}
       </Styled.HeaderContent>
     </Styled.Header>
   );

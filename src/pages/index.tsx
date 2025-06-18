@@ -6,7 +6,7 @@ import { cmsService } from 'src/service/cmsService';
 export async function getStaticProps({ locale }: { locale: string }) {
   const queryClient = new QueryClient();
 
-  await queryClient.prefetchQuery(['cmsContent'], () =>
+  await queryClient.prefetchQuery(['cmsContent', locale], () =>
     cmsService({
       query:`
         query MyQuery {
