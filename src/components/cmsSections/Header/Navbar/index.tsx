@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import { NavbarProps } from './navbar.type';
 import { slideFadeDown } from 'src/utils';
 import { AnimatePresence, motion } from 'motion/react';
+import { useCMSSection } from '../../useCMSSection.ts';
 
 const Styled = {
   NavigationWrapper: styled(motion.div)<{$isMenuActive: boolean}>`
@@ -77,7 +78,8 @@ const Styled = {
   `,
 };
 
-export default function Navbar({ items, isMenuActive, toggleMenu, isMobile }: NavbarProps) {
+export default function Navbar({ isMenuActive, toggleMenu, isMobile }: NavbarProps) {
+  const { menu } = useCMSSection('HeaderBlockRecord');
   const mobileSlideFadeDown = isMobile ? slideFadeDown : {};
 
   return (
@@ -89,7 +91,7 @@ export default function Navbar({ items, isMenuActive, toggleMenu, isMobile }: Na
       >
         <Styled.Navigation>
           <Styled.NavList>            
-            {items.map((item) => (
+            {menu.items.map((item) => (
               <Styled.NavItem key={item.id}>
                 <Styled.NavLink href="#" onClick={toggleMenu}>
                   {item.linkName}

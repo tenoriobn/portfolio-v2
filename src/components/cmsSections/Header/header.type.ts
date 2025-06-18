@@ -1,11 +1,38 @@
-import { Items } from './Navbar/navbar.type';
-import { OptionsContent } from './OptionsToggle/OptionsPanel/optionsPanel.type';
 export interface HeaderBlockRecord extends HeaderProps {
   id: string;
   componentName: string;
 }
-export interface HeaderProps extends OptionsContent {
+export interface HeaderProps {
   menu: {
-    items: Items[];
+    items: {
+      id: string;
+      linkName: string;
+      href: string;
+    }[];
+  };
+    language: {
+    title: string;
+    options: {
+      id: string;
+      linkName: string;
+      href: string;
+      icon: {
+        url: string;
+      };
+    }[];
+  };
+  themeOptions: {
+    title: string;
+    theme: {
+      id: string;
+      linkName: string;
+      icon: {
+        url: string;
+      };
+    }[];
+  };
+  resumeLabel: {
+    linkName: string;
+    href: string;
   };
 }

@@ -14,7 +14,7 @@ const Styled = {
   `
 };
 
-export default function Header(props: HeaderProps) {
+export default function Zeader(props: HeaderProps) {
   const { changeLanguage } = useChangeLanguage();
 
   return (

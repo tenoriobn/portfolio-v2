@@ -4,18 +4,19 @@ import { ButtonContainer, ButtonDropdown, OptionsWrapper } from 'src/styles';
 import { LanguageProps } from './language.type';
 import { useChangeLanguage } from './useChangeLanguage';
 import { slideFadeDown } from 'src/utils';
+import { useCMSSection } from 'src/components/cmsSections/useCMSSection.ts';
 
-export default function Language({ languages, activeOption, setActiveOption }: LanguageProps) {
+export default function Language({ activeOption, setActiveOption }: LanguageProps) {
+  const { language } = useCMSSection('HeaderBlockRecord');
   const { changeLanguage } = useChangeLanguage();
 
   return (
     <OptionsWrapper
       $activeOption={activeOption}
-      key={activeOption ? 'openLanguage' : 'closeLanguage'}
       {...slideFadeDown}
     >      
       <OptionSublist onBack={() => setActiveOption('main')}>
-        {languages.map((language) => (
+        {language.options.map((language) => (
           <ButtonContainer 
             key={language.id}
             onClick={() => (changeLanguage(language.href), setActiveOption(null))}

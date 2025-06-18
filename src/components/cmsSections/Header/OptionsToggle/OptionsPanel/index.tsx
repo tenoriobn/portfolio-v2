@@ -9,8 +9,11 @@ import ArrowRightIcon from 'public/icons/arrow-right.svg';
 import Language from './Language';
 import Theme from './Theme';
 import { AnimatePresence } from 'motion/react';
+import { useCMSSection } from 'src/components/cmsSections/useCMSSection.ts';
 
-export default function OptionsPanel({ language, themeOptions, resumeLabel, activeOption, setActiveOption }: OptionsPanelProps) {
+export default function OptionsPanel({ activeOption, setActiveOption }: OptionsPanelProps) {
+  const { language, themeOptions, resumeLabel } = useCMSSection('HeaderBlockRecord');
+
   const mainOptions = [
     {
       icon: <GlobeIcon />,
@@ -35,7 +38,6 @@ export default function OptionsPanel({ language, themeOptions, resumeLabel, acti
       {activeOption === 'main' && (
         <OptionsWrapper
           $activeOption={activeOption}
-          key={activeOption ? 'openOption' : 'closeOption'}
           {...slideFadeDown}
         >
           <OptionList onClose={() => setActiveOption(null)}>
@@ -53,11 +55,11 @@ export default function OptionsPanel({ language, themeOptions, resumeLabel, acti
       )}
       
       {activeOption === 'language' && (
-        <Language languages={language.options} activeOption={activeOption} setActiveOption={setActiveOption} />
+        <Language activeOption={activeOption} setActiveOption={setActiveOption} />
       )}
 
       {activeOption === 'theme' && (
-        <Theme themes={themeOptions.theme} activeOption={activeOption} setActiveOption={setActiveOption} />
+        <Theme activeOption={activeOption} setActiveOption={setActiveOption} />
       )}
     </AnimatePresence>
   );
