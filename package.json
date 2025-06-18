@@ -6,16 +6,27 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "deploy:prod": "yarn deploy:staging --prod",
+    "deploy:staging": "npm run build && npx vercel --confirm --no-clipboard --token=$VERCEL_TOKEN",
+    "deploy:preview": "node ./scripts/pullRequestPreview"
   },
   "dependencies": {
+    "@tanstack/react-query": "v4.29.12",
+    "js-cookie": "^3.0.5",
+    "lodash": "^4.17.21",
+    "motion": "^12.18.1",
     "next": "15.3.2",
+    "node-fetch": "^3.3.2",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "styled-components": "^6.1.18"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
+    "@svgr/webpack": "^8.1.0",
+    "@types/js-cookie": "^3.0.6",
+    "@types/lodash": "^4.17.17",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
