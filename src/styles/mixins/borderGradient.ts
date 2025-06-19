@@ -7,12 +7,12 @@ export const borderBase = css`
   padding: 0.0625rem;
 `;
 
-export const insetBorder = css`
+export const borderInsetMixin = css`
   ${borderBase};
   background: ${({ theme }) => theme.gradient['grey-light-dark']};
 `;
 
-export const raisedBorder = css`
+export const borderRaisedMixin = css`
   ${borderBase};
   background: ${({ theme }) => theme.gradient['grey-light-dark-reserve']};
 `;

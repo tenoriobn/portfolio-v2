@@ -1,20 +1,20 @@
 import styled from 'styled-components';
-import { insetBorder, raisedBorder, shadowSM } from '../mixins';
+import { borderInsetMixin, borderRaisedMixin, shadowSM } from '../mixins';
 
-export const InsetBorder = styled.div`
+export const BorderInset = styled.div`
   border-radius: ${({ theme }) => theme.borderRadius.md};
-  ${insetBorder};
+  ${borderInsetMixin};
   ${shadowSM}
 `;
 
 
-export const RaisedBorder = styled.div`
+export const BorderRaised = styled.div`
   border-radius: ${({ theme }) => theme.borderRadius.md};
-  ${raisedBorder};
+  ${borderRaisedMixin};
   ${shadowSM}
 `;
 
-export const ButtonBorder = styled(InsetBorder)`
+export const BorderButton = styled(BorderInset)`
   &:active {
     background: ${({ theme }) => theme.gradient['grey-light-dark-reserve']};
   }

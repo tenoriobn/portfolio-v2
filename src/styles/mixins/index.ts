@@ -1,2 +1,2 @@
-export * from './shadow';
+export * from './boxShadow';
 export * from './borderGradient';
