@@ -1,1 +1,0 @@
-export type ActiveOption = 'main' | 'language' | 'theme' | null;
