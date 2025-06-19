@@ -57,13 +57,15 @@ const Styled = {
 
 export default function Dropdown({ onClick, children }: DropdownProps) {
   const { isActiveOption } = useOptionsList();
+  const showBackIcon = isActiveOption === 'language' || isActiveOption === 'theme';
+  const showCloseIcon = isActiveOption === 'main';
 
   return (
     <Styled.DropdownWrapper {...slideFadeDown}>
       <Styled.DropdownList>
         <BorderButton>
           <Styled.CircularButton onClick={onClick}>
-            {isActiveOption === 'main' ? <Styled.CloseIcon /> : <Styled.ArrowLeftIcon />}
+            {showBackIcon ? <Styled.ArrowLeftIcon /> : showCloseIcon && <Styled.CloseIcon />}
           </Styled.CircularButton>
         </BorderButton>
 
