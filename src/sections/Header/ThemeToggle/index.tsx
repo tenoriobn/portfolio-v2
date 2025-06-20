@@ -1,10 +1,10 @@
 import styled from 'styled-components';
 import Image from 'next/image';
 import { AnimatePresence, motion } from 'motion/react';
-import { useState } from 'react';
 import { scaleFade } from 'src/utils';
 import { CircularButton, BorderButton } from 'src/styles';
 import { useCMSSection } from 'src/hook';
+import { useThemeToggle } from './useThemeToggle';
 
 const Styled = {
   ThemeButtonContainer: styled(BorderButton)`
@@ -16,15 +16,15 @@ const Styled = {
 
 export default function ThemeToggle() {
   const { themeOptions } = useCMSSection('HeaderBlockRecord');
-  const [isDark, setIsDark] = useState(true);
-  const theme = themeOptions.theme[isDark ? 0 : 1];
+  const { isDark, toggleTheme } = useThemeToggle();
+  const iconTheme = themeOptions.theme[isDark ? 1 : 0];
 
   return (
     <Styled.ThemeButtonContainer>
-      <CircularButton onClick={() => setIsDark(!isDark)}>
+      <CircularButton onClick={toggleTheme}>
         <AnimatePresence mode="wait" initial={false}>
           <motion.span key={isDark ? 'dark' : 'light'} {...scaleFade}>
-            <Image src={theme.icon.url} alt={theme.linkName} width={24} height={24} />
+            <Image src={iconTheme.icon.url} alt={iconTheme.linkName} width={24} height={24} />
           </motion.span>
         </AnimatePresence>
       </CircularButton>

@@ -26,6 +26,7 @@ export interface HeaderProps {
     theme: {
       id: string;
       linkName: string;
+      href: string;
       icon: {
         url: string;
       };
