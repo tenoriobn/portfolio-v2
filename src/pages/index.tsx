@@ -38,6 +38,7 @@ export async function getStaticProps({ locale }: { locale: string }) {
                   theme {
                     id
                     linkName
+                    href
                     icon {
                       url
                     }
