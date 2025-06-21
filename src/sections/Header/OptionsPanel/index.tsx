@@ -16,7 +16,6 @@ export default function OptionsPanel() {
     <div ref={dropdownRef}>
       <BorderButton onClick={toggleOptions} >
         <CircularButton>B</CircularButton>
-
       </BorderButton>
 
       <AnimatePresence mode="wait" initial={false}>   

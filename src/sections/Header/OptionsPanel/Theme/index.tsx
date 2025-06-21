@@ -3,23 +3,33 @@ import { LargeBorderButton, OptionButton } from 'src/styles';
 import { useCMSSection } from 'src/hook';
 import useOptionsToggle from '../useOptionsToggle';
 import Dropdown from 'src/components/Dropdown';
-import { useTheme } from 'next-themes';
+import CheckIcon from 'public/icons/check.svg';
+import { useThemeToggle } from '../../ThemeToggle/useThemeToggle';
 
 export default function Theme() {
   const { themeOptions } = useCMSSection('HeaderBlockRecord');
   const { setActiveOption, closeOptions } = useOptionsToggle();
-  const { setTheme } = useTheme();
+  const { setTheme, resolvedTheme, } = useThemeToggle();
 
   return (
     <Dropdown onClick={() => setActiveOption('main')}>
-      {themeOptions.theme.map((theme) => (
-        <LargeBorderButton key={theme.id} onClick={() => (setTheme(theme.href), closeOptions())}>
-          <OptionButton>
-            <Image src={theme.icon.url} alt={theme.linkName} width={24} height={24} />
-            {theme.linkName}
-          </OptionButton>
-        </LargeBorderButton>
-      ))}
+      {themeOptions.theme.map((option) => {
+        const isSelected = resolvedTheme === option.href;
+
+        return (
+          <LargeBorderButton 
+            key={option.id} 
+            onClick={() => (setTheme(option.href), closeOptions())}
+            $isSelected={isSelected}
+          >
+            <OptionButton>
+              <Image src={option.icon.url} alt={option.linkName} width={24} height={24} />
+              {option.linkName}
+              {isSelected && <CheckIcon />}
+            </OptionButton>
+          </LargeBorderButton>
+        );
+      })}
     </Dropdown>
   );
 }
