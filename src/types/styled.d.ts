@@ -16,6 +16,7 @@ declare module 'styled-components' {
       'grey-light-dark': string;
       'grey-light-dark-reserve': string;
       'grey-dark-light-dark-reserve': string;
+      'grey-gradient-text': string;
     }
     font: {
       inter: string;

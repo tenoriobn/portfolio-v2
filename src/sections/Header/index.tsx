@@ -5,10 +5,22 @@ import OptionsPanel from './OptionsPanel';
 import Menu from './Menu';
 
 const Styled = {
-  Header: styled(BorderInset)`   
+  Header: styled.header`
+    position: fixed;
+    left: 0px;
+    right: 0px;
+    top: 0px;
+    z-index: 99;
+    padding: 1.5rem 1rem 0.0625rem;
+    background-color: ${({ theme }) => theme.colors['grey-900']};
+  `,
+
+  HeaderBorder: styled(BorderInset)`   
     border-radius: ${({ theme }) => theme.borderRadius.full};
     width: 100%;
     margin-top: 1.5rem;
+    max-width: 1200px;
+    margin: 0 auto;
   `,
 
   HeaderContent: styled.div`
@@ -24,12 +36,14 @@ const Styled = {
 export default function Header() {
 
   return (
-    <Styled.Header as='header'>
-      <Styled.HeaderContent>
-        <OptionsPanel />
-        <Menu />
-        <ThemeToggle />
-      </Styled.HeaderContent>
+    <Styled.Header>
+      <Styled.HeaderBorder>
+        <Styled.HeaderContent>
+          <OptionsPanel />
+          <Menu />
+          <ThemeToggle />
+        </Styled.HeaderContent>
+      </Styled.HeaderBorder>
     </Styled.Header>
   );
 }
