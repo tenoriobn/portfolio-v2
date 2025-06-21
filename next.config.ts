@@ -6,6 +6,14 @@ const nextConfig: NextConfig = {
     defaultLocale: 'pt_BR',
     localeDetection: false,
   },
+  images: {
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'www.datocms-assets.com',
+      }
+    ]
+  },
   webpack(config) {
     config.module.rules.push({
       test: /\.svg$/,

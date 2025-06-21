@@ -19,3 +19,14 @@ export const BorderButton = styled(BorderInset)`
     background: ${({ theme }) => theme.gradient['grey-light-dark-reserve']};
   }
 `;
+
+export const LargeBorderButton = styled.div<{ $isSelected?: boolean }>`
+  ${({ $isSelected }) => ($isSelected ? borderRaisedMixin : borderInsetMixin)};
+  ${shadowSM};
+  border-radius: ${({ theme }) => theme.borderRadius.md};
+  width: 100%;
+
+  &:active {
+    background: ${({ theme }) => theme.gradient['grey-light-dark-reserve']};
+  }
+`;

@@ -1,6 +1,5 @@
 import { motion } from 'motion/react';
 import styled from 'styled-components';
-import { BorderButton } from './border';
 
 export const BaseButton = styled(motion.button)`
   display: grid;
@@ -18,10 +17,6 @@ export const CircularButton = styled(BaseButton)`
   padding: .375rem;
 `;
 
-export const LargeBorderButton = styled(BorderButton)`
-  width: 100%;
-`;
-
 export const OptionButton = styled(BaseButton)`
   display: grid;
   align-items: center;
@@ -29,7 +24,11 @@ export const OptionButton = styled(BaseButton)`
   gap: .5rem;
   color: ${({ theme }) => theme.colors['grey-500']};
   text-align: left;
-  padding: .75rem 1.5rem;
+  padding: .75rem 1rem;
   width: 100%;
   position: relative;
+
+  @media (min-width: 768px) {
+    padding: .75rem 1.5rem;
+  }
 `;
