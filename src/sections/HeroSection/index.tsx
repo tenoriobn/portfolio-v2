@@ -3,7 +3,7 @@ import { useCMSSection } from 'src/hook';
 import DownloadIcon from 'public/icons/download.svg';
 import WavingIcon from 'public/icons/waving.svg';
 import styled from 'styled-components';
-import { borderInsetMixin, BorderButton, BaseButton, shadowSM, borderRaisedMixin, BorderInset, textGradient } from 'src/styles';
+import { borderInsetMixin, BorderButton, BaseButton, shadowSM, borderRaisedMixin, BorderInset, textGradient, Wrapper } from 'src/styles';
 
 const Styled = {
   HeroSection: styled.section`
@@ -127,33 +127,35 @@ export default function HeroSection() {
   const {avatar, jobTitle, highlightFixedText, highlightRotatingTexts, resumeLabel} = useCMSSection('HeroSectionBlockRecord');
 
   return (
-    <Styled.HeroSection>
-      <Styled.ProfileHeaderContainer>
-        <Styled.BorderName>
-          <Styled.Name>Bruno Tenório <WavingIcon /></Styled.Name>
-        </Styled.BorderName>
-        <Styled.AvatarBorderInset>
+    <Wrapper>
+      <Styled.HeroSection>
+        <Styled.ProfileHeaderContainer>
+          <Styled.BorderName>
+            <Styled.Name>Bruno Tenório <WavingIcon /></Styled.Name>
+          </Styled.BorderName>
+          <Styled.AvatarBorderInset>
 
-          <Styled.AvatarBorderRaisedContainer>
-            <Styled.AvatarBorderRaised>
-              <Styled.Avatar src={avatar.url} width={224} height={224} alt="Foto de perfil do Bruno Tenório" />
-            </Styled.AvatarBorderRaised>
-          </Styled.AvatarBorderRaisedContainer>
-        </Styled.AvatarBorderInset>
-      </Styled.ProfileHeaderContainer>
+            <Styled.AvatarBorderRaisedContainer>
+              <Styled.AvatarBorderRaised>
+                <Styled.Avatar src={avatar.url} width={224} height={224} alt="Foto de perfil do Bruno Tenório" />
+              </Styled.AvatarBorderRaised>
+            </Styled.AvatarBorderRaisedContainer>
+          </Styled.AvatarBorderInset>
+        </Styled.ProfileHeaderContainer>
 
-      <Styled.JobTitle>{jobTitle}</Styled.JobTitle>
+        <Styled.JobTitle>{jobTitle}</Styled.JobTitle>
 
-      <Styled.Title>
-        {highlightFixedText} <span>{highlightRotatingTexts[0].text}</span>
-      </Styled.Title>
+        <Styled.Title>
+          {highlightFixedText} <span>{highlightRotatingTexts[0].text}</span>
+        </Styled.Title>
 
-      <Styled.ResumeButtonBorder>
-        <Styled.ResumeButton>
-          <DownloadIcon />
-          {resumeLabel.linkName}
-        </Styled.ResumeButton>
-      </Styled.ResumeButtonBorder>
-    </Styled.HeroSection>
+        <Styled.ResumeButtonBorder>
+          <Styled.ResumeButton>
+            <DownloadIcon />
+            {resumeLabel.linkName}
+          </Styled.ResumeButton>
+        </Styled.ResumeButtonBorder>
+      </Styled.HeroSection>
+    </Wrapper>
   );
 }

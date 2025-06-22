@@ -5,6 +5,7 @@ import { cmsService } from 'src/service/cmsService';
 
 export async function getStaticProps({ locale }: { locale: string }) {
   const queryClient = new QueryClient();
+  const year = new Date().getFullYear();
 
   await queryClient.prefetchQuery(['cmsContent', locale], () =>
     cmsService({
@@ -193,7 +194,17 @@ export async function getStaticProps({ locale }: { locale: string }) {
           }
         }
       `
-    }).then(res => res.data)
+    }).then(res => ({
+      ...res.data,
+      landingPage: {
+        ...res.data.landingPage,
+        pageContent: res.data.landingPage.pageContent.map((item: { componentName: string; }) => 
+          item.componentName === 'FooterBlockRecord' 
+            ? { ...item, year } as const
+            : item
+        )
+      }
+    }))
   );
 
   return {

@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { BorderInset } from 'src/styles';
+import { BorderInset, Wrapper } from 'src/styles';
 import ThemeToggle from './ThemeToggle';
 import OptionsPanel from './OptionsPanel';
 import Menu from './Menu';
@@ -11,17 +11,7 @@ const Styled = {
     left: 0;
     right: 0;
     z-index: 99;
-    padding: 1.5rem 1rem 0.0625rem 1rem;
-    max-width: 1200px;
-    margin: 0 auto;
-
-    @media (min-width: 768px) {
-      padding: 1.5rem 2rem 0.0625rem;
-    }
-
-    @media (min-width: 1440px) {
-      padding: 1.5rem 0 0.0625rem;
-    }
+    padding-top: 1.5rem;
   `,
 
   HeaderBorder: styled(BorderInset)`   
@@ -43,13 +33,15 @@ export default function Header() {
 
   return (
     <Styled.Header>
-      <Styled.HeaderBorder>
-        <Styled.HeaderContent>
-          <OptionsPanel />
-          <Menu />
-          <ThemeToggle />
-        </Styled.HeaderContent>
-      </Styled.HeaderBorder>
+      <Wrapper>
+        <Styled.HeaderBorder>
+          <Styled.HeaderContent>
+            <OptionsPanel />
+            <Menu />
+            <ThemeToggle />
+          </Styled.HeaderContent>
+        </Styled.HeaderBorder>
+      </Wrapper>
     </Styled.Header>
   );
 }

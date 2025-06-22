@@ -1,4 +1,4 @@
-import { borderInsetMixin, shadowSM } from 'src/styles';
+import { borderInsetMixin, shadowSM, Wrapper } from 'src/styles';
 import styled from 'styled-components';
 import AboutContent from './AboutContent';
 import AboutImage from './AboutImage';
@@ -9,6 +9,8 @@ const Styled = {
     ${shadowSM}
     border-radius: ${({ theme }) => theme.borderRadius.md};
     width: 100%;
+
+    margin-bottom: 7.5rem;
   `,
 
   SectionContent: styled.div`
@@ -32,11 +34,13 @@ const Styled = {
 
 export default function AboutSection() {
   return (
-    <Styled.Section>
-      <Styled.SectionContent>
-        <AboutContent />
-        <AboutImage />
-      </Styled.SectionContent>
-    </Styled.Section>
+    <Wrapper>
+      <Styled.Section>
+        <Styled.SectionContent>
+          <AboutContent />
+          <AboutImage />
+        </Styled.SectionContent>
+      </Styled.Section>
+    </Wrapper>
   );
 }
