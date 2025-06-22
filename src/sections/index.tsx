@@ -1,5 +1,5 @@
 import Header from './Header';
-import AboutMeSection from './AboutMeSection';
+import AboutSection from './AboutSection';
 import ContactSection from './ContactSection';
 import ExperienceSection from './ExperienceSection';
 import Footer from './Footer';
@@ -12,7 +12,7 @@ export const cmsSections = {
   HeroSectionBlockRecord: HeroSection,
   SkillsSectionBlockRecord: SkillsSection,
   ProjectsSectionBlockRecord: ProjectsSection,
-  AboutMeSectionBlockRecord: AboutMeSection,
+  AboutMeSectionBlockRecord: AboutSection,
   ExperienceSectionBlockRecord: ExperienceSection,
   ContactSectionBlockRecord: ContactSection,
   FooterBlockRecord: Footer

@@ -3,7 +3,7 @@ import { useCMSSection } from 'src/hook';
 import DownloadIcon from 'public/icons/download.svg';
 import WavingIcon from 'public/icons/waving.svg';
 import styled from 'styled-components';
-import { borderInsetMixin, BorderButton, BaseButton, shadowSM, borderRaisedMixin, BorderInset } from 'src/styles';
+import { borderInsetMixin, BorderButton, BaseButton, shadowSM, borderRaisedMixin, BorderInset, textGradient } from 'src/styles';
 
 const Styled = {
   HeroSection: styled.section`
@@ -92,11 +92,7 @@ const Styled = {
     text-align: center;
     max-width: 588px;
 
-    background: ${({ theme }) => theme.gradient['grey-gradient-text']};
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    color: transparent;
+    ${textGradient}
 
     @media (min-width: 768px) {
       font-size: 2.5rem;
