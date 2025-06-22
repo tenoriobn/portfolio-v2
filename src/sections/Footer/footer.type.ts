@@ -5,4 +5,5 @@ export interface FooterBlockRecord extends FooterProps {
 
 export interface FooterProps {
   copyrighttext: string;
+  year: number;
 }

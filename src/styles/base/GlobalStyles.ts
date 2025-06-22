@@ -12,14 +12,6 @@ export const GlobalStyles = createGlobalStyle`
     -webkit-tap-highlight-color: transparent;
   }
 
-  html, body, #root {
-    max-width: 1200px;
-    width: 100%;
-    min-height: 100vh;
-    height: 100%;
-    margin: 0 auto;
-  }
-
   body {
     background-color: ${({ theme }) => theme.colors['grey-900']};
     color:${({ theme }) => theme.colors['grey-300']};
@@ -29,15 +21,6 @@ export const GlobalStyles = createGlobalStyle`
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     text-rendering: optimizeLegibility;
-    padding: 0 1rem;
-
-    @media (min-width: 768px) {
-      padding: 0 2rem;
-    }
-
-    @media (min-width: 1440px) {
-      padding: 0;
-    }
   }
 
   #root, #__next {
