@@ -16,7 +16,7 @@ export const darkTheme: DefaultTheme = {
   gradient: {
     'grey-light-dark': 'linear-gradient(to left top, rgb(27 27 27) 10%, rgb(204 204 204 / 34%) 100%)',
     'grey-light-dark-reserve': 'linear-gradient(to left top, rgb(204 204 204 / 24%) 10%, rgb(27 27 27) 90%)',
-    'grey-dark-light-dark-reserve': 'linear-gradient(to left top,  0%, rgba(207, 207, 207, 1) 17%, rgba(87, 87, 87, 1) 100%)',
+    'grey-dark-light-dark-reserve': 'linear-gradient(to left top, rgb(204 204 204 / 34%) 0%, rgb(27 27 27 / 34%) 17%, rgb(204 204 204 / 34%) 100%)',
     'grey-gradient-text': 'linear-gradient(to left top, rgba(134, 135, 139, 1) 0%, rgba(195, 196, 200, 1) 100%)',
   },
   shadow: {
