@@ -89,6 +89,9 @@ export async function getStaticProps({ locale }: { locale: string }) {
                   projectTitle
                   projectDescription
                   modalButtonLabel
+                  projectGallery {
+                    url
+                  }
                   appliedSolutions {
                     title
                     solution {
