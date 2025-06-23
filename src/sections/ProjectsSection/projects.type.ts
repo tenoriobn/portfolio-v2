@@ -11,6 +11,7 @@ export interface ProjectsSectionProps {
     modalButtonLabel: string;
     projectTitle: string;
     projectDescription: string;
+    projectGallery: { url: string }[]; 
     appliedSolutions: {
       title: string;
       solution: {
