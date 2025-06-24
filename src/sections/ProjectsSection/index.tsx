@@ -3,7 +3,6 @@ import { useCMSSection } from 'src/hook';
 import styled from 'styled-components';
 import Slide from './Slide';
 
-
 const Styled = {
   Section: styled.section`
     display: grid;
