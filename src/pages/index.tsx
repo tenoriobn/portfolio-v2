@@ -176,13 +176,14 @@ export async function getStaticProps({ locale }: { locale: string }) {
                 socialLink {
                   id
                   linkName
-                  href
                   icon {
                     url
                   }
                   dropdown {
                     id
                     text
+                    href
+                    iscopy
                     icon {
                       url
                     }

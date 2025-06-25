@@ -9,13 +9,14 @@ export interface ContactSectionProps {
   socialLink: {
     id: string;
     linkName: string;
-    href: string;
     icon: {
       url: string;
     };
     dropdown: {
       id: string;
       text: string;
+      href: string;
+      iscopy: boolean;
       icon: {
         url: string;
       };

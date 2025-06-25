@@ -20,7 +20,6 @@ export const useExperienceTimeline = () => {
     );
 
     setTimeout(() => {
-
       const el = cardRefs.current[experienceId];
       if (el) {
         const rect = el.getBoundingClientRect();

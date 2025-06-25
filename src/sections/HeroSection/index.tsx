@@ -4,6 +4,7 @@ import DownloadIcon from 'public/icons/download.svg';
 import WavingIcon from 'public/icons/waving.svg';
 import styled from 'styled-components';
 import { borderInsetMixin, BorderButton, BaseButton, shadowSM, borderRaisedMixin, BorderInset, textGradient, Wrapper } from 'src/styles';
+import Link from 'next/link';
 
 const Styled = {
   HeroSection: styled.section`
@@ -150,7 +151,7 @@ export default function HeroSection() {
         </Styled.Title>
 
         <Styled.ResumeButtonBorder>
-          <Styled.ResumeButton>
+          <Styled.ResumeButton as={Link} href={resumeLabel.href} target='_blank' rel='noopener noreferrer'>
             <DownloadIcon />
             {resumeLabel.linkName}
           </Styled.ResumeButton>

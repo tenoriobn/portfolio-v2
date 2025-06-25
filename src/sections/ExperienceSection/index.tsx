@@ -1,7 +1,7 @@
 import { useCMSSection } from 'src/hook';
 import { textGradient, Wrapper } from 'src/styles';
 import styled from 'styled-components';
-import ExperienceTimelineItem from './ExperienceTimeline';
+import ExperienceTimelineItem from './ExperienceTimelineItem';
 
 const Styled = {
   Section: styled.section`
