@@ -2,15 +2,18 @@ import { borderInsetMixin, shadowSM, Wrapper } from 'src/styles';
 import styled from 'styled-components';
 import AboutContent from './AboutContent';
 import AboutImage from './AboutImage';
+import { useCMSSection } from 'src/hook';
 
 const Styled = {
   Section: styled.section`
+    padding-bottom: 7.5rem;
+  `,
+
+  BorderSection: styled.div`
     ${borderInsetMixin}
     ${shadowSM}
     border-radius: ${({ theme }) => theme.borderRadius.md};
     width: 100%;
-
-    margin-bottom: 7.5rem;
   `,
 
   SectionContent: styled.div`
@@ -33,13 +36,17 @@ const Styled = {
 };
 
 export default function AboutSection() {
+  const { componentName } = useCMSSection('AboutMeSectionBlockRecord');
+
   return (
     <Wrapper>
-      <Styled.Section>
-        <Styled.SectionContent>
-          <AboutContent />
-          <AboutImage />
-        </Styled.SectionContent>
+      <Styled.Section id={componentName}>
+        <Styled.BorderSection>
+          <Styled.SectionContent>
+            <AboutContent />
+            <AboutImage />
+          </Styled.SectionContent>
+        </Styled.BorderSection>
       </Styled.Section>
     </Wrapper>
   );

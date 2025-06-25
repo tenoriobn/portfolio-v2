@@ -8,8 +8,8 @@ export default function OptionsList() {
 
   return (
     <Dropdown onClick={closeOptions}>
-      {options.map(({ icon, backIcon, label, onClick }, index) => (
-        <LargeBorderButton key={index}>
+      {options.map(({ icon, backIcon, label, onClick }) => (
+        <LargeBorderButton key={label}>
           <OptionButton onClick={onClick}>
             {icon}
             {label}

@@ -30,7 +30,7 @@ const Styled = {
 };
 
 export default function Footer() {
-  const { copyrighttext, year} = useCMSSection('FooterBlockRecord');
+  const { copyrighttext, year } = useCMSSection('FooterBlockRecord');
   
   return (
     <Styled.Footer>

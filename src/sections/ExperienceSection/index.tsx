@@ -1,13 +1,13 @@
 import { useCMSSection } from 'src/hook';
 import { textGradient, Wrapper } from 'src/styles';
 import styled from 'styled-components';
-import ExperienceTimeline from './ExperienceTimeline';
+import ExperienceTimelineItem from './ExperienceTimeline';
 
 const Styled = {
   Section: styled.section`
     display: grid;
     place-items: center;
-    margin-bottom: 7.5rem;
+    padding-bottom: 7.5rem;
     gap: 1rem;
 
     @media (min-width: 768px) {
@@ -36,18 +36,41 @@ const Styled = {
       margin-bottom: 2rem;
     }
   `,
+
+  TimelineContainer: styled.div`
+    position: relative;
+    display: grid;
+    gap: 1rem;
+    width: 100%;
+
+    @media (min-width: 768px) {
+      gap: 1.5rem;
+    }
+  `,
+
+  TimelineConnector: styled.div `
+    background: ${({ theme }) => theme.gradient['grey-dark-light-dark-reserve']};
+    position: absolute;
+    left: 10px;
+    top: 1px;
+    height: calc(100% - 1px);
+    width: 2px;
+  `,
 };
 
 export default function ExperienceSection() {
-  const { title, description } = useCMSSection('ExperienceSectionBlockRecord');
+  const { componentName, title, description } = useCMSSection('ExperienceSectionBlockRecord');
 
   return (
     <Wrapper>
-      <Styled.Section>
+      <Styled.Section id={componentName}>
         <Styled.Title>{title}</Styled.Title>
         <Styled.Description>{description}</Styled.Description>
 
-        <ExperienceTimeline />
+        <Styled.TimelineContainer>
+          <Styled.TimelineConnector />
+          <ExperienceTimelineItem />
+        </Styled.TimelineContainer>
       </Styled.Section>
     </Wrapper>
   );

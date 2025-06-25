@@ -3,12 +3,11 @@ import { useCMSSection } from 'src/hook';
 import styled from 'styled-components';
 import Slide from './Slide';
 
-
 const Styled = {
   Section: styled.section`
     display: grid;
     place-items: center;
-    margin-bottom: 7.5rem;
+    padding-bottom: 7.5rem;
     gap: 1rem;
 
     .swiper {
@@ -87,11 +86,11 @@ const Styled = {
 
 
 export default function ProjectsSection() {
-  const { title, description } = useCMSSection('ProjectsSectionBlockRecord');
+  const { componentName, title, description } = useCMSSection('ProjectsSectionBlockRecord');
 
   return (
     <Wrapper>
-      <Styled.Section>
+      <Styled.Section id={componentName}>
         <Styled.Title>{title}</Styled.Title>
         <Styled.Description>{description}</Styled.Description>
         <Slide />

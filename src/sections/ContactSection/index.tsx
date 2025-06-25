@@ -9,7 +9,7 @@ const Styled = {
   Section: styled.section`
     display: grid;
     place-items: center;
-    margin-bottom: 7.5rem;
+    padding-bottom: 7.5rem;
     gap: 1rem;
 
     @media (min-width: 768px) {
@@ -89,11 +89,11 @@ const Styled = {
 };
 
 export default function ContactSection() {
-  const { title, description, socialLink } = useCMSSection('ContactSectionBlockRecord');
+  const { componentName, title, description, socialLink } = useCMSSection('ContactSectionBlockRecord');
 
   return (
     <Wrapper>
-      <Styled.Section>
+      <Styled.Section id={componentName}>
         <Styled.BorderTalkingIcon>
           <Styled.TalkingIcon />
         </Styled.BorderTalkingIcon>

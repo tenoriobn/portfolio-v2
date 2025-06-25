@@ -1,10 +1,10 @@
-import Link from 'next/link';
 import styled from 'styled-components';
 import { AnimatePresence, motion } from 'motion/react';
 import { BorderButton, borderInsetMixin, borderRaisedMixin, shadowSM } from 'src/styles';
 import { slideFadeDown } from 'src/utils';
 import useMenuToggle from '../MobileMenuToggle/useMenuToggle';
 import { useCMSSection } from 'src/hook';
+import Link from 'next/link';
 
 const Styled = {
   NavigationWrapper: styled(motion.div)<{$isMenuActive: boolean}>`
@@ -43,7 +43,7 @@ const Styled = {
   `,
 
   NavItem: styled.li`
-    &:first-child {
+    /* &:first-child {
       ${borderRaisedMixin};
       border-radius: ${({ theme }) => theme.borderRadius.full};
       width: 100%;
@@ -57,12 +57,22 @@ const Styled = {
         padding: .75rem 1.5rem;
         width: 100%;
       }
-    }
+    } */
   `,
 
   NavLink: styled(Link)`
+    cursor: pointer;
     color: ${({ theme }) => theme.colors['grey-500']};
     white-space: nowrap;
+    transition: color .3s ease-in-out;
+
+    &.active {
+      color: ${({ theme }) => theme.colors['grey-200']};
+    }
+
+    &:hover {
+      color: ${({ theme }) => theme.colors['grey-300']};
+    }
   `,
 
   MenuButtonContainer: styled(BorderButton)`
@@ -86,14 +96,14 @@ export default function Navbar() {
     <AnimatePresence mode="wait" initial={false}>
       <Styled.NavigationWrapper 
         $isMenuActive={isMenuActive}
-        key={isMenuActive ? 'open' : 'close'}
+        key='navlinks'
         {...slideFadeDown}
       >
         <Styled.Navigation>
           <Styled.NavList>            
             {menu.items.map((item) => (
               <Styled.NavItem key={item.id}>
-                <Styled.NavLink href="#" onClick={closeMenu}>
+                <Styled.NavLink href={`#${item.href}`} onClick={closeMenu}>
                   {item.linkName}
                 </Styled.NavLink>
               </Styled.NavItem>
@@ -104,3 +114,6 @@ export default function Navbar() {
     </AnimatePresence>
   );
 }
+
+// Corrigir animação, não está sendo aplicada devido a key única e preciso dessa key sendo única se não ele não salva o link active ao fechar o menu mobile
+// Corrigir scroll ao descer para a seção de contato que não marca o link "contato" do menu como active, pois o "offset={-200}" não alcança.
