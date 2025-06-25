@@ -54,7 +54,29 @@ const icons = [
   <HtmlIcon key="html8" />,
   <CssIcon key="css8" />,
   <JsIcon key="js8" />,
+  <HtmlIcon key="html9" />,
+  <CssIcon key="css9" />,
+  <JsIcon key="js9" />,
+  <HtmlIcon key="html10" />,
+  <CssIcon key="css10" />,
+  <JsIcon key="js10" />,
+  <HtmlIcon key="html11" />,
+  <CssIcon key="css11" />,
+  <JsIcon key="js11" />,
+  <HtmlIcon key="html1213" />,
+  <CssIcon key="css1213" />,
+  <JsIcon key="js1213" />,
+  <HtmlIcon key="html13" />,
+  <CssIcon key="css13" />,
+  <JsIcon key="js13" />,
+  <HtmlIcon key="html1415" />,
+  <CssIcon key="css1415" />,
+  <JsIcon key="js1415" />,
+  <HtmlIcon key="html15" />,
+  <CssIcon key="css15" />,
+  <JsIcon key="js15" />,
 ];
+
 
 export default function SlideSkills() {
   return (

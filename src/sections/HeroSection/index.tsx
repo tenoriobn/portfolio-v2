@@ -124,11 +124,11 @@ const Styled = {
 };
 
 export default function HeroSection() {
-  const {avatar, jobTitle, highlightFixedText, highlightRotatingTexts, resumeLabel} = useCMSSection('HeroSectionBlockRecord');
+  const {componentName, avatar, jobTitle, highlightFixedText, highlightRotatingTexts, resumeLabel} = useCMSSection('HeroSectionBlockRecord');
 
   return (
     <Wrapper>
-      <Styled.HeroSection>
+      <Styled.HeroSection id={componentName}>
         <Styled.ProfileHeaderContainer>
           <Styled.BorderName>
             <Styled.Name>Bruno Tenório <WavingIcon /></Styled.Name>

@@ -2,6 +2,7 @@ import { borderInsetMixin, shadowSM, Wrapper } from 'src/styles';
 import styled from 'styled-components';
 import AboutContent from './AboutContent';
 import AboutImage from './AboutImage';
+import { useCMSSection } from 'src/hook';
 
 const Styled = {
   Section: styled.section`
@@ -33,9 +34,11 @@ const Styled = {
 };
 
 export default function AboutSection() {
+  const { componentName } = useCMSSection('AboutMeSectionBlockRecord');
+
   return (
     <Wrapper>
-      <Styled.Section>
+      <Styled.Section id={componentName}>
         <Styled.SectionContent>
           <AboutContent />
           <AboutImage />

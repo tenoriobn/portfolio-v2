@@ -86,11 +86,11 @@ const Styled = {
 
 
 export default function ProjectsSection() {
-  const { title, description } = useCMSSection('ProjectsSectionBlockRecord');
+  const { componentName, title, description } = useCMSSection('ProjectsSectionBlockRecord');
 
   return (
     <Wrapper>
-      <Styled.Section>
+      <Styled.Section id={componentName}>
         <Styled.Title>{title}</Styled.Title>
         <Styled.Description>{description}</Styled.Description>
         <Slide />

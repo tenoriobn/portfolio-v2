@@ -89,11 +89,11 @@ const Styled = {
 };
 
 export default function ContactSection() {
-  const { title, description, socialLink } = useCMSSection('ContactSectionBlockRecord');
+  const { componentName, title, description, socialLink } = useCMSSection('ContactSectionBlockRecord');
 
   return (
     <Wrapper>
-      <Styled.Section>
+      <Styled.Section id={componentName}>
         <Styled.BorderTalkingIcon>
           <Styled.TalkingIcon />
         </Styled.BorderTalkingIcon>

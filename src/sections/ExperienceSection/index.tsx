@@ -39,11 +39,11 @@ const Styled = {
 };
 
 export default function ExperienceSection() {
-  const { title, description } = useCMSSection('ExperienceSectionBlockRecord');
+  const { componentName, title, description } = useCMSSection('ExperienceSectionBlockRecord');
 
   return (
     <Wrapper>
-      <Styled.Section>
+      <Styled.Section id={componentName}>
         <Styled.Title>{title}</Styled.Title>
         <Styled.Description>{description}</Styled.Description>
 

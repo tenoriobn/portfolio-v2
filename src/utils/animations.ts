@@ -6,8 +6,8 @@ export const scaleFade = {
 };
 
 export const slideFadeDown = {
-  initial: {opacity: 0, y: -12 },
-  animate: {opacity: 1, y: 0 },
-  exit: {opacity: 0, y: -12 },
-  transition: { duration:  .075},
+  initial: { opacity: 0, y: -12 },
+  animate: { opacity: 1, y: 0 },
+  exit: { opacity: 0, y: -12 },
+  transition: { duration:  .075 },
 };

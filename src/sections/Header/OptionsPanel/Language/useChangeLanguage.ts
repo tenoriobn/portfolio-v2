@@ -8,7 +8,7 @@ export const useChangeLanguage = () => {
   const changeLanguage = (lang: string) => {
     if (locale=== lang) return;
     Cookies.set('NEXT_LOCALE', lang, { expires: 365, path: '/' });
-    router.push('/', '/', { locale: lang });
+    router.push('/', '/', { locale: lang, scroll: false });
   };
 
   return { changeLanguage, locale };

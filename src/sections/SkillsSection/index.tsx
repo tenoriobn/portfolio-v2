@@ -60,11 +60,11 @@ const Styled = {
 };
 
 export default function SkillsSection() {
-  const { title, description } = useCMSSection('SkillsSectionBlockRecord');
+  const { componentName, title, description } = useCMSSection('SkillsSectionBlockRecord');
 
   return (
     <Wrapper>
-      <Styled.Section>
+      <Styled.Section id={componentName}>
         <Styled.Title>{title}</Styled.Title>
         <Styled.Description>{description}</Styled.Description>
         
