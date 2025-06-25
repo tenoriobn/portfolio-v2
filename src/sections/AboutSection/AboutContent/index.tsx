@@ -81,7 +81,9 @@ const Styled = {
 
 export default function AboutContent() {
   const { title, description, socialLink } = useCMSSection('AboutMeSectionBlockRecord');
-  const paragraph = description.value.document.children[0].children[0].value;
+  const paragraph = description.value.document.children
+    .map(child => child.children?.[0]?.value || '').join('\n')
+  ;
 
   return (
     <Styled.AboutContentWrapper>
