@@ -1,5 +1,5 @@
 import { AboutMeSectionBlockRecord } from './AboutSection/aboutme.type';
-import { ContactSectionBlockRecord } from './ContactSection/contact.type';
+import { ContactSectionBlockRecord } from './ContactSection/ContactSection.type';
 import { ExperienceSectionBlockRecord } from './ExperienceSection/experience.type';
 import { FooterBlockRecord } from './Footer/footer.type';
 import { HeaderBlockRecord } from './Header/header.type';

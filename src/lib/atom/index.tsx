@@ -9,3 +9,8 @@ export const isActiveOptionState = atom<'main' | 'language' | 'theme' | null>({
   key: 'isActiveOption',
   default: null,
 });
+
+export const isActiveContactState = atom<string | null>({
+  key: 'isActiveContactState',
+  default: null,
+});
