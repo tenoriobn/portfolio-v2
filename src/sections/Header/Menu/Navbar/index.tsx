@@ -4,8 +4,7 @@ import { BorderButton, borderInsetMixin, borderRaisedMixin, shadowSM } from 'src
 import { slideFadeDown } from 'src/utils';
 import useMenuToggle from '../MobileMenuToggle/useMenuToggle';
 import { useCMSSection } from 'src/hook';
-import { Link } from 'react-scroll';
-import useScrollSpyInit from './useScrollSpyInit';
+import Link from 'next/link';
 
 const Styled = {
   NavigationWrapper: styled(motion.div)<{$isMenuActive: boolean}>`
@@ -92,7 +91,6 @@ const Styled = {
 export default function Navbar() {
   const { menu } = useCMSSection('HeaderBlockRecord');
   const { isMenuActive, closeMenu } = useMenuToggle();
-  useScrollSpyInit();
 
   return (
     <AnimatePresence mode="wait" initial={false}>
@@ -105,16 +103,7 @@ export default function Navbar() {
           <Styled.NavList>            
             {menu.items.map((item) => (
               <Styled.NavItem key={item.id}>
-                <Styled.NavLink 
-                  to={item.href} 
-                  spy={true}
-                  smooth={true}
-                  offset={-200}
-                  isDynamic={true}
-                  duration={300}
-                  activeClass="active"
-                  onClick={closeMenu}
-                >
+                <Styled.NavLink href={`#${item.href}`} onClick={closeMenu}>
                   {item.linkName}
                 </Styled.NavLink>
               </Styled.NavItem>

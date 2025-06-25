@@ -1,30 +1,13 @@
 import Image from 'next/image';
-import { useCMSSection } from 'src/hook';
 import { BorderButton, borderInsetMixin, borderRaisedMixin, shadowSM } from 'src/styles';
 import ArrowIcon from 'public/icons/arrow-right.svg';
 import styled from 'styled-components';
+import { AnimatePresence, motion } from 'motion/react';
+import { useExperienceTimeline } from './useExperienceTimeline';
+import { expandFade } from 'src/utils';
 
 const Styled = {
-  ExperienciesWrapper: styled.div`
-    position: relative;
-    display: grid;
-    gap: 1rem;
-
-    @media (min-width: 768px) {
-      gap: 1.5rem;
-    }
-  `,
-
-  Line: styled.div `
-    background: ${({ theme }) => theme.gradient['grey-dark-light-dark-reserve']};
-    position: absolute;
-    left: 10px;
-    top: 1px;
-    height: calc(100% - 1px);
-    width: 2px;
-  `,
-
-  Timeline: styled.div`
+  TimelineItem: styled.div`
     position: relative;
     display: grid;
     grid-template-columns: auto 1fr;
@@ -35,7 +18,7 @@ const Styled = {
     }
   `,
 
-  Button: styled.button`
+  ExpandButton: styled.button<{ $isExpanded: boolean}>`
     display: grid;
     place-items: center;
     background-color: ${({ theme }) => theme.colors['grey-800-75%']};
@@ -44,19 +27,22 @@ const Styled = {
     height: 20px;
 
     svg {
-      rotate: -90deg;
+      rotate: ${({ $isExpanded }) => $isExpanded ? '-90deg' : '90deg'};
       transform: scale(0.6);
     }
   `,
 
-  ExperiencieBorder: styled.div`
+  ExperienceCardWrapper: styled(motion.div)`
     ${borderInsetMixin}
     ${shadowSM}
+    cursor: pointer;
     border-radius: ${({ theme }) => theme.borderRadius.md};
     width: 100%;
+    height: 100%;
+    overflow: hidden;
   `,
 
-  ExperiencieCard: styled.div`
+  ExperienceCard: styled.div`
     background-color: ${({ theme }) => theme.colors['grey-800-75%']};
     border-radius: ${({ theme }) => theme.borderRadius.md};
     padding: 1rem;
@@ -66,24 +52,19 @@ const Styled = {
     }
   `,
 
-  ExperienceInfo: styled.div`
+  ExperienceHeader: styled.div`
     display: flex;
     align-items: center;
     gap: .75rem;
-    margin-bottom: 1rem;
-
-    @media (min-width: 768px) {
-      margin-bottom: 1.5rem;
-    }
   `,
 
-  LogoBorderInset: styled.div`
+  CompanyLogoWrapper: styled.div`
     ${borderRaisedMixin}
     ${shadowSM}
     border-radius: ${({ theme }) => theme.borderRadius.full};
   `,
 
-  CompanyWrapper: styled.div`
+  ExperienceInfo: styled.div`
     display: grid;
     gap: .25rem;
   `,
@@ -97,54 +78,65 @@ const Styled = {
     }
   `,
 
-  Role: styled.p`
+  RoleName: styled.p`
     font-size: .875rem;
     font-weight: 600;
   `,
 
-  Period: styled.p`
+  PeriodText: styled.p`
     font-size: .875rem;
   `,
 
-  JobDescription: styled.p`
+  JobDescription: styled(motion.p)`
     font-style: italic;
+    padding-top: 1rem;
+
+    @media (min-width: 768px) {
+      padding-top: 1.5rem;
+    }
   `,
 };
 
-export default function ExperienceTimeline() {
-  const { experienceContent } = useCMSSection('ExperienceSectionBlockRecord');
+export default function ExperienceTimelineItem() {
+  const { experiences, toggleExperienceExpansion, isExperienceExpanded, cardRefs } = useExperienceTimeline();
 
   return (
-    <Styled.ExperienciesWrapper>
-      <Styled.Line></Styled.Line>
-
-      {experienceContent.experiencies.map((experience) => (
-        <Styled.Timeline key={experience.id}>
-          <BorderButton>
-            <Styled.Button>
+    <>    
+      {experiences.map((experience) => (
+        <Styled.TimelineItem key={experience.id}>
+          <BorderButton onClick={() => toggleExperienceExpansion(experience.id)}>
+            <Styled.ExpandButton $isExpanded={isExperienceExpanded(experience.id)}>
               <ArrowIcon />
-            </Styled.Button>
+            </Styled.ExpandButton>
           </BorderButton>
-              
-          <Styled.ExperiencieBorder>
-            <Styled.ExperiencieCard>
-              <Styled.ExperienceInfo>
-                <Styled.LogoBorderInset>
+
+          <Styled.ExperienceCardWrapper 
+            ref={(el) => {cardRefs.current[experience.id] = el;}}
+            onClick={() => toggleExperienceExpansion(experience.id)}
+          >
+            <Styled.ExperienceCard>
+              <Styled.ExperienceHeader>
+                <Styled.CompanyLogoWrapper>
                   <Image src={experience.companyLogo.url} alt={experience.companyName} width={66} height={66}/>
-                </Styled.LogoBorderInset>
+                </Styled.CompanyLogoWrapper>
 
-                <Styled.CompanyWrapper>
+                <Styled.ExperienceInfo>
                   <Styled.CompanyName>{experience.companyName}</Styled.CompanyName>
-                  <Styled.Role>{experience.roleArea}</Styled.Role>
-                  <Styled.Period>{experience.period}</Styled.Period>
-                </Styled.CompanyWrapper>
-              </Styled.ExperienceInfo>
-
-              <Styled.JobDescription>{experience.jobDescription}</Styled.JobDescription>
-            </Styled.ExperiencieCard>
-          </Styled.ExperiencieBorder>
-        </Styled.Timeline>
+                  <Styled.RoleName>{experience.roleArea}</Styled.RoleName>
+                  <Styled.PeriodText>{experience.period}</Styled.PeriodText>
+                </Styled.ExperienceInfo>
+              </Styled.ExperienceHeader>
+              <AnimatePresence initial={false}>
+                {isExperienceExpanded(experience.id) && (
+                  <motion.div key="description" {...expandFade}>
+                    <Styled.JobDescription>{experience.jobDescription}</Styled.JobDescription>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </Styled.ExperienceCard>
+          </Styled.ExperienceCardWrapper>
+        </Styled.TimelineItem>
       ))}
-    </Styled.ExperienciesWrapper>
+    </>
   );
 }

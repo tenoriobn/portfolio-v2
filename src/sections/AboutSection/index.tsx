@@ -6,12 +6,14 @@ import { useCMSSection } from 'src/hook';
 
 const Styled = {
   Section: styled.section`
+    padding-bottom: 7.5rem;
+  `,
+
+  BorderSection: styled.div`
     ${borderInsetMixin}
     ${shadowSM}
     border-radius: ${({ theme }) => theme.borderRadius.md};
     width: 100%;
-
-    margin-bottom: 7.5rem;
   `,
 
   SectionContent: styled.div`
@@ -39,10 +41,12 @@ export default function AboutSection() {
   return (
     <Wrapper>
       <Styled.Section id={componentName}>
-        <Styled.SectionContent>
-          <AboutContent />
-          <AboutImage />
-        </Styled.SectionContent>
+        <Styled.BorderSection>
+          <Styled.SectionContent>
+            <AboutContent />
+            <AboutImage />
+          </Styled.SectionContent>
+        </Styled.BorderSection>
       </Styled.Section>
     </Wrapper>
   );
