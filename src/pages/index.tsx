@@ -118,15 +118,7 @@ export async function getStaticProps({ locale }: { locale: string }) {
                     }
                   }
                   projectLinks {
-                    demonstration {
-                      id
-                      linkName
-                      href
-                      icon {
-                        url
-                      }
-                    }
-                    sourceCode {
+                    ... on LinkWithIconRecord {
                       id
                       linkName
                       href
