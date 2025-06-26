@@ -1,13 +1,13 @@
+import styled from 'styled-components';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Autoplay } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/free-mode';
-
+import { borderInsetMixin, shadowSM } from 'src/styles';
+import { useSlideContinuousMove } from './useSlideContinuousMove';
 import HtmlIcon from 'public/skills/html.svg';
 import CssIcon from 'public/skills/css.svg';
 import JsIcon from 'public/skills/js.svg';
-import styled from 'styled-components';
-import { borderInsetMixin, shadowSM } from 'src/styles';
 
 const Styled = {
   ProjectBorder: styled.div`
@@ -77,28 +77,33 @@ const icons = [
   <JsIcon key="js15" />,
 ];
 
-
 export default function SlideSkills() {
+  const { swiperRef, toggleAnimation, handleTouchStart, handleTouchEnd } = useSlideContinuousMove(icons.length);
+
   return (
     <Styled.ProjectBorder>       
       <Styled.ProjectCard>      
         <Swiper
+          ref={swiperRef}
           spaceBetween={24}
           loop={true}
-          autoplay={{
-            delay: 0,
-            disableOnInteraction: false,
-          }}
-          speed={3000}
+          autoplay={false}
+          speed={300}
           freeMode={true}
           grabCursor={true}
+          allowTouchMove={true}
           modules={[Autoplay]}
           breakpoints={{
             0: { slidesPerView: 'auto' },
           }}
+          onTouchStart={handleTouchStart}
+          onTouchEnd={handleTouchEnd}
+          onClick={toggleAnimation}
         >
-          {[...icons, ...icons].map((icon, index) => (
-            <SwiperSlide key={index}>{icon}</SwiperSlide>
+          {[...icons, ...icons, ...icons].map((icon, index) => (
+            <SwiperSlide key={index} style={{ width: 'auto' }}>
+              {icon}
+            </SwiperSlide>
           ))}
         </Swiper>
       </Styled.ProjectCard> 
