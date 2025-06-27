@@ -1,14 +1,17 @@
 import { Pagination } from 'swiper/modules';
 
-export const swiperConfig = {
-  breakpoints: {
+export const createSwiperConfig = (
+  paginationClass: string, 
+  breakpoints?: Record<number, { slidesPerView: number }>
+) => ({
+  breakpoints: breakpoints || {
     0: { slidesPerView: 1 },
     580: { slidesPerView: 2 },
     1024: { slidesPerView: 3 },
   },
   spaceBetween: 24,
   pagination: {
-    el: '.projects-carousel-pagination',
+    el: `.${paginationClass}`,
     clickable: true,
     dynamicBullets: true,
     renderBullet: (_: number, className: string): string => {
@@ -16,4 +19,4 @@ export const swiperConfig = {
     },
   },
   modules: [Pagination],
-};
+});

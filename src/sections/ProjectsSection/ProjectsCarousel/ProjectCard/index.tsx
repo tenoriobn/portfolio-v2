@@ -3,7 +3,7 @@ import MagnifyingGlass from 'public/icons/magnifying-glass.svg';
 import styled from 'styled-components';
 import { BaseButton, BorderButton, borderInsetMixin, borderRaisedMixin, shadowSM, textGradient } from 'src/styles';
 import { ProjectCardProps } from './projectCard.type';
-import { useProjectModal } from '../../ProjectModal/useProjectModal';
+import { useProjectModal } from '../ProjectModal/useProjectModal';
 
 const Styled = {
   CardWrapper: styled.div`
@@ -81,7 +81,6 @@ const Styled = {
 
   ActionButton: styled(BorderButton)`
     border-radius: ${({ theme }) => theme.borderRadius.full};
-    width: 100%;
   `,
 
   Button: styled(BaseButton)`
@@ -114,7 +113,10 @@ export default function ProjectCard({ project }: ProjectCardProps) {
     <Styled.CardWrapper>
       <Styled.Card>
         {firstImage && (
-          <Styled.ImageWrapper>
+          <Styled.ImageWrapper 
+            onClick={() => openModal(project, 'gallery')}
+            aria-label={`Ver imagem ampliada do projeto ${projectTitle}`}
+          >
             <Styled.ProjectImage 
               src={firstImage.url} 
               alt={`Imagem do projeto ${projectTitle}`}
@@ -134,7 +136,7 @@ export default function ProjectCard({ project }: ProjectCardProps) {
               <Styled.Button 
                 type="button"
                 aria-label={`Ver detalhes do projeto ${projectTitle}`}
-                onClick={() => openModal(project)}
+                onClick={() => openModal(project, 'info')}
               > 
                 <MagnifyingGlass aria-hidden="true" /> 
                 {modalButtonLabel}

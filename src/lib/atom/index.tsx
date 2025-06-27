@@ -1,5 +1,6 @@
 import { atom } from 'recoil';
-import { ProjectItem } from 'src/sections/ProjectsSection/projects.type';
+import { projectModal } from 'src/sections/ProjectsSection/ProjectsCarousel/ProjectModal/projectModal.type';
+
 export const isMenuActiveState = atom({
   key: 'isMenuActive',
   default: false,
@@ -15,7 +16,7 @@ export const isActiveContactState = atom<string | null>({
   default: null,
 });
 
-export const projectModalState = atom<ProjectItem | null>({
+export const projectModalState = atom<projectModal | null>({
   key: 'projectModal',
   default: null,
 });

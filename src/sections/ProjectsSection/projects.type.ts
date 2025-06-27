@@ -14,7 +14,10 @@ export interface ProjectItem {
   modalButtonLabel: string;
   projectTitle: string;
   projectDescription: string;
-  projectGallery: { url: string }[]; 
+  projectGallery: { 
+    id: string;
+    url: string 
+  }[]; 
   appliedSolutions: {
     title: string;
     solution: {
