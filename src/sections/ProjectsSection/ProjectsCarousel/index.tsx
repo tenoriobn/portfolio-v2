@@ -60,7 +60,7 @@ export default function ProjectsCarousel() {
 
   return (
     <Styled.Container>
-      <Swiper {...projectsConfig} className="projects-swiper">
+      <Swiper {...projectsConfig} >
         {projects?.map((project) => (
           <SwiperSlide key={project.id}>
             <ProjectCard project={project} />

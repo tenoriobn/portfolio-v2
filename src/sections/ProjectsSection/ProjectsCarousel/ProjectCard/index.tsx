@@ -8,7 +8,6 @@ import { useProjectModal } from '../ProjectModal/useProjectModal';
 const Styled = {
   CardWrapper: styled.div`
     ${borderInsetMixin}
-    ${shadowSM}
     border-radius: ${({ theme }) => theme.borderRadius.md};
     width: 100%;
   `,

@@ -1,10 +1,11 @@
 import styled from 'styled-components';
 import { AnimatePresence, motion } from 'motion/react';
-import { BorderButton, borderInsetMixin, borderRaisedMixin, shadowSM } from 'src/styles';
+import { BorderButton, borderInsetMixin, shadowSM } from 'src/styles';
 import { slideFadeDown } from 'src/utils';
 import useMenuToggle from '../MobileMenuToggle/useMenuToggle';
+import useScrollSpyInit from './useScrollSpyInit';
+import { Link } from 'react-scroll';
 import { useCMSSection } from 'src/hook';
-import Link from 'next/link';
 
 const Styled = {
   NavigationWrapper: styled(motion.div)<{$isMenuActive: boolean}>`
@@ -42,32 +43,16 @@ const Styled = {
     }
   `,
 
-  NavItem: styled.li`
-    /* &:first-child {
-      ${borderRaisedMixin};
-      border-radius: ${({ theme }) => theme.borderRadius.full};
-      width: 100%;
-      text-align: center;
-
-      a {
-        display: block;
-        border-radius: ${({ theme }) => theme.borderRadius.full};
-        background-color: ${({ theme }) => theme.colors['grey-800-75%']};
-        color: ${({ theme }) => theme.colors['grey-200']};
-        padding: .75rem 1.5rem;
-        width: 100%;
-      }
-    } */
-  `,
-
-  NavLink: styled(Link)`
+  NavLink: styled(Link)<{$forceActive?: boolean; $forceInactive?: boolean}>`
     cursor: pointer;
-    color: ${({ theme }) => theme.colors['grey-500']};
+    color: ${({ theme, $forceActive, $forceInactive }) => 
+    $forceActive ? theme.colors['grey-200'] : $forceInactive ? theme.colors['grey-500'] : theme.colors['grey-500']};
+
     white-space: nowrap;
     transition: color .3s ease-in-out;
 
     &.active {
-      color: ${({ theme }) => theme.colors['grey-200']};
+      color: ${({ theme, $forceInactive }) => $forceInactive ? theme.colors['grey-500'] : theme.colors['grey-200']};
     }
 
     &:hover {
@@ -91,6 +76,7 @@ const Styled = {
 export default function Navbar() {
   const { menu } = useCMSSection('HeaderBlockRecord');
   const { isMenuActive, closeMenu } = useMenuToggle();
+  const {isContactVisible} = useScrollSpyInit();
 
   return (
     <AnimatePresence mode="wait" initial={false}>
@@ -102,11 +88,21 @@ export default function Navbar() {
         <Styled.Navigation>
           <Styled.NavList>            
             {menu.items.map((item) => (
-              <Styled.NavItem key={item.id}>
-                <Styled.NavLink href={`#${item.href}`} onClick={closeMenu}>
+              <li key={item.id}>
+                <Styled.NavLink
+                  to={item.href} 
+                  spy={true}
+                  smooth={true}
+                  offset={item.href === 'ContactSectionBlockRecord' ? -180 : -120}
+                  duration={600}
+                  activeClass='active'
+                  onClick={closeMenu}
+                  $forceActive={isContactVisible && item.href === 'ContactSectionBlockRecord'}
+                  $forceInactive={isContactVisible && item.href !== 'ContactSectionBlockRecord'}
+                >
                   {item.linkName}
                 </Styled.NavLink>
-              </Styled.NavItem>
+              </li>
             ))}
           </Styled.NavList>
         </Styled.Navigation>
@@ -114,6 +110,3 @@ export default function Navbar() {
     </AnimatePresence>
   );
 }
-
-// Corrigir animação, não está sendo aplicada devido a key única e preciso dessa key sendo única se não ele não salva o link active ao fechar o menu mobile
-// Corrigir scroll ao descer para a seção de contato que não marca o link "contato" do menu como active, pois o "offset={-200}" não alcança.

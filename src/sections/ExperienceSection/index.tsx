@@ -7,7 +7,6 @@ const Styled = {
   Section: styled.section`
     display: grid;
     place-items: center;
-    padding-bottom: 7.5rem;
     gap: 1rem;
 
     @media (min-width: 768px) {

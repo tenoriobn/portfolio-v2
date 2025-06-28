@@ -3,5 +3,5 @@ export interface BaseModalProps {
   isOpen: boolean;
   onClose: () => void;
   maxWidth?: string;
-  fullHeight?: boolean;
+  isGalleryModal?: boolean;
 }
