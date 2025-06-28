@@ -5,9 +5,9 @@ import 'swiper/css';
 import 'swiper/css/free-mode';
 import { borderInsetMixin, shadowSM } from 'src/styles';
 import { useSlideContinuousMove } from './useSlideContinuousMove';
-import HtmlIcon from 'public/skills/html.svg';
-import CssIcon from 'public/skills/css.svg';
-import JsIcon from 'public/skills/js.svg';
+import { useCMSSection } from 'src/hook';
+import Image from 'next/image';
+import Link from 'next/link';
 
 const Styled = {
   ProjectBorder: styled.div`
@@ -28,57 +28,9 @@ const Styled = {
     }
   `,
 };
-
-const icons = [
-  <HtmlIcon key="html1" />,
-  <CssIcon key="css1" />,
-  <JsIcon key="js1" />,
-  <HtmlIcon key="html2" />,
-  <CssIcon key="css2" />,
-  <JsIcon key="js2" />,
-  <HtmlIcon key="html3" />,
-  <CssIcon key="css3" />,
-  <JsIcon key="js3" />,
-  <HtmlIcon key="html4" />,
-  <CssIcon key="css4" />,
-  <JsIcon key="js4" />,
-  <HtmlIcon key="html5" />,
-  <CssIcon key="css5" />,
-  <JsIcon key="js5" />,
-  <HtmlIcon key="html6" />,
-  <CssIcon key="css6" />,
-  <JsIcon key="js6" />,
-  <HtmlIcon key="html7" />,
-  <CssIcon key="css7" />,
-  <JsIcon key="js7" />,
-  <HtmlIcon key="html8" />,
-  <CssIcon key="css8" />,
-  <JsIcon key="js8" />,
-  <HtmlIcon key="html9" />,
-  <CssIcon key="css9" />,
-  <JsIcon key="js9" />,
-  <HtmlIcon key="html10" />,
-  <CssIcon key="css10" />,
-  <JsIcon key="js10" />,
-  <HtmlIcon key="html11" />,
-  <CssIcon key="css11" />,
-  <JsIcon key="js11" />,
-  <HtmlIcon key="html1213" />,
-  <CssIcon key="css1213" />,
-  <JsIcon key="js1213" />,
-  <HtmlIcon key="html13" />,
-  <CssIcon key="css13" />,
-  <JsIcon key="js13" />,
-  <HtmlIcon key="html1415" />,
-  <CssIcon key="css1415" />,
-  <JsIcon key="js1415" />,
-  <HtmlIcon key="html15" />,
-  <CssIcon key="css15" />,
-  <JsIcon key="js15" />,
-];
-
 export default function SlideSkills() {
-  const { swiperRef, toggleAnimation, handleTouchStart, handleTouchEnd } = useSlideContinuousMove(icons.length);
+  const { skills } = useCMSSection('SkillsSectionBlockRecord');
+  const { swiperRef, toggleAnimation, handleTouchStart, handleTouchEnd } = useSlideContinuousMove(skills.length);
 
   return (
     <Styled.ProjectBorder>       
@@ -100,9 +52,21 @@ export default function SlideSkills() {
           onTouchEnd={handleTouchEnd}
           onClick={toggleAnimation}
         >
-          {[...icons, ...icons, ...icons].map((icon, index) => (
-            <SwiperSlide key={index} style={{ width: 'auto' }}>
-              {icon}
+          {[...skills].map((skill) => (
+            <SwiperSlide key={skill.id} style={{ width: 'auto' }}>
+              <Link
+                href={skill.href}
+                title={skill.linkName}
+                rel="noopener noreferrer"
+                target='_blank'
+              >              
+                <Image 
+                  src={skill.icon.url} 
+                  alt={skill.linkName} 
+                  width={48} 
+                  height={48} 
+                />
+              </Link>
             </SwiperSlide>
           ))}
         </Swiper>

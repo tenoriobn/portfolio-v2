@@ -35,7 +35,6 @@ const Styled = {
   `,
 };
 
-
 export default function ProjectsSection() {
   const { componentName, title, description } = useCMSSection('ProjectsSectionBlockRecord');
 

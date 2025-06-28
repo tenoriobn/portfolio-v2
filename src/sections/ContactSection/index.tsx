@@ -10,6 +10,7 @@ const Styled = {
     place-items: center;
     padding-bottom: 7.5rem;
     gap: 1rem;
+    padding-top: 7.5rem;
 
     @media (min-width: 768px) {
       gap: 1.5rem;

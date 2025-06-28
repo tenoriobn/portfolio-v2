@@ -3,13 +3,13 @@ import 'swiper/css';
 import 'swiper/css/pagination';
 import { useCMSSection } from 'src/hook';
 import styled from 'styled-components';
-import { borderInsetMixin, borderRaisedMixin } from 'src/styles';;
-import { swiperConfig } from './swiperConfig';
-import ProjectModal from '../ProjectModal';
+import { borderInsetMixin, borderRaisedMixin } from 'src/styles';
+import { createSwiperConfig } from '../../../utils/swiperConfig';
 import ProjectCard from './ProjectCard';
+import ProjectModal from './ProjectModal';
 
 const Styled = {
-  CarouselContainer: styled.div`
+  Container: styled.div`
     display: grid;
     place-items: center;
     
@@ -45,7 +45,7 @@ const Styled = {
     }
   `,
 
-  CustomPagination: styled.div`
+  Pagination: styled.div`
     margin-top: 1rem;
 
     @media (min-width: 768px) {
@@ -56,20 +56,21 @@ const Styled = {
 
 export default function ProjectsCarousel() {
   const { projects } = useCMSSection('ProjectsSectionBlockRecord');
+  const projectsConfig = createSwiperConfig('projects-carousel-pagination');
 
   return (
-    <Styled.CarouselContainer>
-      <Swiper {...swiperConfig} className="projects-swiper">
+    <Styled.Container>
+      <Swiper {...projectsConfig} >
         {projects?.map((project) => (
           <SwiperSlide key={project.id}>
             <ProjectCard project={project} />
           </SwiperSlide>
         ))}
       </Swiper>
-
-      <Styled.CustomPagination className="projects-carousel-pagination"/>
       
+      <Styled.Pagination className="projects-carousel-pagination"/>
+
       <ProjectModal />
-    </Styled.CarouselContainer>
+    </Styled.Container>
   );
 }

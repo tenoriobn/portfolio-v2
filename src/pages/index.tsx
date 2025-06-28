@@ -90,6 +90,7 @@ export async function getStaticProps({ locale }: { locale: string }) {
                   projectDescription
                   modalButtonLabel
                   projectGallery {
+                    id
                     url
                   }
                   appliedSolutions {
