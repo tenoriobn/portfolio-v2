@@ -3,6 +3,7 @@ import {borderRaisedMixin, shadowSM, textGradient, Wrapper } from 'src/styles';
 import TalkingIcon from 'public/icons/talking.svg';
 import styled from 'styled-components';
 import SocialContactList from './SocialContactList';
+import WinkingFace from 'public/icons/winking-face.svg';
 
 const Styled = {
   ContactSectionContainer: styled.section`
@@ -47,6 +48,12 @@ const Styled = {
     max-width: 632px;
     margin-bottom: .5rem;
 
+    svg {
+      height: 1.25rem;
+      margin-left: .125rem;
+      vertical-align: middle;
+    }
+
     @media (min-width: 768px) {
       margin-bottom: 2rem;
     }
@@ -64,7 +71,7 @@ export default function ContactSection() {
         </Styled.IconWrapper>
         
         <Styled.Title>{title}</Styled.Title>
-        <Styled.Description>{description}</Styled.Description>
+        <Styled.Description>{description} <WinkingFace /></Styled.Description>
 
         <SocialContactList />
       </Styled.ContactSectionContainer>
