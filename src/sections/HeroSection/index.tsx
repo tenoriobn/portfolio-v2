@@ -5,6 +5,9 @@ import WavingIcon from 'public/icons/waving.svg';
 import styled from 'styled-components';
 import { borderInsetMixin, BorderButton, BaseButton, shadowSM, borderRaisedMixin, BorderInset, textGradient, Wrapper } from 'src/styles';
 import Link from 'next/link';
+import { AnimatePresence, motion } from 'motion/react';
+import { textTransition } from 'src/utils';
+import { useRotatingTextIndex } from './useRotatingTextIndex';
 
 const Styled = {
   HeroSection: styled.section`
@@ -91,12 +94,22 @@ const Styled = {
     font-size: 1.75rem;
     font-weight: 600;
     text-align: center;
-    max-width: 588px;
+    max-width: 288px;
 
     ${textGradient}
 
     @media (min-width: 768px) {
-      font-size: 2.5rem;
+      font-size: 2.5rem;    
+      max-width: 588px;
+    }
+  `,
+
+  AnimatedTextContainer: styled.div`
+    display: inline-block;
+    min-height: 1.2em;
+
+    span {
+      ${textGradient}
     }
   `,
 
@@ -127,6 +140,8 @@ const Styled = {
 export default function HeroSection() {
   const {componentName, avatar, jobTitle, highlightFixedText, highlightRotatingTexts, resumeLabel} = useCMSSection('HeroSectionBlockRecord');
 
+  const activeTextIndex = useRotatingTextIndex(highlightRotatingTexts.length);
+
   return (
     <Wrapper>
       <Styled.HeroSection id={componentName}>
@@ -135,7 +150,6 @@ export default function HeroSection() {
             <Styled.Name>Bruno Tenório <WavingIcon /></Styled.Name>
           </Styled.BorderName>
           <Styled.AvatarBorderInset>
-
             <Styled.AvatarBorderRaisedContainer>
               <Styled.AvatarBorderRaised>
                 <Styled.Avatar src={avatar.url} width={224} height={224} alt="Foto de perfil do Bruno Tenório" />
@@ -147,7 +161,17 @@ export default function HeroSection() {
         <Styled.JobTitle>{jobTitle}</Styled.JobTitle>
 
         <Styled.Title>
-          {highlightFixedText} <span>{highlightRotatingTexts[0].text}</span>
+          <Styled.AnimatedTextContainer>
+            <AnimatePresence mode="wait" initial={false}>
+              <motion.span
+                key={activeTextIndex}
+                {...textTransition}
+              >
+                {highlightRotatingTexts[activeTextIndex].text}
+              </motion.span>
+            </AnimatePresence>
+          </Styled.AnimatedTextContainer> <br />
+          {highlightFixedText} 
         </Styled.Title>
 
         <Styled.ResumeButtonBorder>

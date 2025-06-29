@@ -1,10 +1,5 @@
 import styled from 'styled-components';
-import { Swiper, SwiperSlide } from 'swiper/react';
-import { Autoplay } from 'swiper/modules';
-import 'swiper/css';
-import 'swiper/css/free-mode';
 import { borderInsetMixin, shadowSM } from 'src/styles';
-import { useSlideContinuousMove } from './useSlideContinuousMove';
 import { useCMSSection } from 'src/hook';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -15,62 +10,100 @@ const Styled = {
     ${shadowSM}
     border-radius: ${({ theme }) => theme.borderRadius.md};
     width: 100%;
+    overflow: hidden;
   `,
 
-  ProjectCard: styled.div`
+  Spacing: styled.div`
     background-color: ${({ theme }) => theme.colors['grey-800-75%']};
     border-radius: ${({ theme }) => theme.borderRadius.md};
-    display: grid;
     padding: 1rem;
 
     @media (min-width: 768px) {
       padding: 1.5rem;
     }
   `,
+
+  ProjectCard: styled.div`
+    overflow: auto hidden ;
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  `,
+
+  SliderTrack: styled.div`
+    display: flex;
+    gap: 1.5rem;
+    width: fit-content;
+    animation: scroll 28s linear infinite;
+
+    @keyframes scroll {
+      0% {
+        transform: translateX(0);
+      }
+      100% {
+        transform: translateX(-50%);
+      }
+    }
+
+    &:hover {
+      animation-play-state: paused;
+    }
+  `,
+
+  SliderWrapper: styled.div`
+    display: flex;
+    width: max-content;
+    
+  `,
+
+  IconLink: styled(Link)`
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    height: 48px;
+
+    img {
+      width: 100%;
+      height: auto;
+    }
+  `,
 };
+
 export default function SlideSkills() {
   const { skills } = useCMSSection('SkillsSectionBlockRecord');
-  const { swiperRef, toggleAnimation, handleTouchStart, handleTouchEnd } = useSlideContinuousMove(skills.length);
 
   return (
-    <Styled.ProjectBorder>       
-      <Styled.ProjectCard>      
-        <Swiper
-          ref={swiperRef}
-          spaceBetween={24}
-          loop={true}
-          autoplay={false}
-          speed={300}
-          freeMode={true}
-          grabCursor={true}
-          allowTouchMove={true}
-          modules={[Autoplay]}
-          breakpoints={{
-            0: { slidesPerView: 'auto' },
-          }}
-          onTouchStart={handleTouchStart}
-          onTouchEnd={handleTouchEnd}
-          onClick={toggleAnimation}
-        >
-          {[...skills].map((skill) => (
-            <SwiperSlide key={skill.id} style={{ width: 'auto' }}>
-              <Link
-                href={skill.href}
-                title={skill.linkName}
-                rel="noopener noreferrer"
-                target='_blank'
-              >              
-                <Image 
-                  src={skill.icon.url} 
-                  alt={skill.linkName} 
-                  width={48} 
-                  height={48} 
-                />
-              </Link>
-            </SwiperSlide>
-          ))}
-        </Swiper>
-      </Styled.ProjectCard> 
+    <Styled.ProjectBorder>      
+      <Styled.Spacing>
+        <Styled.ProjectCard>
+          <Styled.SliderWrapper>
+            <Styled.SliderTrack>
+              {[...skills, ...skills].map((skill, index) => (
+                <Styled.IconLink
+                  key={`${skill.id}-${index}`}
+                  href={skill.href}
+                  title={skill.linkName}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <Image
+                    src={skill.icon.url}
+                    alt={skill.linkName}
+                    width={48}
+                    height={48}
+                    loading="lazy"
+                    unoptimized={false}
+                  />
+                </Styled.IconLink>
+              ))}
+            </Styled.SliderTrack>
+          </Styled.SliderWrapper>
+        </Styled.ProjectCard> 
+      </Styled.Spacing> 
     </Styled.ProjectBorder>
   );
 }
