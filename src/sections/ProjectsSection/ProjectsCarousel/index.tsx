@@ -20,14 +20,7 @@ const Styled = {
     }
 
     .swiper-pagination-bullets-dynamic {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      gap: 1.5rem;
-      transform: unset !important;
-      width: 120px!important;
-      overflow: hidden;
-      height: 36px !important;
+      transform: unset!important;
     }
 
     .swiper-pagination-bullet {
@@ -35,7 +28,6 @@ const Styled = {
       ${borderRaisedMixin}
       width: 24px;
       height: 24px;
-      margin: 0!important;
       transform: unset!important;
     }
 
@@ -72,6 +64,26 @@ export default function ProjectsCarousel() {
             <ProjectCard project={project} />
           </SwiperSlide>
         ))}
+
+        <SwiperSlide>
+          <h2>teste</h2>
+        </SwiperSlide>
+
+        <SwiperSlide>
+          <h2>teste</h2>
+        </SwiperSlide>
+
+        <SwiperSlide>
+          <h2>teste</h2>
+        </SwiperSlide>
+
+        <SwiperSlide>
+          <h2>teste</h2>
+        </SwiperSlide>
+
+        <SwiperSlide>
+          <h2>teste</h2>
+        </SwiperSlide>
       </Swiper>
       
       <Styled.Pagination className="projects-carousel-pagination"/>
