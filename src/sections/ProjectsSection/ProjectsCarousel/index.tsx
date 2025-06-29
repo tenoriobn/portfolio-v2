@@ -23,14 +23,20 @@ const Styled = {
       display: flex;
       justify-content: center;
       align-items: center;
+      gap: 1.5rem;
       transform: unset !important;
+      width: 120px!important;
+      overflow: hidden;
+      height: 36px !important;
     }
-    
+
     .swiper-pagination-bullet {
       opacity: 1;
       ${borderRaisedMixin}
       width: 24px;
       height: 24px;
+      margin: 0!important;
+      transform: unset!important;
     }
 
     .swiper-pagination-bullet-active {
@@ -40,8 +46,8 @@ const Styled = {
     .pagination-bullet {
       background-color: ${({ theme }) => theme.colors['grey-800-75%']};
       border-radius: ${({ theme }) => theme.borderRadius.full};
-      width: 22px;
-      height: 22px;
+      width: 22px!important;
+      height: 22px!important;
     }
   `,
 
