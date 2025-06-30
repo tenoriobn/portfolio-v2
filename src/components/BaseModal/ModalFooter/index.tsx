@@ -10,7 +10,7 @@ const StyledProjectInfo = {
     align-items: center;
     justify-content: center;
     gap: 0.75rem;
-    flex-wrap: wrap;
+
   `,
 
   ActionButton: styled(BorderButton)`
@@ -27,9 +27,13 @@ const StyledProjectInfo = {
     border-radius: ${({ theme }) => theme.borderRadius.full};
     background-color: ${({ theme }) => theme.colors['grey-800-75%']};
     color: ${({ theme }) => theme.colors['grey-500']};
-    padding: 1rem 1.5rem;
+    padding: 1rem;
     max-width: 180px;
     width: 100%;
+
+    @media (min-width: 768px) {
+      padding: 1rem 1.5rem;
+    }
   `,
 };
 

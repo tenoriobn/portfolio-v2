@@ -91,20 +91,18 @@ const Styled = {
   `,
 
   Title: styled(motion.h2)`
+    display: inline-block;
+    min-height: 1.2em;
+    text-align: center;
+    font-size: 1.75rem;
+    font-weight: 600;
+    max-width: 288px;
+    ${textGradient}
 
-      display: inline-block;
-      min-height: 1.2em;
-      text-align: center;
-      font-size: 1.75rem;
-      font-weight: 600;
-      max-width: 288px;
-      ${textGradient}
-
-      @media (min-width: 768px) {
-        font-size: 2.5rem;    
-        max-width: 588px;
-      }
-
+    @media (min-width: 768px) {
+      font-size: 2.5rem;    
+      max-width: 588px;
+    }
   `,
 
   ResumeButtonBorder: styled(BorderButton)`
@@ -154,8 +152,6 @@ export default function HeroSection() {
 
         <Styled.JobTitle>{jobTitle}</Styled.JobTitle>
 
-
-
         <AnimatePresence mode="wait" initial={false}>
           <Styled.Title
             key={activeTextIndex}
@@ -165,7 +161,6 @@ export default function HeroSection() {
             {highlightFixedText}  
           </Styled.Title>
         </AnimatePresence>
-
 
         <Styled.ResumeButtonBorder>
           <Styled.ResumeButton as={Link} href={resumeLabel.href} target='_blank' rel='noopener noreferrer'>
