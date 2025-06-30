@@ -9,7 +9,16 @@ const Styled = {
     display: grid;
     place-items: center;
     padding-bottom: 7.5rem;
-    gap: 1rem;
+    gap: .5rem;
+
+    @media (min-width: 768px) {
+      gap: 1rem;
+    }
+  `,
+
+  Wrapper: styled(Wrapper)`
+    display: grid;
+    place-items: center;
   `,
 
   Title: styled.h2`
@@ -27,11 +36,6 @@ const Styled = {
     font-size: 1rem;
     text-align: center;
     max-width: 632px;
-    margin-bottom: .5rem;
-
-    @media (min-width: 768px) {
-      margin-bottom: 2rem;
-    }
   `,
 };
 
@@ -39,12 +43,12 @@ export default function ProjectsSection() {
   const { componentName, title, description } = useCMSSection('ProjectsSectionBlockRecord');
 
   return (
-    <Wrapper>
-      <Styled.Section id={componentName}>
+    <Styled.Section id={componentName}>
+      <Styled.Wrapper>
         <Styled.Title>{title}</Styled.Title>
         <Styled.Description>{description}</Styled.Description>
-        <ProjectsCarousel />
-      </Styled.Section>
-    </Wrapper>
+      </Styled.Wrapper>
+      <ProjectsCarousel />
+    </Styled.Section>
   );
 }

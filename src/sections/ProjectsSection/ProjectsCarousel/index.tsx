@@ -10,11 +10,14 @@ const Styled = {
     display: grid;
     place-items: center;
     gap: 1rem;
+    max-width: 1264px;
+    width: 100%;
 
     @media (min-width: 768px) {
      gap: 1.5rem;
+     padding: 1rem;
     }
-  `,
+  `, 
 };
 
 export default function ProjectsCarousel() {
@@ -29,7 +32,6 @@ export default function ProjectsCarousel() {
           </SwiperSlide>
         ))}
       </Carousel>
-
       <ProjectModal />
     </Styled.Container>
   );

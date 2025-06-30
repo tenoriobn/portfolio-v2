@@ -10,6 +10,7 @@ const Styled = {
     ${borderInsetMixin}
     border-radius: ${({ theme }) => theme.borderRadius.md};
     width: 100%;
+    ${shadowSM}
   `,
 
   Card: styled.div`
