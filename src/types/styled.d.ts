@@ -11,6 +11,7 @@ declare module 'styled-components' {
       'grey-500': string;
       'grey-800-75%': string;
       'grey-900': string;
+      'grey-700': string;
     };
     gradient: {
       'grey-light-dark': string;

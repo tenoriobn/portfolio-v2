@@ -14,7 +14,7 @@ export const GlobalStyles = createGlobalStyle`
 
   body {
     background-color: ${({ theme }) => theme.colors['grey-900']};
-    color:${({ theme }) => theme.colors['grey-300']};
+    color: ${({ theme }) => theme.colors['grey-300']};
     font-family: ${({ theme }) => theme.font.inter};
     font-size: 16px;
     font-weight: 300;
@@ -47,6 +47,14 @@ export const GlobalStyles = createGlobalStyle`
 
   ul, ol {
     list-style: none;
+  }
+
+  button, a { 
+    outline: none;
+
+    &:focus-visible {
+      box-shadow: 0 0 0 2px ${({ theme }) => theme.colors['grey-700']};
+    }
   }
 
   button {

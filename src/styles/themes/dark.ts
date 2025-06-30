@@ -12,6 +12,7 @@ export const darkTheme: DefaultTheme = {
     'grey-500': 'rgb(134, 135, 139)',
     'grey-800-75%': 'rgba(51, 51, 51, 1)',
     'grey-900': 'rgb(47, 47, 47)',
+    'grey-700': 'rgb(255 255 255 / 20%)',
   },
   gradient: {
     'grey-light-dark': 'linear-gradient(to left top, rgb(27 27 27) 10%, rgb(204 204 204 / 34%) 100%)',
