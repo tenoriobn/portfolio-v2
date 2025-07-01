@@ -1,8 +1,9 @@
 import styled from 'styled-components';
-import { borderInsetMixin, shadowSM, Wrapper } from 'src/styles';
-import { useEffect, useRef } from 'react';
+import { borderInsetMixin, shadowSM } from 'src/styles';
+import { useRef } from 'react';
 import { useClickOutside } from 'src/hook';
 import { BaseModalProps } from './baseModal.type';
+import { useBodyScrollLock } from 'src/hook/useBodyScrollLock';
 
 const StyledBaseModal = {
   Overlay: styled.div<{ $isGalleryModal?: boolean }>`
@@ -54,29 +55,21 @@ const StyledBaseModal = {
 export default function BaseModal({ children, isOpen, onClose, maxWidth, isGalleryModal = false }: BaseModalProps) {
   const modalRef = useRef<HTMLDivElement>(null);
   useClickOutside(modalRef, onClose);
-
-  useEffect(() => {
-    document.body.style.overflow = isOpen ? 'hidden' : '';
-    return () => {
-      document.body.style.overflow = '';
-    };
-  }, [isOpen]);
+  useBodyScrollLock(isOpen);
 
   if (!isOpen) return null;
 
   return (
-    <Wrapper>
-      <StyledBaseModal.Overlay $isGalleryModal={isGalleryModal}>
-        <StyledBaseModal.Container 
-          ref={modalRef} 
-          $maxWidth={maxWidth}
-          $isGalleryModal={isGalleryModal}
-        >
-          <StyledBaseModal.Content $isGalleryModal={isGalleryModal}>
-            {children}
-          </StyledBaseModal.Content>
-        </StyledBaseModal.Container>
-      </StyledBaseModal.Overlay>
-    </Wrapper>
+    <StyledBaseModal.Overlay $isGalleryModal={isGalleryModal}>
+      <StyledBaseModal.Container 
+        ref={modalRef} 
+        $maxWidth={maxWidth}
+        $isGalleryModal={isGalleryModal}
+      >
+        <StyledBaseModal.Content $isGalleryModal={isGalleryModal}>
+          {children}
+        </StyledBaseModal.Content>
+      </StyledBaseModal.Container>
+    </StyledBaseModal.Overlay>
   );
 }

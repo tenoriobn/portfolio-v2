@@ -18,7 +18,7 @@ export const textTransition = {
   initial: { opacity: 0, filter: 'blur(4px)',},
   animate: { opacity: 1, filter: 'blur(0px)',},
   exit: { opacity: 0, filter: 'blur(4px)',},
-  transition: { duration: .5 },
+  transition: { duration: .4000 },
 };
 
 export const expandFade = {

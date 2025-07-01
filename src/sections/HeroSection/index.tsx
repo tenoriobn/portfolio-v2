@@ -141,10 +141,11 @@ export default function HeroSection() {
           <Styled.BorderName>
             <Styled.Name>Bruno Tenório <WavingIcon /></Styled.Name>
           </Styled.BorderName>
+          
           <Styled.AvatarBorderInset>
             <Styled.AvatarBorderRaisedContainer>
               <Styled.AvatarBorderRaised>
-                <Styled.Avatar src={avatar.url} width={224} height={224} alt="Foto de perfil do Bruno Tenório" />
+                <Styled.Avatar src={avatar.url} width={224} height={224} priority alt="Foto de perfil do Bruno Tenório" />
               </Styled.AvatarBorderRaised>
             </Styled.AvatarBorderRaisedContainer>
           </Styled.AvatarBorderInset>
