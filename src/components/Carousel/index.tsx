@@ -10,7 +10,6 @@ const Styled = {
     width: 100%;
     height: 100%;
     cursor: grab;
-    padding: 1rem;
   `,
 
   Pagination: styled.div`
@@ -28,8 +27,6 @@ const Styled = {
       ${borderInsetMixin}
       width: 24px;
       height: 24px;
-      transition: all .3s ease-in-out;
-
       margin: 0 .75rem!important;
 
       &:active {

@@ -2,11 +2,10 @@ import styled from 'styled-components';
 import ToolsIcon from 'public/icons/tools.svg';
 import DartIcon from 'public/icons/dart.svg';
 import MobileIcon from 'public/icons/mobile.svg';
-import Link from 'next/link';
-import Image from 'next/image';
-import { ProjectItem } from '../../../projects.type';
+import AutoScrollCarousel from 'src/components/AutoScrollCarousel';
+import { ProjectInfoModalProps } from './projectInfoModal.type';
 
-const StyledProjectInfo = {
+const Styled = {
   Divider: styled.span`
     background: ${({ theme }) => theme.gradient['grey-dark-light-dark-reserve']};
     width: 100%;
@@ -46,85 +45,59 @@ const StyledProjectInfo = {
   `,
 };
 
-interface ProjectInfoModalProps {
-  project: ProjectItem;
-}
-
 export default function ProjectInfoModal({ project }: ProjectInfoModalProps) {
-  const { 
-    projectDescription, 
-    appliedSolutions, 
-    challenges, 
-    skills, 
-  } = project;
+  const {  projectDescription,  appliedSolutions, challenges, skills, } = project;
 
   return (
     <>
-      <StyledProjectInfo.Divider />
+      <Styled.Divider />
       
-      <StyledProjectInfo.Main>
+      <Styled.Main>
         <p>{projectDescription}</p>
         
         {appliedSolutions && (
-          <StyledProjectInfo.Section>
-            <StyledProjectInfo.SectionTitle>
+          <Styled.Section>
+            <Styled.SectionTitle>
               <ToolsIcon aria-hidden="true" />
               {appliedSolutions.title}
-            </StyledProjectInfo.SectionTitle>
+            </Styled.SectionTitle>
 
-            <StyledProjectInfo.List>
+            <Styled.List>
               {appliedSolutions.solution?.map((item) => (
                 <li key={item.id}>{item.solution}</li>
               ))}
-            </StyledProjectInfo.List>
-          </StyledProjectInfo.Section>
+            </Styled.List>
+          </Styled.Section>
         )}
 
         {challenges && (
-          <StyledProjectInfo.Section>
-            <StyledProjectInfo.SectionTitle>
+          <Styled.Section>
+            <Styled.SectionTitle>
               <DartIcon aria-hidden="true" />
               {challenges.title}
-            </StyledProjectInfo.SectionTitle>
+            </Styled.SectionTitle>
             
-            <StyledProjectInfo.List>
+            <Styled.List>
               {challenges.challenge?.map((item) => (
                 <li key={item.id}>{item.solution}</li>
               ))}
-            </StyledProjectInfo.List>
-          </StyledProjectInfo.Section>
+            </Styled.List>
+          </Styled.Section>
         )}
 
         {skills && (
-          <StyledProjectInfo.Section>      
-            <StyledProjectInfo.SectionTitle>
+          <Styled.Section>      
+            <Styled.SectionTitle>
               <MobileIcon aria-hidden="true" />
               {skills.title}
-            </StyledProjectInfo.SectionTitle>
+            </Styled.SectionTitle>
 
-            <StyledProjectInfo.SkillsGrid>
-              {skills.skill?.map((item) => (
-                <Link 
-                  key={item.id} 
-                  href={item.href} 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  aria-label={`Tecnologia: ${item.linkName}`}
-                >
-                  <Image 
-                    src={item.icon.url} 
-                    alt={item.linkName} 
-                    width={48} 
-                    height={48} 
-                  />
-                </Link>
-              ))}
-            </StyledProjectInfo.SkillsGrid>
-          </StyledProjectInfo.Section>
+            <AutoScrollCarousel icons={skills.skill} />
+          </Styled.Section>
         )}
-      </StyledProjectInfo.Main>
+      </Styled.Main>
 
-      <StyledProjectInfo.Divider />
+      <Styled.Divider />
     </>
   );
 }

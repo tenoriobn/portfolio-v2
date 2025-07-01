@@ -36,6 +36,11 @@ const Styled = {
     font-size: 1rem;
     text-align: center;
     max-width: 632px;
+    margin-bottom: 1rem;
+
+    @media (min-width: 768px) {
+      margin-bottom: 2rem;
+    }
   `,
 };
 
@@ -43,12 +48,12 @@ export default function ProjectsSection() {
   const { componentName, title, description } = useCMSSection('ProjectsSectionBlockRecord');
 
   return (
-    <Styled.Section id={componentName}>
-      <Styled.Wrapper>
+    <Styled.Wrapper>
+      <Styled.Section id={componentName}>
         <Styled.Title>{title}</Styled.Title>
         <Styled.Description>{description}</Styled.Description>
-      </Styled.Wrapper>
-      <ProjectsCarousel />
-    </Styled.Section>
+        <ProjectsCarousel />
+      </Styled.Section>
+    </Styled.Wrapper>
   );
 }

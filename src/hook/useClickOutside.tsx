@@ -1,29 +1,23 @@
 import { RefObject, useEffect } from 'react';
 
-/**
- * Hook customizado para detectar cliques fora de um elemento.
- * @template T - O tipo de elemento HTML que será referenciado.
- * @param ref - A referência do elemento HTML.
- * @param onClickOutSide - Função a ser executada ao clicar fora do elemento.
- * 
- * @returns {object} - { ref, onClickOutSide }
- */
-
-export function useClickOutside<T extends HTMLElement>(
-  ref: RefObject<T | null>, 
-  onClickOutSide: () => void,
-) {
+export function useClickOutside(ref: RefObject<HTMLElement | null>, onClickOutside: () => void) {
   useEffect(() => {
-    const handleClickOutSide = (event: MouseEvent) => {
-      if (ref.current && !ref.current.contains(event.target as Node)) {
-        onClickOutSide();
+    function handleClick(event: MouseEvent) {
+      const target = event.target as HTMLElement;
+      if (!ref.current || ref.current.contains(target)) return;
+
+      const overlay = ref.current.parentElement;
+      if (target === overlay) {
+        const scrollbarWidth = overlay.offsetWidth - overlay.clientWidth;
+        const isScrollbarClick = event.clientX >= overlay.getBoundingClientRect().right - scrollbarWidth;
+        
+        if (isScrollbarClick) return;
       }
-    };
+      
+      onClickOutside();
+    }
 
-    document.addEventListener('mousedown', handleClickOutSide);
-
-    return () => {
-      document.removeEventListener('mousedown', handleClickOutSide);
-    };
-  }, [ref, onClickOutSide]);
+    document.addEventListener('mousedown', handleClick);
+    return () => document.removeEventListener('mousedown', handleClick);
+  }, [ref, onClickOutside]);
 }
