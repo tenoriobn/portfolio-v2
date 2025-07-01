@@ -12,6 +12,7 @@ export const lightTheme: DefaultTheme = {
     'grey-500': 'rgb(142, 142, 142)',
     'grey-800-75%': 'rgba(219, 219, 219, 1)',
     'grey-900': 'rgb(212, 212, 212)',
+    'grey-700': 'rgb(62 62 62 / 50%)',
   },
   gradient: {
     'grey-light-dark': 'linear-gradient(to left top, rgb(20 20 20 / 16%) 10%, rgb(255 255 255) 100%)',
@@ -20,6 +21,6 @@ export const lightTheme: DefaultTheme = {
     'grey-gradient-text': 'linear-gradient(to left top, rgba(145, 145, 145, 1) 0%, rgba(81, 81, 81, 1) 100%)',
   },
   shadow: {
-    sm: '8px 8px 36px 0px rgba(0,0,0,0.16)',
+    sm: '8px 8px 32px 0px rgba(0,0,0,0.06)',
   }
 };

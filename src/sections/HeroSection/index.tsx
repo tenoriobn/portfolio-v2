@@ -90,26 +90,18 @@ const Styled = {
     color: ${({ theme }) => theme.colors['grey-200']};
   `,
 
-  Title: styled.h2`
+  Title: styled(motion.h2)`
+    display: inline-block;
+    min-height: 1.2em;
+    text-align: center;
     font-size: 1.75rem;
     font-weight: 600;
-    text-align: center;
     max-width: 288px;
-
     ${textGradient}
 
     @media (min-width: 768px) {
       font-size: 2.5rem;    
       max-width: 588px;
-    }
-  `,
-
-  AnimatedTextContainer: styled.div`
-    display: inline-block;
-    min-height: 1.2em;
-
-    span {
-      ${textGradient}
     }
   `,
 
@@ -160,19 +152,15 @@ export default function HeroSection() {
 
         <Styled.JobTitle>{jobTitle}</Styled.JobTitle>
 
-        <Styled.Title>
-          <Styled.AnimatedTextContainer>
-            <AnimatePresence mode="wait" initial={false}>
-              <motion.span
-                key={activeTextIndex}
-                {...textTransition}
-              >
-                {highlightRotatingTexts[activeTextIndex].text}
-              </motion.span>
-            </AnimatePresence>
-          </Styled.AnimatedTextContainer> <br />
-          {highlightFixedText} 
-        </Styled.Title>
+        <AnimatePresence mode="wait" initial={false}>
+          <Styled.Title
+            key={activeTextIndex}
+            {...textTransition}
+          >
+            {highlightRotatingTexts[activeTextIndex].text}<br />
+            {highlightFixedText}  
+          </Styled.Title>
+        </AnimatePresence>
 
         <Styled.ResumeButtonBorder>
           <Styled.ResumeButton as={Link} href={resumeLabel.href} target='_blank' rel='noopener noreferrer'>

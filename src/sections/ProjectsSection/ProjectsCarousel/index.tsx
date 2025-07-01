@@ -1,75 +1,37 @@
-import { Swiper, SwiperSlide } from 'swiper/react';
-import 'swiper/css';
-import 'swiper/css/pagination';
+import { SwiperSlide } from 'swiper/react';
 import { useCMSSection } from 'src/hook';
 import styled from 'styled-components';
-import { borderInsetMixin, borderRaisedMixin } from 'src/styles';
-import { createSwiperConfig } from '../../../utils/swiperConfig';
 import ProjectCard from './ProjectCard';
 import ProjectModal from './ProjectModal';
+import Carousel from 'src/components/Carousel';
 
 const Styled = {
   Container: styled.div`
     display: grid;
     place-items: center;
-    
-    .swiper {
-      width: 100%;
-      height: 100%;
-      cursor: grab;
-    }
-
-    .swiper-pagination-bullets-dynamic {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      transform: unset !important;
-    }
-    
-    .swiper-pagination-bullet {
-      opacity: 1;
-      ${borderRaisedMixin}
-      width: 24px;
-      height: 24px;
-    }
-
-    .swiper-pagination-bullet-active {
-      ${borderInsetMixin}
-    }
-
-    .pagination-bullet {
-      background-color: ${({ theme }) => theme.colors['grey-800-75%']};
-      border-radius: ${({ theme }) => theme.borderRadius.full};
-      width: 22px;
-      height: 22px;
-    }
-  `,
-
-  Pagination: styled.div`
-    margin-top: 1rem;
+    gap: 1rem;
+    max-width: 1264px;
+    width: 100%;
 
     @media (min-width: 768px) {
-      margin-top: 1.5rem;
+     gap: 1.5rem;
+     padding: 1rem;
     }
-  `,
+  `, 
 };
 
 export default function ProjectsCarousel() {
-  const { projects } = useCMSSection('ProjectsSectionBlockRecord');
-  const projectsConfig = createSwiperConfig('projects-carousel-pagination');
+  const { projects } = useCMSSection('ProjectsSectionBlockRecord');;
 
   return (
     <Styled.Container>
-      <Swiper {...projectsConfig} >
+      <Carousel >
         {projects?.map((project) => (
           <SwiperSlide key={project.id}>
             <ProjectCard project={project} />
           </SwiperSlide>
         ))}
-      </Swiper>
-      
-      <Styled.Pagination className="projects-carousel-pagination"/>
-
+      </Carousel>
       <ProjectModal />
     </Styled.Container>
   );

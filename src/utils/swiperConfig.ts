@@ -1,4 +1,4 @@
-import { Pagination } from 'swiper/modules';
+import { Autoplay, Pagination } from 'swiper/modules';
 
 export const createSwiperConfig = (
   paginationClass: string, 
@@ -10,6 +10,10 @@ export const createSwiperConfig = (
     1024: { slidesPerView: 3 },
   },
   spaceBetween: 24,
+  autoplay: {
+    delay: 3000,
+    disableOnInteraction: false,
+  },
   pagination: {
     el: `.${paginationClass}`,
     clickable: true,
@@ -18,5 +22,5 @@ export const createSwiperConfig = (
       return `<span class="${className}"><div class="pagination-bullet"></div></span>`;
     },
   },
-  modules: [Pagination],
+  modules: [Autoplay, Pagination],
 });

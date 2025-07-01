@@ -3,6 +3,7 @@ import { useProjectModal } from './useProjectModal';
 import ProjectGalleryModal from './ProjectGalleryModal';
 import ProjectInfoModal from './ProjectInfoModal';
 import ModalHeader from 'src/components/BaseModal/ModalHeader';
+import ModalFooter from 'src/components/BaseModal/ModalFooter';
 
 export default function ProjectModal() {
   const { isOpen, closeModal, currentProject, currentType } = useProjectModal();
@@ -20,6 +21,10 @@ export default function ProjectModal() {
         <ProjectGalleryModal project={currentProject} />
       ) : (
         <ProjectInfoModal project={currentProject} />
+      )}
+
+      {currentProject.projectLinks && currentProject.projectLinks.length > 0 && (
+        <ModalFooter projectLinks={currentProject.projectLinks} />
       )}
     </BaseModal>
   );

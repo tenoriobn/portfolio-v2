@@ -10,6 +10,7 @@ const Styled = {
     ${borderInsetMixin}
     border-radius: ${({ theme }) => theme.borderRadius.md};
     width: 100%;
+    ${shadowSM}
   `,
 
   Card: styled.div`
@@ -93,11 +94,6 @@ const Styled = {
     color: ${({ theme }) => theme.colors['grey-500']};
     padding: 1rem 1.5rem;
     width: 100%;
-    transition: transform 0.2s ease;
-
-    &:hover {
-      transform: translateY(-1px);
-    }
   `,
 };
 
