@@ -5,6 +5,15 @@ export function useClickOutside(ref: RefObject<HTMLElement | null>, onClickOutsi
     function handleClick(event: MouseEvent) {
       const target = event.target as HTMLElement;
       if (!ref.current || ref.current.contains(target)) return;
+
+      const overlay = ref.current.parentElement;
+      if (target === overlay) {
+        const scrollbarWidth = overlay.offsetWidth - overlay.clientWidth;
+        const isScrollbarClick = event.clientX >= overlay.getBoundingClientRect().right - scrollbarWidth;
+        
+        if (isScrollbarClick) return;
+      }
+      
       onClickOutside();
     }
 

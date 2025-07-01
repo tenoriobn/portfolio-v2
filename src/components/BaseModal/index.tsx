@@ -22,7 +22,7 @@ const StyledBaseModal = {
     overflow: hidden auto;
 
     @media (min-width: 768px) {
-      padding: 64px 1.5rem;
+      padding: 4rem 1.5rem;
     }
   `,
 
