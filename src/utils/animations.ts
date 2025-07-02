@@ -1,4 +1,4 @@
-import { easeInOut } from 'motion';
+import { Variants, easeInOut } from 'motion/react';
 
 export const scaleFade = {
   initial: { opacity: 0, scale: 0.8 },
@@ -26,4 +26,23 @@ export const expandFade = {
   animate: { height: 'auto', opacity: 1 },
   exit: { height: 0, opacity: 0 },
   transition: { duration: 0.5, ease: easeInOut },
+};
+
+export const fadeInUp: Variants = {
+  hidden: { opacity: 0, y: 0 },
+  show: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: .6,
+      ease: [0.39, 0.24, 0.3, 1],
+    },
+  },
+};
+
+export const sectionMotionProps = {
+  variants: fadeInUp,
+  initial: 'hidden',
+  whileInView: 'show',
+  viewport: { once: true, amount: .12 },
 };
