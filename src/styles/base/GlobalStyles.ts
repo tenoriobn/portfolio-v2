@@ -51,6 +51,7 @@ export const GlobalStyles = createGlobalStyle`
 
   button, a { 
     outline: none;
+    user-select: none;
 
     &:focus-visible {
       box-shadow: 0 0 0 2px ${({ theme }) => theme.colors['grey-700']};

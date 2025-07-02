@@ -23,7 +23,7 @@ export const BorderButton = styled(BorderInset)`
 export const LargeBorderButton = styled.div<{ $isSelected?: boolean }>`
   ${({ $isSelected }) => ($isSelected ? borderRaisedMixin : borderInsetMixin)};
   ${shadowSM};
-  border-radius: ${({ theme }) => theme.borderRadius.md};
+  border-radius: ${({ theme }) => theme.borderRadius.full};
   width: 100%;
 
   &:active {

@@ -15,10 +15,6 @@ const Styled = {
     width: auto;
     --swiper-wrapper-transition-timing-function: linear !important;
   `,
-
-  Link: styled(Link)`
-    user-select: none;
-  `,
 };
 
 export default function AutoScrollCarousel({ icons, iconSize }: AutoScrollCarouselProps) {
@@ -26,7 +22,7 @@ export default function AutoScrollCarousel({ icons, iconSize }: AutoScrollCarous
     <Styled.Swiper
       spaceBetween={16}
       slidesPerView="auto"
-      speed={2000}
+      speed={2500}
       freeMode={true}
       loop={true}
       autoplay={{
@@ -37,7 +33,7 @@ export default function AutoScrollCarousel({ icons, iconSize }: AutoScrollCarous
     >
       {icons.map((item) => (
         <Styled.SwiperSlide key={item.id}>
-          <Styled.Link
+          <Link
             href={item.href}
             target="_blank"
             rel="noopener noreferrer"
@@ -50,7 +46,7 @@ export default function AutoScrollCarousel({ icons, iconSize }: AutoScrollCarous
               width={iconSize ?? 40}
               height={iconSize ?? 40}
             />
-          </Styled.Link>
+          </Link>
         </Styled.SwiperSlide>
       ))}
     </Styled.Swiper>

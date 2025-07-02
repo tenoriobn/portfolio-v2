@@ -1,6 +1,7 @@
+import { motion } from 'motion/react';
 import styled from 'styled-components';
 
-export const Wrapper = styled.div`
+export const Wrapper = styled(motion.div)`
   max-width: 1200px;
   width: 100%;
   margin: 0 auto;

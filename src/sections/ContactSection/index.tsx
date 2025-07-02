@@ -4,6 +4,7 @@ import TalkingIcon from 'public/icons/talking.svg';
 import styled from 'styled-components';
 import SocialContactList from './SocialContactList';
 import WinkingFace from 'public/icons/winking-face.svg';
+import { sectionMotion } from 'src/utils';
 
 const Styled = {
   ContactSectionContainer: styled.section`
@@ -64,7 +65,7 @@ export default function ContactSection() {
   const { componentName, title, description } = useCMSSection('ContactSectionBlockRecord');
 
   return (
-    <Wrapper>
+    <Wrapper {...sectionMotion}>
       <Styled.ContactSectionContainer id={componentName}>
         <Styled.IconWrapper>
           <Styled.ContactIcon />

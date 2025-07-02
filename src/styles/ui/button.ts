@@ -27,6 +27,7 @@ export const OptionButton = styled(BaseButton)`
   padding: .75rem 1rem;
   width: 100%;
   position: relative;
+  height: 50px;
 
   @media (min-width: 768px) {
     padding: .75rem 1.5rem;

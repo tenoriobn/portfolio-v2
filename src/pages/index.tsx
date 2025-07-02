@@ -56,7 +56,6 @@ export async function getStaticProps({ locale }: { locale: string }) {
                   url
                 }
                 jobTitle
-                highlightFixedText
                 highlightRotatingTexts {
                   id
                   text

@@ -1,13 +1,10 @@
-import Image from 'next/image';
 import { useCMSSection } from 'src/hook';
 import DownloadIcon from 'public/icons/download.svg';
-import WavingIcon from 'public/icons/waving.svg';
 import styled from 'styled-components';
-import { borderInsetMixin, BorderButton, BaseButton, shadowSM, borderRaisedMixin, BorderInset, textGradient, Wrapper } from 'src/styles';
+import { BorderButton, BaseButton, Wrapper } from 'src/styles';
 import Link from 'next/link';
-import { AnimatePresence, motion } from 'motion/react';
-import { textTransition } from 'src/utils';
-import { useRotatingTextIndex } from './useRotatingTextIndex';
+import Profile from './Profile';
+import HighlightRotatingTexts from './TitleHeroSection';
 
 const Styled = {
   HeroSection: styled.section`
@@ -25,84 +22,10 @@ const Styled = {
     }
   `,
 
-  ProfileHeaderContainer: styled.div`
-    position: relative;
-    width: max-content;
-    height: max-content;
-  `,
-
-  BorderName: styled(BorderInset)`
-    border-radius: ${({ theme }) => theme.borderRadius.full};
-    position: absolute;
-    left: 32%;
-    top: -32%;
-    transform: translateX(-50%) rotate(-12deg);
-    z-index: 1;
-
-    @media (min-width: 768px) {
-      left: 146%;
-      top: 16px;
-    }
-  `,
-
-  Name: styled.p`
-    font-size: 1.25rem;
-    font-weight: 400;
-    text-align: center;
-    border-radius: ${({ theme }) => theme.borderRadius.full};
-    background-color: ${({ theme }) => theme.colors['grey-800-75%']};
-    padding: .75rem 1.5rem ;
-  `,
-
-  AvatarBorderInset: styled.div`
-    ${borderInsetMixin}
-    ${shadowSM}
-    border-radius: ${({ theme }) => theme.borderRadius.full};
-  `,
-
-  AvatarBorderRaisedContainer: styled.div`
-    background-color: ${({ theme }) => theme.colors['grey-800-75%']};
-    border-radius: ${({ theme }) => theme.borderRadius.full};
-    padding: .75rem;
-  `,
-
-  AvatarBorderRaised: styled.div`
-    ${borderRaisedMixin}
-    ${shadowSM}
-    border-radius: ${({ theme }) => theme.borderRadius.full};
-  `,
-
-  Avatar: styled(Image)`
-    border-radius: ${({ theme }) => theme.borderRadius.full};
-    background-color: ${({ theme }) => theme.colors['grey-800-75%']};
-    width: 178px;
-    height: 178px;
-
-    @media (min-width: 768px) {
-      width: 220px;
-      height: 220px;
-    }
-  `,
-
   JobTitle: styled.h3`
     font-size: .875rem;
     font-weight: 400;
     color: ${({ theme }) => theme.colors['grey-200']};
-  `,
-
-  Title: styled(motion.h2)`
-    display: inline-block;
-    min-height: 1.2em;
-    text-align: center;
-    font-size: 1.75rem;
-    font-weight: 600;
-    max-width: 288px;
-    ${textGradient}
-
-    @media (min-width: 768px) {
-      font-size: 2.5rem;    
-      max-width: 588px;
-    }
   `,
 
   ResumeButtonBorder: styled(BorderButton)`
@@ -130,38 +53,14 @@ const Styled = {
 };
 
 export default function HeroSection() {
-  const {componentName, avatar, jobTitle, highlightFixedText, highlightRotatingTexts, resumeLabel} = useCMSSection('HeroSectionBlockRecord');
-
-  const activeTextIndex = useRotatingTextIndex(highlightRotatingTexts.length);
+  const {componentName, jobTitle, resumeLabel} = useCMSSection('HeroSectionBlockRecord');
 
   return (
     <Wrapper>
       <Styled.HeroSection id={componentName}>
-        <Styled.ProfileHeaderContainer>
-          <Styled.BorderName>
-            <Styled.Name>Bruno Tenório <WavingIcon /></Styled.Name>
-          </Styled.BorderName>
-          
-          <Styled.AvatarBorderInset>
-            <Styled.AvatarBorderRaisedContainer>
-              <Styled.AvatarBorderRaised>
-                <Styled.Avatar src={avatar.url} width={224} height={224} priority alt="Foto de perfil do Bruno Tenório" />
-              </Styled.AvatarBorderRaised>
-            </Styled.AvatarBorderRaisedContainer>
-          </Styled.AvatarBorderInset>
-        </Styled.ProfileHeaderContainer>
-
+        <Profile />
         <Styled.JobTitle>{jobTitle}</Styled.JobTitle>
-
-        <AnimatePresence mode="wait" initial={false}>
-          <Styled.Title
-            key={activeTextIndex}
-            {...textTransition}
-          >
-            {highlightRotatingTexts[activeTextIndex].text}<br />
-            {highlightFixedText}  
-          </Styled.Title>
-        </AnimatePresence>
+        <HighlightRotatingTexts />
 
         <Styled.ResumeButtonBorder>
           <Styled.ResumeButton as={Link} href={resumeLabel.href} target='_blank' rel='noopener noreferrer'>

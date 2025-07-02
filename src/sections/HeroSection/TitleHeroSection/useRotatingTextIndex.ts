@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 
-export function useRotatingTextIndex(length: number, intervalMs = 5000) {
+export function useRotatingText(length: number, intervalMs = 5000) {
   const [activeTextIndex, setActiveTextIndex] = useState(0);
 
   useEffect(() => {

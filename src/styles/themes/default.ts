@@ -23,6 +23,6 @@ export const base = {
     bold: 700,
   },
   transitions: {
-    default: 'all 0.3s ease-in-out',
+    default: '0.5s ease-in-out',
   },
 };

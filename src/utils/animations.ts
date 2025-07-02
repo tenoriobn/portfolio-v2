@@ -1,24 +1,45 @@
-import { easeInOut } from 'motion';
-
-export const scaleFade = {
-  initial: { opacity: 0, scale: 0.8 },
-  animate: { opacity: 1, scale: 1 },
-  exit: { opacity: 0, scale: 0.8 },
-  transition: { duration:  .075},
-};
+import { easeInOut } from 'motion/react';
 
 export const slideFadeDown = {
   initial: { opacity: 0, y: -12 },
-  animate: { opacity: 1, y: 0 },
-  exit: { opacity: 0, y: -12 },
-  transition: { duration:  .075 },
+  animate: { opacity: 1, y: 0, transition: { duration: 0.5 } },
+  exit: { opacity: 0,  y: -12, transition: { duration: 0.5 } }
+};
+
+export const scaleFade = {
+  initial: { opacity: 0, scale: 0.9 },
+  animate: { opacity: 1, scale: 1, transition: { duration: .5 } },
+  exit: { opacity: 0,  scale: 0.9, transition: { duration: .5 } }
 };
 
 export const textTransition = {
-  initial: { opacity: 0, filter: 'blur(4px)',},
-  animate: { opacity: 1, filter: 'blur(0px)',},
-  exit: { opacity: 0, filter: 'blur(4px)',},
-  transition: { duration: .4000 },
+  initial: { filter: 'blur(4px)', opacity: 0 },
+  animate: { filter: 'blur(0px)', opacity: 1,transition: { duration: 0.5 } },
+  exit: { filter: 'blur(4px)', opacity: 0,transition: { duration: .5 } }
+};
+
+export const sectionMotion = {
+  initial: { opacity: 0, y: 0 },
+  whileInView: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 1,
+    },
+  },
+  viewport: { once: true, amount: .12 },
+};
+
+
+
+
+
+
+export const scaleOpacity = {
+  initial: { opacity: 0, },
+  animate: { opacity: 1,},
+  exit: { opacity: 0, },
+  transition: { duration:  .5},
 };
 
 export const expandFade = {
@@ -27,3 +48,5 @@ export const expandFade = {
   exit: { height: 0, opacity: 0 },
   transition: { duration: 0.5, ease: easeInOut },
 };
+
+
