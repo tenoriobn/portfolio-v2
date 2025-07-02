@@ -2,7 +2,7 @@ import { useCMSSection } from 'src/hook';
 import { textGradient, Wrapper } from 'src/styles';
 import styled from 'styled-components';
 import ExperienceTimelineItem from './ExperienceTimelineItem';
-import { sectionMotionProps } from 'src/utils';
+import { sectionMotion } from 'src/utils';
 
 const Styled = {
   Section: styled.section`
@@ -62,7 +62,7 @@ export default function ExperienceSection() {
   const { componentName, title, description } = useCMSSection('ExperienceSectionBlockRecord');
 
   return (
-    <Wrapper {...sectionMotionProps}>
+    <Wrapper {...sectionMotion}>
       <Styled.Section id={componentName}>
         <Styled.Title>{title}</Styled.Title>
         <Styled.Description>{description}</Styled.Description>

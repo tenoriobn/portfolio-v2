@@ -8,25 +8,23 @@ export default function OptionsList() {
   const { isActiveOption, options, closeOptions } = useOptionsList();
 
   return (
-    <>    
-      <Dropdown 
-        closeIcon={true} 
-        onClick={closeOptions}
-        animate={isActiveOption ? 'animate' : 'exit'}
-        initial="initial"
-        exit='exit'
-        variants={slideFadeDown}
-      >
-        {options.map(({ icon, backIcon, label, onClick }) => (
-          <LargeBorderButton key={label}>
-            <OptionButton onClick={onClick}>
-              {icon}
-              {label}
-              {backIcon}
-            </OptionButton>
-          </LargeBorderButton>
-        ))}
-      </Dropdown>
-    </>
+    <Dropdown 
+      closeIcon={true} 
+      onClick={closeOptions}
+      animate={isActiveOption ? 'animate' : 'exit'}
+      initial="initial"
+      exit='exit'
+      variants={slideFadeDown}
+    >
+      {options.map(({ icon, backIcon, label, onClick }) => (
+        <LargeBorderButton key={label}>
+          <OptionButton onClick={onClick}>
+            {icon}
+            {label}
+            {backIcon}
+          </OptionButton>
+        </LargeBorderButton>
+      ))}
+    </Dropdown>
   );
 }

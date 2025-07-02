@@ -8,7 +8,6 @@ export interface HeroSectionProps {
     url: string;
   };
   jobTitle: string;
-  highlightFixedText: string;
   highlightRotatingTexts: {
     id: string;
     text: string;

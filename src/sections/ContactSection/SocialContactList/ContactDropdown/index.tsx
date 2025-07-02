@@ -13,10 +13,6 @@ const Styled = {
     @media (max-width: 767px) {
       ${({ $linkName }) => ($linkName === 'Whatsapp' ? 'right: 0;' : 'left: 0;')}
     }
-
-    @media (min-width: 768px) {
-      top: 78px;
-    }
   `,
 
   DropdownList: styled(DropdownList)`

@@ -22,7 +22,7 @@ export default function AutoScrollCarousel({ icons, iconSize }: AutoScrollCarous
     <Styled.Swiper
       spaceBetween={16}
       slidesPerView="auto"
-      speed={2000}
+      speed={2500}
       freeMode={true}
       loop={true}
       autoplay={{

@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import AboutContent from './AboutContent';
 import AboutImage from './AboutImage';
 import { useCMSSection } from 'src/hook';
-import { sectionMotionProps } from 'src/utils';
+import { sectionMotion } from 'src/utils';
 
 const Styled = {
   Section: styled.section`
@@ -40,7 +40,7 @@ export default function AboutSection() {
   const { componentName } = useCMSSection('AboutMeSectionBlockRecord');
 
   return (
-    <Wrapper {...sectionMotionProps}>
+    <Wrapper {...sectionMotion}>
       <Styled.Section id={componentName}>
         <Styled.BorderSection>
           <Styled.SectionContent>

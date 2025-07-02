@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { useCMSSection } from 'src/hook';
 import { textGradient, Wrapper } from 'src/styles';
 import SlideSkills from './SlideSkills';
-import { sectionMotionProps } from 'src/utils';
+import { sectionMotion } from 'src/utils';
 
 const Styled = {
   Section: styled.section`
@@ -62,7 +62,7 @@ export default function SkillsSection() {
   const { componentName, title, description } = useCMSSection('SkillsSectionBlockRecord');
 
   return (
-    <Wrapper {...sectionMotionProps}>
+    <Wrapper {...sectionMotion}>
       <Styled.Section id={componentName}>
         <Styled.Title>{title}</Styled.Title>
         <Styled.Description>{description}</Styled.Description>
