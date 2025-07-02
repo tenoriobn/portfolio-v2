@@ -13,7 +13,7 @@ export default function DefaultSEO() {
       <meta name="msapplication-TileColor" content={theme.colors['grey-900']} />
       <meta name="msapplication-navbutton-color" content={theme.colors['grey-900']} />
       <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-      <link rel="icon" href="/favicon.ico" />
+      <link rel="icon" href="icons/favicon.svg" type="image/svg+xml" />
     </Head>
   );
 }
