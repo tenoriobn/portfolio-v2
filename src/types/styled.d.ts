@@ -28,6 +28,9 @@ declare module 'styled-components' {
     };
     shadow: {
       sm: string;
-    }
+    },
+    transitions: {
+      default: string,
+    },
   }
 }

@@ -50,7 +50,9 @@ const Styled = {
 export default function Dropdown({ children, closeIcon, onClick, ...rest }: DropdownProps) {
 
   return (
-    <Styled.DropdownWrapper {...rest}>
+    <Styled.DropdownWrapper 
+      {...rest}
+    >
       <Styled.DropdownList>
         <Styled.BorderButton $closeIcon={closeIcon}>
           <Styled.CircularButton onClick={onClick}>

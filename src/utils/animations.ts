@@ -2,10 +2,23 @@ import { Variants, easeInOut } from 'motion/react';
 
 export const slideFadeDown = {
   initial: { opacity: 0, y: -12 },
-  animate: { opacity: 1, y: 0 },
-  exit: { opacity: 0, y: -12 },
-  transition: { duration: .5, },
+  animate: { opacity: 1, y: 0, transition: { duration: 0.5 } },
+  exit: { opacity: 0,  y: -12, transition: { duration: 0.5 } }
 };
+
+export const scaleFade = {
+  initial: { opacity: 0, scale: 0.9 },
+  animate: { opacity: 1, scale: 1, transition: { duration: .5 } },
+  exit: { opacity: 0,  scale: 0.9, transition: { duration: .5 } }
+};
+
+
+
+
+
+
+
+
 
 export const scaleOpacity = {
   initial: { opacity: 0, },
@@ -14,12 +27,6 @@ export const scaleOpacity = {
   transition: { duration:  .5},
 };
 
-export const scaleFade = {
-  initial: { opacity: 0, scale: 0.8 },
-  animate: { opacity: 1, scale: 1 },
-  exit: { opacity: 0, scale: 0.8 },
-  transition: { duration:  .5},
-};
 
 
 

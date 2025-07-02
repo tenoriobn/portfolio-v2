@@ -4,7 +4,7 @@ import { useChangeLanguage } from './useChangeLanguage';
 import { useCMSSection } from 'src/hook';
 import useOptionsToggle from '../useOptionsToggle';
 import CheckIcon from 'public/icons/check.svg';
-import { scaleOpacity } from 'src/utils';
+import { scaleFade } from 'src/utils';
 import Dropdown from 'src/components/Dropdown';
 
 export default function Language() {
@@ -13,7 +13,13 @@ export default function Language() {
   const { setActiveOption } = useOptionsToggle();
 
   return (  
-    <Dropdown onClick={() => setActiveOption('main')} {...scaleOpacity} >
+    <Dropdown 
+      onClick={() => setActiveOption('main')} 
+      animate='animate'
+      initial="initial"
+      exit='exit'
+      variants={scaleFade}
+    >
       {language.options.map((option) => {
         const isSelected = locale === option.href;
 

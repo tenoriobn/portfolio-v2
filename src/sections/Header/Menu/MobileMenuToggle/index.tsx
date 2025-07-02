@@ -27,7 +27,13 @@ export default function MobileMenuToggle() {
     <Styled.MenuButtonContainer>
       <CircularButton onClick={toggleMenu}>
         <AnimatePresence mode="wait" initial={false}>
-          <motion.span key={isMenuActive ? 'close' : 'menu'} {...scaleFade}>
+          <motion.span 
+            key={isMenuActive ? 'close' : 'menu'}
+            animate='animate'
+            initial="initial"
+            exit='exit'
+            variants={scaleFade}
+          >
             {isMenuActive ? <Styled.CloseIcon /> : <MenuIcon />}
           </motion.span>
         </AnimatePresence>

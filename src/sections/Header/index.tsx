@@ -30,7 +30,6 @@ const Styled = {
 };
 
 export default function Header() {
-
   return (
     <Styled.Header>
       <Wrapper>
