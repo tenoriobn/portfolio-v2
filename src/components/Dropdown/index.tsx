@@ -1,34 +1,26 @@
-import { shadowSM, borderInsetMixin, CircularButton, BorderButton } from 'src/styles';
+import { BorderButton, CircularButton, DropdownList, DropdownWrapper } from 'src/styles';
 import { DropdownProps } from './dropdown.type';
-import { slideFadeDown } from 'src/utils';
 import styled from 'styled-components';
-import { motion } from 'motion/react';
 import CloseIcon from 'public/icons/close.svg';
 import ArrowRightIcon from 'public/icons/arrow-right.svg';
-import useOptionsList from 'src/sections/Header/OptionsPanel/OptionsList/useOptionsList';
 
 const Styled = {
-  DropdownWrapper: styled(motion.div)`
-    border-radius: ${({ theme }) => theme.borderRadius.md};
+  DropdownWrapper: styled(DropdownWrapper)`
     left: 12px;
     top: 90px;
-    ${borderInsetMixin}
-    ${shadowSM}
-    position: absolute;
     width: 232px;
   `,
 
-  DropdownList: styled.div`
-    display: grid;
-    gap: 1rem;
-    background-color: ${({ theme }) => theme.colors['grey-800-75%']};
-    border-radius: ${({ theme }) => theme.borderRadius.md};
+  DropdownList: styled(DropdownList)`
     padding: .75rem 1rem 1rem 1rem;
 
     @media (min-width: 768px) {
-      gap: 1.5rem;
       padding: .75rem 1.5rem 1.5rem 1.5rem;
     }
+  `,
+
+  BorderButton: styled(BorderButton)<{ $closeIcon?: boolean }>`
+    justify-self: ${({ $closeIcon}) => $closeIcon ? 'end' : ''};
   `,
 
   CircularButton: styled(CircularButton)`
@@ -43,7 +35,7 @@ const Styled = {
       stroke-width: 3px;
     }
   `,
-  
+
   ArrowLeftIcon: styled(ArrowRightIcon)`
     position: relative;
     right: 1px;
@@ -55,19 +47,16 @@ const Styled = {
   `,
 };
 
-export default function Dropdown({ onClick, children }: DropdownProps) {
-  const { isActiveOption } = useOptionsList();
-  const showBackIcon = isActiveOption === 'language' || isActiveOption === 'theme';
-  const showCloseIcon = isActiveOption === 'main';
+export default function Dropdown({ children, closeIcon, onClick, ...rest }: DropdownProps) {
 
   return (
-    <Styled.DropdownWrapper {...slideFadeDown}>
+    <Styled.DropdownWrapper {...rest}>
       <Styled.DropdownList>
-        <BorderButton>
+        <Styled.BorderButton $closeIcon={closeIcon}>
           <Styled.CircularButton onClick={onClick}>
-            {showBackIcon ? <Styled.ArrowLeftIcon /> : showCloseIcon && <Styled.CloseIcon />}
+            {closeIcon ? <Styled.CloseIcon /> : <Styled.ArrowLeftIcon />}
           </Styled.CircularButton>
-        </BorderButton>
+        </Styled.BorderButton>
 
         {children}
       </Styled.DropdownList>

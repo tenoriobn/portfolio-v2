@@ -2,9 +2,10 @@ import Image from 'next/image';
 import { LargeBorderButton, OptionButton } from 'src/styles';
 import { useCMSSection } from 'src/hook';
 import useOptionsToggle from '../useOptionsToggle';
-import Dropdown from 'src/components/Dropdown';
 import CheckIcon from 'public/icons/check.svg';
 import { useThemeToggle } from '../../ThemeToggle/useThemeToggle';
+import { scaleOpacity } from 'src/utils';
+import Dropdown from 'src/components/Dropdown';
 
 export default function Theme() {
   const { themeOptions } = useCMSSection('HeaderBlockRecord');
@@ -12,7 +13,7 @@ export default function Theme() {
   const { setTheme, resolvedTheme, } = useThemeToggle();
 
   return (
-    <Dropdown onClick={() => setActiveOption('main')}>
+    <Dropdown onClick={() => setActiveOption('main')} {...scaleOpacity}>
       {themeOptions.theme.map((option) => {
         const isSelected = resolvedTheme === option.href;
 
