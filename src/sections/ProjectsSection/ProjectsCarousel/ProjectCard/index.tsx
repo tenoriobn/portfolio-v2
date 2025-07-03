@@ -120,8 +120,6 @@ export default function ProjectCard({ project }: ProjectCardProps) {
               alt={`Imagem do projeto ${projectTitle}`}
               width={400} 
               height={600}
-              priority={false}
-              loading="lazy"
             />
           </Styled.ImageWrapper>
         )}

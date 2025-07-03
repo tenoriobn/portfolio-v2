@@ -11,13 +11,14 @@ export const createSwiperConfig = (
   },
   spaceBetween: 24,
   autoplay: {
-    delay: 5000,
+    delay: 6000,
     disableOnInteraction: false,
   },
   pagination: {
     el: `.${paginationClass}`,
     clickable: true,
     dynamicBullets: true,
+    dynamicMainBullets: 1,
     renderBullet: (_: number, className: string): string => {
       return `<span class="${className}"><div class="pagination-bullet"></div></span>`;
     },

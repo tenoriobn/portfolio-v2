@@ -13,48 +13,41 @@ const Styled = {
   `,
 
   Pagination: styled.div`
-    &.swiper-pagination-bullets-dynamic {
-      transform: unset!important;
-      display: flex;
-      justify-content: center;
-      width: 100%!important;
-    }
-
+    transform: unset!important;
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    width: 100%!important;
+    
     .swiper-pagination-bullet {
       left: auto!important;
       display: none;
       opacity: 1;
+      cursor: pointer;    
+      margin: 0!important;
+
+      .pagination-bullet {
+        background-color: ${({ theme }) => theme.colors['grey-800-75%']};
+        border-radius: ${({ theme }) => theme.borderRadius.full};
+        width: 22px!important;
+        height: 22px!important;
+      }
+    }
+
+    .swiper-pagination-bullet-active-prev,
+    .swiper-pagination-bullet-active-next {
       ${borderInsetMixin}
-      width: 24px;
-      height: 24px;
-      margin: 0 .75rem!important;
+      display: block;
+      transform: scale(0.8);
 
       &:active {
         ${borderRaisedMixin}
       }
     }
 
-    .swiper-pagination-bullet-active-next-next,
-    .swiper-pagination-bullet-active-prev-prev {
-      transform: scale(0)!important;
-    }
-
-    .swiper-pagination-bullet-active-prev,
-    .swiper-pagination-bullet-active-next {
-      display: block;
-      transform: scale(1)!important;
-    }
-
     .swiper-pagination-bullet-active {
       display: block;
       ${borderRaisedMixin}
-    }
-
-    .pagination-bullet {
-      background-color: ${({ theme }) => theme.colors['grey-800-75%']};
-      border-radius: ${({ theme }) => theme.borderRadius.full};
-      width: 22px!important;
-      height: 22px!important;
     }
   `,
 };
@@ -67,7 +60,6 @@ export default function Carousel({children}: {children: React.ReactNode}) {
       <Styled.Swiper {...projectsConfig} >
         {children}
       </Styled.Swiper>
-      
       <Styled.Pagination className="projects-carousel-pagination"/>
     </>
   );
