@@ -2,7 +2,7 @@ import { textGradient, Wrapper } from 'src/styles';
 import { useCMSSection } from 'src/hook';
 import styled from 'styled-components';
 import ProjectsCarousel from './ProjectsCarousel';
-import { sectionMotion } from 'src/utils';
+import { revealOnScroll } from 'src/utils';
 
 const Styled = {
   Section: styled.section`
@@ -49,7 +49,7 @@ export default function ProjectsSection() {
   const { componentName, title, description } = useCMSSection('ProjectsSectionBlockRecord');
 
   return (
-    <Styled.Wrapper {...sectionMotion}>
+    <Styled.Wrapper {...revealOnScroll}>
       <Styled.Section id={componentName}>
         <Styled.Title>{title}</Styled.Title>
         <Styled.Description>{description}</Styled.Description>

@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { motion } from 'motion/react';
+import { AnimatePresence, motion } from 'motion/react';
 import { BorderButton, borderInsetMixin, shadowSM } from 'src/styles';
 import useMenuToggle from '../MobileMenuToggle/useMenuToggle';
 import useScrollSpyInit from './useScrollSpyInit';
@@ -82,34 +82,36 @@ export default function Navbar() {
   const { isContactVisible } = useScrollSpyInit();
 
   return (
-    <Styled.NavigationWrapper 
-      $isMenuActive={isMenuActive}
-      key="navlinks"
-      animate={isMenuActive ? 'animate' : 'exit'}
-      initial="initial"
-      variants={slideFadeDown}
-    >
-      <Styled.Navigation>
-        <Styled.NavList>            
-          {menu.items.map((item) => (
-            <li key={item.id}>
-              <Styled.NavLink
-                to={item.href} 
-                spy={true}
-                smooth={true}
-                offset={-190}
-                duration={600}
-                activeClass='active'
-                onClick={closeMenu}
-                $forceActive={isContactVisible && item.href === 'ContactSectionBlockRecord'}
-                $forceInactive={isContactVisible && item.href !== 'ContactSectionBlockRecord'}
-              >
-                {item.linkName}
-              </Styled.NavLink>
-            </li>
-          ))}
-        </Styled.NavList>
-      </Styled.Navigation>
-    </Styled.NavigationWrapper>
+    <AnimatePresence mode="wait" initial={false}>
+      <Styled.NavigationWrapper 
+        $isMenuActive={isMenuActive}
+        key="navlinks"
+        animate={isMenuActive ? 'animate' : 'exit'}
+        initial="initial"
+        variants={slideFadeDown}
+      >
+        <Styled.Navigation>
+          <Styled.NavList>            
+            {menu.items.map((item) => (
+              <li key={item.id}>
+                <Styled.NavLink
+                  to={item.href} 
+                  spy={true}
+                  smooth={true}
+                  offset={-190}
+                  duration={600}
+                  activeClass='active'
+                  onClick={closeMenu}
+                  $forceActive={isContactVisible && item.href === 'ContactSectionBlockRecord'}
+                  $forceInactive={isContactVisible && item.href !== 'ContactSectionBlockRecord'}
+                >
+                  {item.linkName}
+                </Styled.NavLink>
+              </li>
+            ))}
+          </Styled.NavList>
+        </Styled.Navigation>
+      </Styled.NavigationWrapper>
+    </AnimatePresence>
   );
 }

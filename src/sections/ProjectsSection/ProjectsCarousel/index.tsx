@@ -9,13 +9,14 @@ export default function ProjectsCarousel() {
 
   return (
     <>
-      <Carousel >
+      <Carousel>
         {projects?.map((project) => (
           <SwiperSlide key={project.id}>
             <ProjectCard project={project} />
           </SwiperSlide>
         ))}
       </Carousel>
+      
       <ProjectModal />
     </>
   );

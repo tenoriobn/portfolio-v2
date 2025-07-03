@@ -25,6 +25,7 @@ const Styled = {
     overflow-x: hidden;
     scrollbar-width: none; 
     -ms-overflow-style: none; 
+    position: relative;
       
     &::-webkit-scrollbar {
       display: none;
@@ -32,9 +33,11 @@ const Styled = {
   `,
 
   ProjectImage: styled(Image)`
+    height: auto!important;
     max-width: 100%;
+    object-fit: cover;
+    width: 100%;
     height: auto;
-    width: auto;
   `,
 };
 
@@ -42,18 +45,16 @@ export default function ProjectGalleryModal({ project }: ProjectGalleryModalProp
   const { projectTitle, projectGallery } = project;
 
   return (
-    <>
-      <Styled.GalleryContainer>
-        <Styled.ProjectImageWrapper>
-          <Styled.ProjectImage 
-            src={projectGallery[0].url} 
-            alt={projectTitle}
-            width={1440} 
-            height={3687}
-            priority
-          />
-        </Styled.ProjectImageWrapper>
-      </Styled.GalleryContainer>
-    </>
+    <Styled.GalleryContainer>
+      <Styled.ProjectImageWrapper >
+        <Styled.ProjectImage 
+          className="scroll-content"
+          src={projectGallery[0].url} 
+          alt={projectTitle}
+          fill
+          sizes="(min-width: 1024px) 100vw"
+        />
+      </Styled.ProjectImageWrapper>
+    </Styled.GalleryContainer>
   );
 }

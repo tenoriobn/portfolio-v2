@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import { BaseButton, BorderButton, borderInsetMixin, borderRaisedMixin, shadowSM, textGradient } from 'src/styles';
 import { ProjectCardProps } from './projectCard.type';
 import { useProjectModal } from '../ProjectModal/useProjectModal';
+import { useRef } from 'react';
 
 const Styled = {
   CardWrapper: styled.div`
@@ -31,6 +32,7 @@ const Styled = {
     border-radius: ${({ theme }) => theme.borderRadius.md};
     width: 100%;
     overflow: hidden;
+    cursor: pointer;
   `,
 
   ProjectImage: styled(Image)`
@@ -98,17 +100,19 @@ const Styled = {
 
 export default function ProjectCard({ project }: ProjectCardProps) {
   const { openModal } = useProjectModal();
+  const cardRef = useRef<HTMLDivElement>(null);
+  
   if (!project) return null;
 
   const { projectGallery, projectTitle, modalButtonLabel } = project;
   const firstImage = projectGallery?.[0];
 
   return (
-    <Styled.CardWrapper>
+    <Styled.CardWrapper ref={cardRef}>
       <Styled.Card>
         {firstImage && (
           <Styled.ImageWrapper 
-            onClick={() => openModal(project, 'gallery')}
+            onClick={() => openModal(project, 'gallery', cardRef.current)}
             aria-label={`Ver imagem ampliada do projeto ${projectTitle}`}
           >
             <Styled.ProjectImage 
@@ -116,8 +120,6 @@ export default function ProjectCard({ project }: ProjectCardProps) {
               alt={`Imagem do projeto ${projectTitle}`}
               width={400} 
               height={600}
-              priority={false}
-              loading="lazy"
             />
           </Styled.ImageWrapper>
         )}
@@ -130,7 +132,7 @@ export default function ProjectCard({ project }: ProjectCardProps) {
               <Styled.Button 
                 type="button"
                 aria-label={`Ver detalhes do projeto ${projectTitle}`}
-                onClick={() => openModal(project, 'info')}
+                onClick={() => openModal(project, 'info', cardRef.current)}
               > 
                 <MagnifyingGlass aria-hidden="true" /> 
                 {modalButtonLabel}
