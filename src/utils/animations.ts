@@ -1,33 +1,35 @@
-import { easeInOut, Variants } from 'motion/react';
+import { Variants } from 'motion/react';
 
 export const slideFadeDown = {
   initial: { opacity: 0, y: -12 },
-  animate: { opacity: 1, y: 0, transition: { duration: .5 } },
-  exit: { opacity: 0,  y: -12, transition: { duration: .5 } }
+  animate: { opacity: 1, y: 0, transition: { duration: .25 } },
+  exit: { opacity: 0,  y: -12, transition: { duration: .25 } }
 };
 
 export const scaleFade = {
   initial: { opacity: 0, scale: 0.9 },
-  animate: { opacity: 1, scale: 1, transition: { duration: .5 } },
-  exit: { opacity: 0,  scale: 0.9, transition: { duration: .5 } }
+  animate: { opacity: 1, scale: 1, transition: { duration: .15 } },
+  exit: { opacity: 0,  scale: 0.9, transition: { duration: .15 } }
 };
 
 export const textTransition = {
   initial: { filter: 'blur(4px)', opacity: 0 },
-  animate: { filter: 'blur(0px)', opacity: 1,transition: { duration: .5 } },
-  exit: { filter: 'blur(4px)', opacity: 0,transition: { duration: .5 } }
+  animate: { filter: 'blur(0px)', opacity: 1,transition: { duration: .25 } },
+  exit: { filter: 'blur(4px)', opacity: 0,transition: { duration: .25 } }
 };
 
 export const sectionMotion = {
-  initial: { opacity: 0, y: 0 },
+  initial: { opacity: 0, },
   whileInView: {
     opacity: 1,
-    y: 0,
     transition: {
       duration: 1,
     },
   },
-  viewport: { once: true, amount: .12 },
+  viewport: { 
+    once: true, 
+    amount: .12 
+  },
 };
 
 
@@ -36,7 +38,7 @@ export const overlayModalFadeDown = {
     opacity: 0, 
     overflow: 'hidden', 
     transition: { 
-      duration: .5,
+      duration: .25,
       overflow: { delay: 5 }
     }
   },
@@ -44,14 +46,14 @@ export const overlayModalFadeDown = {
     opacity: 1, 
     overflow: 'hidden auto', 
     transition: { 
-      duration: .5,
+      duration: .25,
     }
   },
   exit: { 
     opacity: 0, 
     overflow: 'hidden', 
     transition: { 
-      duration: .5,
+      duration: .25,
     }
   },
 };
@@ -63,7 +65,7 @@ export const modalFadeDown: Variants = {
     x: cardPosition ? cardPosition.x - window.innerWidth / 2 : 0,
     y: cardPosition ? cardPosition.y - window.innerHeight / 2 : -50,
     transition: {
-      duration: .5,
+      duration: .25,
       ease: 'easeOut',
     }
   }),
@@ -73,7 +75,7 @@ export const modalFadeDown: Variants = {
     x: 0,
     y: 0,
     transition: {
-      duration: .5,
+      duration: .25,
       ease: 'easeOut'
     }
   },
@@ -83,30 +85,14 @@ export const modalFadeDown: Variants = {
     x: cardPosition.x - window.innerWidth / 2,
     y: cardPosition.y - window.innerHeight / 2,
     transition: {
-      duration: .5,
+      duration: .25,
       ease: 'easeIn',
     }
   })
 };
 
-
-
-
-
-
-
-export const scaleOpacity = {
-  initial: { opacity: 0, },
-  animate: { opacity: 1,},
-  exit: { opacity: 0, },
-  transition: { duration:  .5},
-};
-
-export const expandFade = {
+export const expandCollapseFade = {
   initial: { height: 0, opacity: 0 },
-  animate: { height: 'auto', opacity: 1 },
-  exit: { height: 0, opacity: 0 },
-  transition: { duration: 0.5, ease: easeInOut },
+  animate: { height: 'auto', opacity: 1, transition: { duration: .25 } },
+  exit: { height: 0, opacity: 0, transition: { duration: .25 } }
 };
-
-

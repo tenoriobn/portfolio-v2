@@ -4,7 +4,8 @@ import ArrowIcon from 'public/icons/arrow-right.svg';
 import styled from 'styled-components';
 import { AnimatePresence, motion } from 'motion/react';
 import { useExperienceTimeline } from './useExperienceTimeline';
-import { expandFade } from 'src/utils';
+import { expandCollapseFade } from 'src/utils';
+import { handleScrollAfterExpand } from './handleScrollAfterExpand';
 
 const Styled = {
   TimelineItem: styled.div`
@@ -98,21 +99,21 @@ const Styled = {
 };
 
 export default function ExperienceTimelineItem() {
-  const { experiences, toggleExperienceExpansion, isExperienceExpanded, cardRefs } = useExperienceTimeline();
+  const { experiences, toggleExpand, isExpanded, refs } = useExperienceTimeline();
 
   return (
     <>    
       {experiences.map((experience) => (
         <Styled.TimelineItem key={experience.id}>
-          <BorderButton onClick={() => toggleExperienceExpansion(experience.id)}>
-            <Styled.ExpandButton $isExpanded={isExperienceExpanded(experience.id)}>
+          <BorderButton onClick={() => toggleExpand(experience.id)}>
+            <Styled.ExpandButton $isExpanded={isExpanded(experience.id)}>
               <ArrowIcon />
             </Styled.ExpandButton>
           </BorderButton>
 
           <Styled.ExperienceCardWrapper 
-            ref={(el) => {cardRefs.current[experience.id] = el;}}
-            onClick={() => toggleExperienceExpansion(experience.id)}
+            ref={(el) => {refs.current[experience.id] = el;}}
+            onClick={() => toggleExpand(experience.id)}
           >
             <Styled.ExperienceCard>
               <Styled.ExperienceHeader>
@@ -126,9 +127,19 @@ export default function ExperienceTimelineItem() {
                   <Styled.PeriodText>{experience.period}</Styled.PeriodText>
                 </Styled.ExperienceInfo>
               </Styled.ExperienceHeader>
+
               <AnimatePresence initial={false}>
-                {isExperienceExpanded(experience.id) && (
-                  <motion.div key="description" {...expandFade}>
+                {isExpanded(experience.id) && (
+                  <motion.div 
+                    key="description" 
+                    initial="initial"
+                    animate="animate"
+                    exit="exit"
+                    variants={expandCollapseFade}
+
+                    // {...expandCollapseFade}
+                    onAnimationComplete={() => handleScrollAfterExpand(experience.id, refs)}
+                  >
                     <Styled.JobDescription>{experience.jobDescription}</Styled.JobDescription>
                   </motion.div>
                 )}
