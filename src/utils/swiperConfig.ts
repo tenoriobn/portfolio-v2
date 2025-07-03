@@ -11,7 +11,7 @@ export const createSwiperConfig = (
   },
   spaceBetween: 24,
   autoplay: {
-    delay: 3000,
+    delay: 5000,
     disableOnInteraction: false,
   },
   pagination: {

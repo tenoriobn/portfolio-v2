@@ -34,7 +34,7 @@ const Styled = {
   ProjectImage: styled(Image)`
     max-width: 100%;
     height: auto;
-    width: auto;
+    width: 100%;
   `,
 };
 
@@ -42,18 +42,16 @@ export default function ProjectGalleryModal({ project }: ProjectGalleryModalProp
   const { projectTitle, projectGallery } = project;
 
   return (
-    <>
-      <Styled.GalleryContainer>
-        <Styled.ProjectImageWrapper>
-          <Styled.ProjectImage 
-            src={projectGallery[0].url} 
-            alt={projectTitle}
-            width={1440} 
-            height={3687}
-            priority
-          />
-        </Styled.ProjectImageWrapper>
-      </Styled.GalleryContainer>
-    </>
+    <Styled.GalleryContainer>
+      <Styled.ProjectImageWrapper>
+        <Styled.ProjectImage 
+          src={projectGallery[0].url} 
+          alt={projectTitle}
+          width={1440} 
+          height={3687}
+          priority
+        />
+      </Styled.ProjectImageWrapper>
+    </Styled.GalleryContainer>
   );
 }

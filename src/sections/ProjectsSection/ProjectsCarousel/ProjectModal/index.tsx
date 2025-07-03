@@ -1,31 +1,101 @@
-import BaseModal from 'src/components/BaseModal';
 import { useProjectModal } from './useProjectModal';
 import ProjectGalleryModal from './ProjectGalleryModal';
 import ProjectInfoModal from './ProjectInfoModal';
-import ModalHeader from 'src/components/BaseModal/ModalHeader';
-import ModalFooter from 'src/components/BaseModal/ModalFooter';
+import ModalHeader from './ModalHeader';
+import ModalFooter from './ModalFooter';
+import { useClickOutside } from 'src/hook';
+import { useBodyScrollLock } from 'src/hook/useBodyScrollLock';
+import { useRef } from 'react';
+import styled from 'styled-components';
+import { borderInsetMixin, shadowSM } from 'src/styles';
+import { AnimatePresence, motion } from 'motion/react';
+import { modalFadeDown, overlayModalFadeDown } from 'src/utils';
+
+const Styled = {
+  Overlay: styled(motion.div)<{ $isGalleryModal?: boolean }>`
+    background-color: rgba(0, 0, 0, 0.10);
+    backdrop-filter: blur(16px);
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: ${({ $isGalleryModal }) => $isGalleryModal ? 'flex': 'grid'};
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: ${({ $isGalleryModal }) => $isGalleryModal ? '100dvh' : '100%'};
+    z-index: 99999;
+    padding: 1.5rem 1rem;
+
+    @media (min-width: 768px) {
+      padding: 4rem 1.5rem;
+    }
+  `,
+
+  Container: styled(motion.div)<{ $maxWidth?: string; $isGalleryModal?: boolean }>`
+    ${borderInsetMixin}
+    ${shadowSM}
+    border-radius: ${({ theme }) => theme.borderRadius.md};
+    width: 100%;
+    height: ${({ $isGalleryModal }) => $isGalleryModal ? '100%' : 'auto'};
+    max-width: ${({ $isGalleryModal }) => $isGalleryModal ? '1200px' : '668px'};
+  `,
+
+  Content: styled.div<{ $isGalleryModal?: boolean }>`
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    height: ${({ $isGalleryModal }) => $isGalleryModal ? '100%' : 'auto'};
+    background-color: ${({ theme }) => theme.colors['grey-800-75%']};
+    border-radius: ${({ theme }) => theme.borderRadius.md};
+    overflow: hidden;
+    padding: 1rem;
+
+    @media (min-width: 768px) {
+      gap: 1.5rem;
+      padding: 1.5rem;
+    }
+  `,
+};
 
 export default function ProjectModal() {
-  const { isOpen, closeModal, currentProject, currentType } = useProjectModal();
-
-  if (!currentProject) return null;
-
+  const { isOpen, closeModal, currentProject, currentType, cardPosition } = useProjectModal();
+  const modalRef = useRef<HTMLDivElement>(null);
+  useClickOutside(modalRef, closeModal);
+  useBodyScrollLock(isOpen);
+  
   const isGalleryModal = currentType === 'gallery';
-  const maxWidth = isGalleryModal ? '1200px' : '668px';
 
   return (
-    <BaseModal isOpen={isOpen} onClose={closeModal} maxWidth={maxWidth} isGalleryModal={isGalleryModal}>
-      <ModalHeader title={currentProject.projectTitle} onClose={closeModal} />
-      
-      {isGalleryModal ? (
-        <ProjectGalleryModal project={currentProject} />
-      ) : (
-        <ProjectInfoModal project={currentProject} />
-      )}
+    <AnimatePresence mode="wait" initial={false}>
+      {isOpen && currentProject && (
+        <Styled.Overlay 
+          key="project-modal-overlay"
+          $isGalleryModal={isGalleryModal}
+          initial="initial"
+          animate="animate"
+          exit="exit"
+          variants={overlayModalFadeDown}
+        >
+          <Styled.Container 
+            ref={modalRef} 
+            $isGalleryModal={isGalleryModal}
+            initial="initial"
+            animate="animate"
+            exit="exit"
+            variants={modalFadeDown}
+            custom={cardPosition}
+          >
+            <Styled.Content $isGalleryModal={isGalleryModal}>
+              <ModalHeader title={currentProject.projectTitle} onClose={closeModal} />
 
-      {currentProject.projectLinks && currentProject.projectLinks.length > 0 && (
-        <ModalFooter projectLinks={currentProject.projectLinks} />
+              {isGalleryModal && <ProjectGalleryModal project={currentProject} /> }
+              {!isGalleryModal && <ProjectInfoModal project={currentProject} /> }
+
+              <ModalFooter projectLinks={currentProject.projectLinks} />
+            </Styled.Content>
+          </Styled.Container>
+        </Styled.Overlay>
       )}
-    </BaseModal>
+    </AnimatePresence>
   );
 }
