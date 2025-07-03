@@ -12,53 +12,26 @@ export const scaleFade = {
   exit: { opacity: 0,  scale: 0.9, transition: { duration: .15 } }
 };
 
-export const textTransition = {
+export const blurInFade = {
   initial: { filter: 'blur(4px)', opacity: 0 },
   animate: { filter: 'blur(0px)', opacity: 1,transition: { duration: .25 } },
   exit: { filter: 'blur(4px)', opacity: 0,transition: { duration: .25 } }
 };
 
-export const sectionMotion = {
+export const revealOnScroll = {
   initial: { opacity: 0, },
-  whileInView: {
-    opacity: 1,
-    transition: {
-      duration: 1,
-    },
-  },
-  viewport: { 
-    once: true, 
-    amount: .12 
-  },
+  whileInView: { opacity: 1, transition: { duration: 1, }, },
+  viewport: { once: true, amount: .12 },
 };
 
 
-export const overlayModalFadeDown = {
-  initial: { 
-    opacity: 0, 
-    overflow: 'hidden', 
-    transition: { 
-      duration: .25,
-      overflow: { delay: 5 }
-    }
-  },
-  animate: { 
-    opacity: 1, 
-    overflow: 'hidden auto', 
-    transition: { 
-      duration: .25,
-    }
-  },
-  exit: { 
-    opacity: 0, 
-    overflow: 'hidden', 
-    transition: { 
-      duration: .25,
-    }
-  },
+export const overlayFade = {
+  initial: { opacity: 0, overflow: 'hidden', transition: { duration: .25, overflow: { delay: 5 } } },
+  animate: { opacity: 1, overflow: 'hidden auto', transition: { duration: .25, } },
+  exit: { opacity: 0, overflow: 'hidden', transition: {  duration: .25, } },
 };
 
-export const modalFadeDown: Variants = {
+export const scaleFromPosition: Variants = {
   initial: (cardPosition: { x: number; y: number; }) => ({
     opacity: 0,
     scale: 0.3,

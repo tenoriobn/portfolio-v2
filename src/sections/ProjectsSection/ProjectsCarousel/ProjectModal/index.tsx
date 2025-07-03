@@ -9,7 +9,7 @@ import { useRef } from 'react';
 import styled from 'styled-components';
 import { borderInsetMixin, shadowSM } from 'src/styles';
 import { AnimatePresence, motion } from 'motion/react';
-import { modalFadeDown, overlayModalFadeDown } from 'src/utils';
+import { scaleFromPosition, overlayFade } from 'src/utils';
 
 const Styled = {
   Overlay: styled(motion.div)<{ $isGalleryModal?: boolean }>`
@@ -74,7 +74,7 @@ export default function ProjectModal() {
           initial="initial"
           animate="animate"
           exit="exit"
-          variants={overlayModalFadeDown}
+          variants={overlayFade}
         >
           <Styled.Container 
             ref={modalRef} 
@@ -82,7 +82,7 @@ export default function ProjectModal() {
             initial="initial"
             animate="animate"
             exit="exit"
-            variants={modalFadeDown}
+            variants={scaleFromPosition}
             custom={cardPosition}
           >
             <Styled.Content $isGalleryModal={isGalleryModal}>

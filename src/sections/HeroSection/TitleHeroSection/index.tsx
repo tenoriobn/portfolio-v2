@@ -2,7 +2,7 @@ import { AnimatePresence, motion } from 'motion/react';
 import React from 'react';
 import { useCMSSection } from 'src/hook';
 import { textGradient } from 'src/styles';
-import { textTransition } from 'src/utils';
+import { blurInFade } from 'src/utils';
 import styled from 'styled-components';
 import { useRotatingText } from './useRotatingTextIndex';
 
@@ -39,7 +39,7 @@ export default function HighlightRotatingTexts() {
 
   return (
     <AnimatePresence mode="wait" initial={false}>
-      <Styled.Text key={activeTextIndex} {...textTransition}>
+      <Styled.Text key={activeTextIndex} {...blurInFade}>
         {highlightRotatingTexts[activeTextIndex].text}
       </Styled.Text>
     </AnimatePresence>
