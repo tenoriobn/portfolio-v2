@@ -4,6 +4,7 @@ import { useCMSSection } from 'src/hook';
 import { BaseButton, BorderButton } from 'src/styles';
 import ContactDropdown from './ContactDropdown';
 import { useSocialContactList } from './SocialContactList';
+import { AnimatePresence } from 'motion/react';
 
 const Styled = {
   ContactsGrid: styled.div`
@@ -62,7 +63,9 @@ export default function SocialContactList() {
             </Styled.ContactButton>
           </Styled.ContactBorderButton>
 
-          {isContactActive(id) && (<ContactDropdown dropdown={dropdown} linkName={linkName} />)}
+          <AnimatePresence mode="wait" initial={false}>
+            {isContactActive(id) && (<ContactDropdown dropdown={dropdown} linkName={linkName} />)}
+          </AnimatePresence>
         </Styled.ContactItemWrapper>
       ))}
     </Styled.ContactsGrid>

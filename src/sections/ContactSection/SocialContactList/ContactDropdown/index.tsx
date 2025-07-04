@@ -9,10 +9,7 @@ const Styled = {
   DropdownWrapper: styled(DropdownWrapper)<{$linkName: string}>`
     top: 70px;
     z-index: 1;
-
-    @media (max-width: 767px) {
-      ${({ $linkName }) => ($linkName === 'Whatsapp' ? 'right: 0;' : 'left: 0;')}
-    }
+    ${({ $linkName }) => ($linkName === 'Whatsapp' ? 'right: 0;' : 'left: 0;')}
   `,
 
   DropdownList: styled(DropdownList)`
@@ -28,7 +25,14 @@ export default function ContactDropdown({ dropdown, linkName }: ContactDropdownP
   const { handleOptionClick, dropdownRef } = useContactActions();
 
   return (
-    <Styled.DropdownWrapper {...slideFadeDown} ref={dropdownRef} $linkName={linkName}>
+    <Styled.DropdownWrapper 
+      ref={dropdownRef} 
+      $linkName={linkName}
+      animate='animate'
+      initial="initial"
+      exit='exit'
+      variants={slideFadeDown}
+    >
       <Styled.DropdownList>
         {dropdown.map(({ text, href, icon, iscopy }) => (
           <LargeBorderButton key={text}>
@@ -46,5 +50,6 @@ export default function ContactDropdown({ dropdown, linkName }: ContactDropdownP
         ))}
       </Styled.DropdownList>
     </Styled.DropdownWrapper>
+    // </AnimatePresence>
   );
 }
