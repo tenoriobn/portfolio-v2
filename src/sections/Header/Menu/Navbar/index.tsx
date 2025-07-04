@@ -9,6 +9,8 @@ import { slideFadeDown } from 'src/utils';
 
 const Styled = {
   NavigationWrapper: styled(motion.div)<{$isMenuActive: boolean}>`
+    z-index: 1;
+
     @media (max-width: 991px) {
       pointer-events: ${({ $isMenuActive }) => $isMenuActive ? 'auto' : 'none'};
       border-radius: ${({ theme }) => theme.borderRadius.md};
@@ -23,6 +25,7 @@ const Styled = {
     @media (min-width: 992px) {
       opacity: 1 !important;
       transform: none !important;
+      position: relative;
     }
   `,
 
