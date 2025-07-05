@@ -41,7 +41,7 @@ export default function ThemeToggle() {
     <Styled.ThemeButtonContainer>
       <Styled.CircularButton onClick={toggleTheme}>
         <Styled.HeaderOverflowFix>
-          <DarkModeAnimate background='rgba(51, 51, 51, 1)' position='fixed' />
+          <DarkModeAnimate background='grey-800-75%' position='fixed' />
         </Styled.HeaderOverflowFix>
 
         <AnimatePresence mode="wait" initial={false}>

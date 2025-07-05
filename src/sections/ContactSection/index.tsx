@@ -1,10 +1,11 @@
 import { useCMSSection } from 'src/hook';
-import {borderRaisedMixin, shadowSM, textGradient, Wrapper } from 'src/styles';
+import {borderRaisedMixin, OverflowAnimationFixed, shadowSM, textGradient, transitionThemeAnimation, Wrapper } from 'src/styles';
 import TalkingIcon from 'public/icons/talking.svg';
 import styled from 'styled-components';
 import SocialContactList from './SocialContactList';
 import WinkingFace from 'public/icons/winking-face.svg';
 import { revealOnScroll } from 'src/utils';
+import DarkModeAnimate from 'src/components/DarkModeAnimate';
 
 const Styled = {
   ContactSectionContainer: styled.section`
@@ -13,6 +14,7 @@ const Styled = {
     padding-bottom: 7.5rem;
     gap: 1rem;
     padding-top: 7.5rem;
+    position: relative;
 
     @media (min-width: 768px) {
       gap: 1.5rem;
@@ -27,9 +29,18 @@ const Styled = {
     height: 100px;
   `,
 
-  ContactIcon: styled(TalkingIcon)`
+  ContactIconContainer: styled.div`
+    display: flex;
     background-color: ${({ theme }) => theme.colors['grey-800-75%']};
     border-radius: ${({ theme }) => theme.borderRadius.full};
+    position: relative;
+    z-index: 5;
+    ${transitionThemeAnimation}
+  `,
+
+  ContactIcon: styled(TalkingIcon)`
+    position: relative;
+    z-index: 5;
   `,
 
   Title: styled.h2`
@@ -68,7 +79,13 @@ export default function ContactSection() {
     <Wrapper {...revealOnScroll}>
       <Styled.ContactSectionContainer id={componentName}>
         <Styled.IconWrapper>
-          <Styled.ContactIcon />
+          <Styled.ContactIconContainer>
+            <OverflowAnimationFixed>
+              <DarkModeAnimate position="fixed" background="grey-800-75%" />
+            </OverflowAnimationFixed>
+
+            <Styled.ContactIcon />
+          </Styled.ContactIconContainer>
         </Styled.IconWrapper>
         
         <Styled.Title>{title}</Styled.Title>

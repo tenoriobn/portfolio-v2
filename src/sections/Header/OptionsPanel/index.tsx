@@ -1,11 +1,27 @@
 import { AnimatePresence } from 'motion/react';
-import { BorderButton, CircularButton } from 'src/styles';
+import { BorderButton, CircularButton, OverflowAnimationFixed, transitionThemeAnimation } from 'src/styles';
 import useOptionsToggle from './useOptionsToggle';
 import OptionsList from './OptionsList';
 import Language from './Language';
 import Theme from './Theme';
 import { useRef } from 'react';
 import { useClickOutside } from 'src/hook';
+import DarkModeAnimate from 'src/components/DarkModeAnimate';
+import styled from 'styled-components';
+
+const Styled = {
+  CircularButton: styled(CircularButton)`
+    position: relative;
+    z-index: 1;
+    ${transitionThemeAnimation}
+  `,
+
+  Label: styled.span`
+    position: relative;
+    z-index: 1;
+    transition: color ${({ theme }) => theme.transitions.default};
+  `,
+};
 
 export default function OptionsPanel() {
   const { isActiveOption, setActiveOption, toggleOptions } = useOptionsToggle();
@@ -15,7 +31,13 @@ export default function OptionsPanel() {
   return (
     <div ref={dropdownRef}>
       <BorderButton onClick={toggleOptions} >
-        <CircularButton>B</CircularButton>
+        <Styled.CircularButton>
+          <OverflowAnimationFixed>
+            <DarkModeAnimate background='grey-800-75%' position='fixed' />
+          </OverflowAnimationFixed>
+
+          <Styled.Label>B</Styled.Label>
+        </Styled.CircularButton>
       </BorderButton>
 
       <AnimatePresence mode="wait" initial={false}>   

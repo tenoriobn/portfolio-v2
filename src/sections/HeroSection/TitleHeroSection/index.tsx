@@ -24,6 +24,7 @@ const Styled = {
 
     span {
       ${textGradient}
+          transition: color ${({ theme }) => theme.transitions.default};
     }
 
     @media (min-width: 768px) {

@@ -6,6 +6,14 @@ export const useThemeToggle = () => {
 
   const toggleTheme = (event: React.MouseEvent<HTMLButtonElement>) => {
     const newTheme = isDark ? 'light' : 'dark';
+
+    if (newTheme === 'light') {
+      document.body.classList.add('light-delayed');
+      setTimeout(() => {
+        document.body.classList.remove('light-delayed');
+      }, 2000);
+    }
+
     
     const rect = event.currentTarget.getBoundingClientRect();
     const centerX = rect.left + rect.width / 2;

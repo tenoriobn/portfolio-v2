@@ -10,6 +10,8 @@ const Styled = {
     place-items: center;
     padding-bottom: 7.5rem;
     gap: 1rem;
+    position: relative;
+    z-index: 2;
 
     .swiper {
       width: 100%;
