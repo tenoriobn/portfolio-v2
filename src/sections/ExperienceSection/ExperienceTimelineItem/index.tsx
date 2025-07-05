@@ -1,11 +1,12 @@
 import Image from 'next/image';
-import { BorderButton, borderInsetMixin, borderRaisedMixin, shadowSM } from 'src/styles';
+import { BorderButton, borderInsetMixin, borderRaisedMixin, OverflowAnimationFixed, shadowSM, transitionThemeAnimation } from 'src/styles';
 import ArrowIcon from 'public/icons/arrow-right.svg';
 import styled from 'styled-components';
 import { AnimatePresence, motion } from 'motion/react';
 import { useExperienceTimeline } from './useExperienceTimeline';
 import { expandCollapseFade } from 'src/utils';
 import { handleScrollAfterExpand } from './handleScrollAfterExpand';
+import DarkModeAnimate from 'src/components/DarkModeAnimate';
 
 const Styled = {
   TimelineItem: styled.div`
@@ -26,6 +27,9 @@ const Styled = {
     border-radius: ${({ theme }) => theme.borderRadius.full};
     width: 20px;
     height: 20px;
+    position: relative;
+    z-index: 5;
+    ${transitionThemeAnimation}
 
     svg {
       rotate: ${({ $isExpanded }) => $isExpanded ? '-90deg' : '90deg'};
@@ -47,16 +51,26 @@ const Styled = {
     background-color: ${({ theme }) => theme.colors['grey-800-75%']};
     border-radius: ${({ theme }) => theme.borderRadius.md};
     padding: 1rem;
+    position: relative;
+    z-index: 5;
+    ${transitionThemeAnimation}
 
     @media (min-width: 768px) {
       padding: 1.5rem;
     }
   `,
 
+  OverflowAnimationFixed: styled(OverflowAnimationFixed)`
+    border-radius: ${({ theme }) => theme.borderRadius.md};
+    z-index: 0;
+  `,
+
   ExperienceHeader: styled.div`
     display: flex;
     align-items: center;
     gap: .75rem;
+    position: relative;
+    z-index: 5;
   `,
 
   CompanyLogoWrapper: styled.div`
@@ -91,6 +105,8 @@ const Styled = {
   JobDescription: styled(motion.p)`
     font-style: italic;
     padding-top: 1rem;
+    position: relative;
+    z-index: 5;
 
     @media (min-width: 768px) {
       padding-top: 1.5rem;
@@ -107,6 +123,10 @@ export default function ExperienceTimelineItem() {
         <Styled.TimelineItem key={experience.id}>
           <BorderButton onClick={() => toggleExpand(experience.id)}>
             <Styled.ExpandButton $isExpanded={isExpanded(experience.id)}>
+              <OverflowAnimationFixed>
+                <DarkModeAnimate position="fixed" background="grey-800-75%" />
+              </OverflowAnimationFixed>
+
               <ArrowIcon />
             </Styled.ExpandButton>
           </BorderButton>
@@ -116,6 +136,10 @@ export default function ExperienceTimelineItem() {
             onClick={() => toggleExpand(experience.id)}
           >
             <Styled.ExperienceCard>
+              <Styled.OverflowAnimationFixed>
+                <DarkModeAnimate position="fixed" background="grey-800-75%" />
+              </Styled.OverflowAnimationFixed>
+              
               <Styled.ExperienceHeader>
                 <Styled.CompanyLogoWrapper>
                   <Image src={experience.companyLogo.url} alt={experience.companyName} width={66} height={66}/>

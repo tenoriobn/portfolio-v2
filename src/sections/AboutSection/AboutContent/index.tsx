@@ -1,12 +1,15 @@
 import Image from 'next/image';
 import Link from 'next/link';
+import DarkModeAnimate from 'src/components/DarkModeAnimate';
 import { useCMSSection } from 'src/hook';
-import { BaseButton, BorderButton, textGradient } from 'src/styles';
+import { BaseButton, BorderButton, OverflowAnimationFixed, textGradient, transitionThemeAnimation } from 'src/styles';
 import styled from 'styled-components';
 
 const Styled = {
   AboutContentWrapper: styled.div`
     display: grid;
+    position: relative;
+    z-index: 5;
 
     @media (min-width: 992px) {
       order: 2;
@@ -66,16 +69,25 @@ const Styled = {
   `,
 
   SocialLink: styled(BaseButton)`
+    border-radius: ${({ theme }) => theme.borderRadius.full};
+    background-color: ${({ theme }) => theme.colors['grey-800-75%']};
+
+    padding: 1rem 1.5rem;
+    max-width: 180px;
+    width: 100%;
+    position: relative;
+    z-index: 5;
+    ${transitionThemeAnimation}
+  `,
+
+  Label: styled.span`
     display: flex;
     justify-content: center;
     align-items: center;
     gap: .5rem;
-    border-radius: ${({ theme }) => theme.borderRadius.full};
-    background-color: ${({ theme }) => theme.colors['grey-800-75%']};
     color: ${({ theme }) => theme.colors['grey-500']};
-    padding: 1rem 1.5rem;
-    max-width: 180px;
-    width: 100%;
+    position: relative;
+    z-index: 5;
   `,
 };
 
@@ -94,8 +106,14 @@ export default function AboutContent() {
         {socialLink.map((link) => (
           <Styled.SocialLinkBorder key={link.id}>
             <Styled.SocialLink as={Link} href={link.href} target='_blank' rel='noopener noreferrer'> 
-              <Image src={link.icon.url} alt={link.linkName} width={20} height={20} />
-              {link.linkName}
+              <OverflowAnimationFixed>
+                <DarkModeAnimate position="fixed" background="grey-800-75%" />
+              </OverflowAnimationFixed>
+
+              <Styled.Label>
+                <Image src={link.icon.url} alt={link.linkName} width={20} height={20} />
+                {link.linkName}
+              </Styled.Label>
             </Styled.SocialLink>
           </Styled.SocialLinkBorder>
         ))}

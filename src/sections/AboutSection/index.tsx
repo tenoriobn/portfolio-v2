@@ -1,9 +1,10 @@
-import { borderInsetMixin, shadowSM, Wrapper } from 'src/styles';
+import { borderInsetMixin, OverflowAnimationFixed, shadowSM, transitionThemeAnimation, Wrapper } from 'src/styles';
 import styled from 'styled-components';
 import AboutContent from './AboutContent';
 import AboutImage from './AboutImage';
 import { useCMSSection } from 'src/hook';
 import { revealOnScroll } from 'src/utils';
+import DarkModeAnimate from 'src/components/DarkModeAnimate';
 
 const Styled = {
   Section: styled.section`
@@ -25,6 +26,9 @@ const Styled = {
     border-radius: ${({ theme }) => theme.borderRadius.md};
     background-color: ${({ theme }) => theme.colors['grey-800-75%']};
     padding: 1rem;
+    ${transitionThemeAnimation}
+    position: relative;
+    z-index: 5;
 
     @media (min-width: 768px) {
       padding: 1.5rem;
@@ -33,6 +37,10 @@ const Styled = {
     @media (min-width: 992px) {
       grid-template-columns: repeat(2, 1fr);
     }
+  `,
+
+  OverflowAnimationFixed: styled(OverflowAnimationFixed)`
+    border-radius: ${({ theme }) => theme.borderRadius.md};
   `,
 };
 
@@ -44,6 +52,9 @@ export default function AboutSection() {
       <Styled.Section id={componentName}>
         <Styled.BorderSection>
           <Styled.SectionContent>
+            <Styled.OverflowAnimationFixed>
+              <DarkModeAnimate position="fixed" background="grey-800-75%" />
+            </Styled.OverflowAnimationFixed>
             <AboutContent />
             <AboutImage />
           </Styled.SectionContent>

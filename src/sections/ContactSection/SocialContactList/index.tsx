@@ -1,10 +1,11 @@
 import styled from 'styled-components';
 import Image from 'next/image';
 import { useCMSSection } from 'src/hook';
-import { BaseButton, BorderButton } from 'src/styles';
+import { BaseButton, BorderButton, OverflowAnimationFixed, transitionThemeAnimation } from 'src/styles';
 import ContactDropdown from './ContactDropdown';
 import { useSocialContactList } from './SocialContactList';
 import { AnimatePresence } from 'motion/react';
+import DarkModeAnimate from 'src/components/DarkModeAnimate';
 
 const Styled = {
   ContactsGrid: styled.div`
@@ -35,16 +36,24 @@ const Styled = {
   `,
 
   ContactButton: styled(BaseButton)`
+    border-radius: ${({ theme }) => theme.borderRadius.full};
+    background-color: ${({ theme }) => theme.colors['grey-800-75%']};
+    padding: 1rem 1.5rem;
+    max-width: 180px;
+    width: 100%;
+    position: relative;
+    z-index: 5;
+    ${transitionThemeAnimation}
+  `,
+
+  Label: styled.span`
     display: flex;
     justify-content: center;
     align-items: center;
     gap: .5rem;
-    border-radius: ${({ theme }) => theme.borderRadius.full};
-    background-color: ${({ theme }) => theme.colors['grey-800-75%']};
     color: ${({ theme }) => theme.colors['grey-500']};
-    padding: 1rem 1.5rem;
-    max-width: 180px;
-    width: 100%;
+    position: relative;
+    z-index: 5;
   `,
 };
 
@@ -58,8 +67,13 @@ export default function SocialContactList() {
         <Styled.ContactItemWrapper key={id} ref={isContactActive(id) ? dropdownRef : null}>
           <Styled.ContactBorderButton>
             <Styled.ContactButton onClick={() => toggleContact(id)}>
-              <Image src={icon.url} alt={`${linkName} icon`} width={20} height={20} />
-              {linkName}
+              <OverflowAnimationFixed>
+                <DarkModeAnimate position="fixed" background="grey-800-75%" />
+              </OverflowAnimationFixed>
+              <Styled.Label>
+                <Image src={icon.url} alt={`${linkName} icon`} width={20} height={20} />
+                {linkName}
+              </Styled.Label>
             </Styled.ContactButton>
           </Styled.ContactBorderButton>
 

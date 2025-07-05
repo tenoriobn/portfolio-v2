@@ -9,6 +9,7 @@ const Styled = {
     display: grid;
     place-items: center;
     gap: 1rem;
+    position: relative;
 
     @media (min-width: 768px) {
       gap: 1.5rem;

@@ -1,10 +1,11 @@
 import Image from 'next/image';
 import MagnifyingGlass from 'public/icons/magnifying-glass.svg';
 import styled from 'styled-components';
-import { BaseButton, BorderButton, borderInsetMixin, borderRaisedMixin, shadowSM, textGradient } from 'src/styles';
+import { BaseButton, BorderButton, borderInsetMixin, borderRaisedMixin, OverflowAnimationFixed, shadowSM, textGradient, transitionThemeAnimation } from 'src/styles';
 import { ProjectCardProps } from './projectCard.type';
 import { useProjectModal } from '../ProjectModal/useProjectModal';
 import { useRef } from 'react';
+import DarkModeAnimate from 'src/components/DarkModeAnimate';
 
 const Styled = {
   CardWrapper: styled.div`
@@ -19,11 +20,19 @@ const Styled = {
     display: grid;
     gap: 1rem;
     padding: 1rem;
+    ${transitionThemeAnimation}
+    position: relative;
+    z-index: 5;
 
     @media (min-width: 768px) {
       gap: 1.5rem;
       padding: 1.5rem;
     }
+  `,
+
+  OverflowAnimationFixed: styled(OverflowAnimationFixed)`
+    border-radius: ${({ theme }) => theme.borderRadius.md};
+    z-index: 0;
   `,
 
   ImageWrapper: styled.div`
@@ -62,6 +71,9 @@ const Styled = {
     place-items: center;
     gap: 1rem;
     padding: 1rem;
+    position: relative;
+    z-index: 5;
+    ${transitionThemeAnimation}
 
     @media (min-width: 768px) {
       gap: 1.5rem;
@@ -74,6 +86,8 @@ const Styled = {
     font-weight: 600;
     text-align: center;
     ${textGradient}
+    position: relative;
+    z-index: 5;
 
     @media (min-width: 768px) {
       font-size: 1.25rem;
@@ -85,16 +99,24 @@ const Styled = {
   `,
 
   Button: styled(BaseButton)`
+    border-radius: ${({ theme }) => theme.borderRadius.full};
+    background-color: ${({ theme }) => theme.colors['grey-800-75%']};
+    padding: 1rem 1.5rem;
+    width: 100%;
+    ${transitionThemeAnimation}
+    position: relative;
+    z-index: 5;
+  `,
+
+  Label: styled.span`
     display: flex;
     justify-content: center;
     align-items: center;
     gap: 0.5rem;
-    border-radius: ${({ theme }) => theme.borderRadius.full};
-    background-color: ${({ theme }) => theme.colors['grey-800-75%']};
     font-size: 1rem;
     color: ${({ theme }) => theme.colors['grey-500']};
-    padding: 1rem 1.5rem;
-    width: 100%;
+    position: relative;
+    z-index: 5;
   `,
 };
 
@@ -110,6 +132,10 @@ export default function ProjectCard({ project }: ProjectCardProps) {
   return (
     <Styled.CardWrapper ref={cardRef}>
       <Styled.Card>
+        <Styled.OverflowAnimationFixed>
+          <DarkModeAnimate position="fixed" background="grey-800-75%" />
+        </Styled.OverflowAnimationFixed>
+
         {firstImage && (
           <Styled.ImageWrapper 
             onClick={() => openModal(project, 'gallery', cardRef.current)}
@@ -126,6 +152,10 @@ export default function ProjectCard({ project }: ProjectCardProps) {
 
         <Styled.ContentWrapper>
           <Styled.Content>
+            <Styled.OverflowAnimationFixed>
+              <DarkModeAnimate position="fixed" background="grey-800-75%" />
+            </Styled.OverflowAnimationFixed>
+
             <Styled.Title>{projectTitle}</Styled.Title>
 
             <Styled.ActionButton>
@@ -134,8 +164,14 @@ export default function ProjectCard({ project }: ProjectCardProps) {
                 aria-label={`Ver detalhes do projeto ${projectTitle}`}
                 onClick={() => openModal(project, 'info', cardRef.current)}
               > 
-                <MagnifyingGlass aria-hidden="true" /> 
-                {modalButtonLabel}
+                <OverflowAnimationFixed>
+                  <DarkModeAnimate position="fixed" background="grey-800-75%" />
+                </OverflowAnimationFixed>
+
+                <Styled.Label>
+                  <MagnifyingGlass aria-hidden="true" /> 
+                  {modalButtonLabel}
+                </Styled.Label>
               </Styled.Button>
             </Styled.ActionButton>
           </Styled.Content>
