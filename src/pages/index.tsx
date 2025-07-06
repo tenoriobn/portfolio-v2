@@ -14,6 +14,21 @@ export async function getStaticProps({ locale }: { locale: string }) {
           landingPage(locale: ${locale}) {
             pageContent {
               componentName: __typename
+              ... on SeoRecord {
+                id
+                title
+                description
+                image {
+                  url
+                }
+                websiteUrl
+                keywords
+                author
+                siteName
+                favicon {
+                  url
+                }
+              }
               ... on HeaderBlockRecord {
                 id
                 menu {
