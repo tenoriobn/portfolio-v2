@@ -18,9 +18,11 @@ export const GlobalStyles = createGlobalStyle`
     font-family: ${({ theme }) => theme.font.inter};
     font-size: 16px;
     font-weight: 300;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    text-rendering: optimizeLegibility;
+    transition: background-color 0s;
+  }
+
+  body.light-delayed {
+    transition: background-color 0s 2s;
   }
 
   #root, #__next {

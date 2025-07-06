@@ -1,5 +1,6 @@
 import { dehydrate, QueryClient } from '@tanstack/react-query';
 import DefaultSEO from 'components/DefaultSEO';
+import DarkModeAnimate from 'src/components/DarkModeAnimate';
 import RenderCMSSections from 'src/components/RenderCMSSections';
 import { cmsService } from 'src/service/cmsService';
 
@@ -229,6 +230,7 @@ export default function Home() {
   return (
     <>
       <DefaultSEO />
+      <DarkModeAnimate />
       <RenderCMSSections />
     </>
   );

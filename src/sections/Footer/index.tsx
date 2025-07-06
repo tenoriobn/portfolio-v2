@@ -1,5 +1,6 @@
+import DarkModeAnimate from 'src/components/DarkModeAnimate';
 import { useCMSSection } from 'src/hook';
-import { borderInsetMixin } from 'src/styles';
+import { borderInsetMixin, OverflowAnimationFixed, transitionThemeAnimation } from 'src/styles';
 import styled from 'styled-components';
 
 const Styled = {
@@ -12,15 +13,24 @@ const Styled = {
   CopyrightWrapper: styled.div`
     background-color: ${({ theme }) => theme.colors['grey-800-75%']};
     padding: 2rem 1rem;
+    position: relative;
+    z-index: 5;
+    ${transitionThemeAnimation}
 
     @media (min-width: 768px) {
       padding: 2rem;
     }
   `,
 
+  OverflowAnimationFixed: styled(OverflowAnimationFixed)`
+    border-radius: unset;
+  `,
+
   Copyright: styled.p`
     color: ${({ theme }) => theme.colors['grey-300']};
     text-align: center;
+    position: relative;
+    z-index: 5;
     
     @media (max-width: 474px) {
       max-width: 288px;
@@ -35,6 +45,10 @@ export default function Footer() {
   return (
     <Styled.Footer>
       <Styled.CopyrightWrapper>
+        <Styled.OverflowAnimationFixed>
+          <DarkModeAnimate position="fixed" background="grey-800-75%" />
+        </Styled.OverflowAnimationFixed>
+
         <Styled.Copyright>{year} {copyrighttext}</Styled.Copyright>
       </Styled.CopyrightWrapper>
     </Styled.Footer>

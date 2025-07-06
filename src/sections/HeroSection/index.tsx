@@ -1,10 +1,11 @@
 import { useCMSSection } from 'src/hook';
 import DownloadIcon from 'public/icons/download.svg';
 import styled from 'styled-components';
-import { BorderButton, BaseButton, Wrapper } from 'src/styles';
+import { BorderButton, BaseButton, Wrapper, OverflowAnimationFixed, transitionThemeAnimation } from 'src/styles';
 import Link from 'next/link';
 import Profile from './Profile';
 import HighlightRotatingTexts from './TitleHeroSection';
+import DarkModeAnimate from 'src/components/DarkModeAnimate';
 
 const Styled = {
   HeroSection: styled.section`
@@ -26,6 +27,8 @@ const Styled = {
     font-size: .875rem;
     font-weight: 400;
     color: ${({ theme }) => theme.colors['grey-200']};
+    position: relative;
+    z-index: 5;
   `,
 
   ResumeButtonBorder: styled(BorderButton)`
@@ -39,17 +42,26 @@ const Styled = {
   `,
 
   ResumeButton: styled(BaseButton)`
+    border-radius: ${({ theme }) => theme.borderRadius.full};
+    background-color: ${({ theme }) => theme.colors['grey-800-75%']};
+    padding: 1rem 1.5rem;
+    max-width: 180px;
+    width: 100%;
+    ${transitionThemeAnimation}
+    position: relative;
+    z-index: 5;
+  `,
+
+  Label: styled.span`
     display: flex;
     justify-content: center;
     align-items: center;
     gap: .5rem;
-    border-radius: ${({ theme }) => theme.borderRadius.full};
-    background-color: ${({ theme }) => theme.colors['grey-800-75%']};
+
+    position: relative;
+    z-index: 5;
     color: ${({ theme }) => theme.colors['grey-500']};
-    padding: 1rem 1.5rem;
-    max-width: 180px;
-    width: 100%;
-  `
+  `,
 };
 
 export default function HeroSection() {
@@ -64,8 +76,14 @@ export default function HeroSection() {
 
         <Styled.ResumeButtonBorder>
           <Styled.ResumeButton as={Link} href={resumeLabel.href} target='_blank' rel='noopener noreferrer'>
-            <DownloadIcon />
-            {resumeLabel.linkName}
+            <OverflowAnimationFixed>
+              <DarkModeAnimate position="fixed" background="grey-800-75%" />
+            </OverflowAnimationFixed>
+
+            <Styled.Label>
+              <DownloadIcon />
+              {resumeLabel.linkName}
+            </Styled.Label>
           </Styled.ResumeButton>
         </Styled.ResumeButtonBorder>
       </Styled.HeroSection>
