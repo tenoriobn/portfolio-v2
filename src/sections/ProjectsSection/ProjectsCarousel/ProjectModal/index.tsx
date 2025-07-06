@@ -37,6 +37,7 @@ const Styled = {
     border-radius: ${({ theme }) => theme.borderRadius.md};
     width: 100%;
     height: ${({ $isGalleryModal }) => $isGalleryModal ? '100%' : 'auto'};
+    max-height: ${({ $isGalleryModal }) => $isGalleryModal ? '702px' : ''};
     max-width: ${({ $isGalleryModal }) => $isGalleryModal ? '1200px' : '668px'};
   `,
 

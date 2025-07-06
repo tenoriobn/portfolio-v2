@@ -4,6 +4,7 @@ import Image from 'next/image';
 import 'swiper/css';
 import 'swiper/css/pagination';
 import { ProjectGalleryModalProps } from './ProjectGalleryModal.type';
+import { useBreakpoint } from './useBreakpoint';
 
 const Styled = {
   GalleryContainer: styled.main`
@@ -43,16 +44,22 @@ const Styled = {
 
 export default function ProjectGalleryModal({ project }: ProjectGalleryModalProps) {
   const { projectTitle, projectGallery } = project;
+  const breakpoint = useBreakpoint();
+
+  const selectedImage = {
+    mobile: projectGallery[1]?.url,
+    tablet: projectGallery[2]?.url,
+    desktop: projectGallery[0]?.url,
+  }[breakpoint];
 
   return (
     <Styled.GalleryContainer>
       <Styled.ProjectImageWrapper >
         <Styled.ProjectImage 
-          className="scroll-content"
-          src={projectGallery[0].url} 
+          src={selectedImage}
           alt={projectTitle}
           fill
-          sizes="(min-width: 1024px) 100vw"
+          sizes="(max-width: 767px) 100vw, (max-width: 991px) 100vw, 100vw"
         />
       </Styled.ProjectImageWrapper>
     </Styled.GalleryContainer>
