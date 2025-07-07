@@ -1,11 +1,14 @@
 import type { AppProps } from 'next/app';
-import { AppProviders } from 'src/lib';
+import DefaultSEO from 'src/components/DefaultSEO';
 import 'src/lib/atom/recoil';
 
-export default function App({ Component, pageProps, router }: AppProps) {
+export default function App({ Component, pageProps }: AppProps) {
   return (
-    <AppProviders dehydratedState={pageProps.dehydratedState}>
-      <Component {...pageProps} key={router.route} />
-    </AppProviders>
+    <>
+      <DefaultSEO />
+      <Component {...pageProps} />
+    </>
+    // <AppProviders dehydratedState={pageProps.dehydratedState}>
+    // </AppProviders>
   );
 }
