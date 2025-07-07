@@ -35,7 +35,7 @@ export async function getStaticProps({ locale }: { locale: string }) {
 
   const seo = pageContent.find(
     (block: SEORecord) => block.componentName === 'SeoRecord'
-  ) ?? null;
+  );
 
 
   await queryClient.prefetchQuery(['cmsContent', locale], () =>
