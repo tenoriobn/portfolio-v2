@@ -1,11 +1,42 @@
 import { dehydrate, QueryClient } from '@tanstack/react-query';
 import DefaultSEO from 'components/DefaultSEO';
+import { SEORecord, SEORecordProps } from 'src/components/DefaultSEO/defaultSEO.type';
 import RenderCMSSections from 'src/components/RenderCMSSections';
 import { cmsService } from 'src/service/cmsService';
 
 export async function getStaticProps({ locale }: { locale: string }) {
   const queryClient = new QueryClient();
   const year = new Date().getFullYear();
+
+  const { data: seoRecord } = await cmsService({
+    query: `
+      query MyQuery {
+        landingPage(locale: ${locale}) {
+          pageContent {
+            componentName: __typename
+            ... on SeoRecord {
+              id
+              title
+              description
+              image { url }
+              websiteUrl
+              keywords
+              author
+              siteName
+              favicon { url }
+            }
+          }
+        }
+      }
+    `
+  });
+
+  const pageContent = seoRecord?.landingPage?.pageContent ?? [];
+
+  const seo = pageContent.find(
+    (block: SEORecord) => block.componentName === 'SeoRecord'
+  ) ?? null;
+
 
   await queryClient.prefetchQuery(['cmsContent', locale], () =>
     cmsService({
@@ -221,14 +252,15 @@ export async function getStaticProps({ locale }: { locale: string }) {
   return {
     props: {
       dehydratedState: dehydrate(queryClient),
+      seo,
     },
   };
 };
 
-export default function Home() {
+export default function Home({ seo }: SEORecordProps) {
   return (
     <>
-      <DefaultSEO />
+      <DefaultSEO seo={seo} />
       <RenderCMSSections />
     </>
   );
