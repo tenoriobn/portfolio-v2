@@ -1,6 +1,9 @@
 import { createGlobalStyle } from 'styled-components';
+import { Theme } from './theme';
 
 export const GlobalStyles = createGlobalStyle`
+  ${Theme}
+
   *, *::before, *::after {
     box-sizing: border-box;
   }
@@ -13,9 +16,9 @@ export const GlobalStyles = createGlobalStyle`
   }
 
   body {
-    background-color: ${({ theme }) => theme.colors['grey-900']};
-    color: ${({ theme }) => theme.colors['grey-300']};
-    font-family: ${({ theme }) => theme.font.inter};
+    background-color: var(--color-grey-900);
+    color: var(--color-grey-300);
+    font-family: var(--font-inter);
     font-size: 16px;
     font-weight: 300;
     -webkit-font-smoothing: antialiased;
@@ -54,7 +57,7 @@ export const GlobalStyles = createGlobalStyle`
     user-select: none;
 
     &:focus-visible {
-      box-shadow: 0 0 0 2px ${({ theme }) => theme.colors['grey-700']};
+      box-shadow: var(--color-grey-700);
     }
   }
 

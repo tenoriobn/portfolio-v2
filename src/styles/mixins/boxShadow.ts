@@ -1,7 +1,7 @@
 import { css } from 'styled-components';
 
 export const shadowSM = css`
-  box-shadow: ${({ theme }) => theme.shadow.sm};
-  -webkit-box-shadow: ${({ theme }) => theme.shadow.sm};
-  -moz-box-shadow: ${({ theme }) => theme.shadow.sm};
+  box-shadow: var(--shadow-sm);
+  -webkit-box-shadow: var(--shadow-sm);
+  -moz-box-shadow: var(--shadow-sm);
 `;

@@ -12,7 +12,7 @@ const Styled = {
   `,
 
   BorderName: styled(BorderInset)`
-    border-radius: ${({ theme }) => theme.borderRadius.full};
+    border-radius: var(--radius-full);
     position: absolute;
     left: 32%;
     top: -32%;
@@ -29,32 +29,32 @@ const Styled = {
     font-size: 1.25rem;
     font-weight: 400;
     text-align: center;
-    border-radius: ${({ theme }) => theme.borderRadius.full};
-    background-color: ${({ theme }) => theme.colors['grey-800-75%']};
+    border-radius: var(--radius-full);
+    background-color: var(--color-grey-800-75);
     padding: .75rem 1.5rem ;
   `,
 
   AvatarBorderInset: styled.div`
     ${borderInsetMixin}
     ${shadowSM}
-    border-radius: ${({ theme }) => theme.borderRadius.full};
+    border-radius: var(--radius-full);
   `,
 
   AvatarBorderRaisedContainer: styled.div`
-    background-color: ${({ theme }) => theme.colors['grey-800-75%']};
-    border-radius: ${({ theme }) => theme.borderRadius.full};
+    background-color: var(--color-grey-800-75);
+    border-radius: var(--radius-full);
     padding: .75rem;
   `,
 
   AvatarBorderRaised: styled.div`
     ${borderRaisedMixin}
     ${shadowSM}
-    border-radius: ${({ theme }) => theme.borderRadius.full};
+    border-radius: var(--radius-full);
   `,
 
   Avatar: styled(Image)`
-    border-radius: ${({ theme }) => theme.borderRadius.full};
-    background-color: ${({ theme }) => theme.colors['grey-800-75%']};
+    border-radius: var(--radius-full);
+    background-color: var(--color-grey-800-75);
     width: 178px;
     height: 178px;
 

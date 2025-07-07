@@ -49,7 +49,7 @@ const Styled = {
   `,
 
   TimelineConnector: styled.div `
-    background: ${({ theme }) => theme.gradient['grey-dark-light-dark-reserve']};
+    background: var(--gradient-grey-dark-light-dark-reserve);
     position: absolute;
     left: 10px;
     top: 1px;

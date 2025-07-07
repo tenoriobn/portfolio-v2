@@ -10,7 +10,8 @@ import Dropdown from 'src/components/Dropdown';
 export default function Theme() {
   const { themeOptions } = useCMSSection('HeaderBlockRecord');
   const { setActiveOption, closeOptions } = useOptionsToggle();
-  const { setTheme, resolvedTheme, } = useThemeToggle();
+  const { isDark, setTheme } = useThemeToggle();
+  const resolvedTheme = isDark ? 'dark': 'light';
 
   return (
     <Dropdown 

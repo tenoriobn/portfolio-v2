@@ -9,13 +9,13 @@ import { useRef } from 'react';
 const Styled = {
   CardWrapper: styled.div`
     ${borderInsetMixin}
-    border-radius: ${({ theme }) => theme.borderRadius.md};
+    border-radius: var(--radius-md);
     width: 100%;
   `,
 
   Card: styled.div`
-    background-color: ${({ theme }) => theme.colors['grey-800-75%']};
-    border-radius: ${({ theme }) => theme.borderRadius.md};
+    background-color: var(--color-grey-800-75);
+    border-radius: var(--radius-md);
     display: grid;
     gap: 1rem;
     padding: 1rem;
@@ -29,14 +29,14 @@ const Styled = {
   ImageWrapper: styled.div`
     ${borderRaisedMixin}
     ${shadowSM}
-    border-radius: ${({ theme }) => theme.borderRadius.md};
+    border-radius: var(--radius-md);
     width: 100%;
     overflow: hidden;
     cursor: pointer;
   `,
 
   ProjectImage: styled(Image)`
-    border-radius: ${({ theme }) => theme.borderRadius.md};
+    border-radius: var(--radius-md);
     object-position: top;
     object-fit: cover;
     width: 100%;
@@ -50,14 +50,14 @@ const Styled = {
   ContentWrapper: styled.div`
     ${borderRaisedMixin}
     ${shadowSM}
-    border-radius: ${({ theme }) => theme.borderRadius.md};
+    border-radius: var(--radius-md);
     width: 100%;
     height: 100%;
   `,
 
   Content: styled.div`
-    background-color: ${({ theme }) => theme.colors['grey-800-75%']};
-    border-radius: ${({ theme }) => theme.borderRadius.md};
+    background-color: var(--color-grey-800-75);
+    border-radius: var(--radius-md);
     display: grid;
     place-items: center;
     gap: 1rem;
@@ -81,7 +81,7 @@ const Styled = {
   `,
 
   ActionButton: styled(BorderButton)`
-    border-radius: ${({ theme }) => theme.borderRadius.full};
+    border-radius: var(--radius-full);
   `,
 
   Button: styled(BaseButton)`
@@ -89,10 +89,10 @@ const Styled = {
     justify-content: center;
     align-items: center;
     gap: 0.5rem;
-    border-radius: ${({ theme }) => theme.borderRadius.full};
-    background-color: ${({ theme }) => theme.colors['grey-800-75%']};
+    border-radius: var(--radius-full);
+    background-color: var(--color-grey-800-75);
     font-size: 1rem;
-    color: ${({ theme }) => theme.colors['grey-500']};
+    color: var(--color-grey-500);
     padding: 1rem 1.5rem;
     width: 100%;
   `,

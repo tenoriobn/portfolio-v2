@@ -14,7 +14,7 @@ const StyledProjectInfo = {
   `,
 
   ActionButton: styled(BorderButton)`
-    border-radius: ${({ theme }) => theme.borderRadius.full};
+    border-radius: var(--radius-full);
     width: 100%;
     max-width: 180px;
   `,
@@ -24,9 +24,9 @@ const StyledProjectInfo = {
     justify-content: center;
     align-items: center;
     gap: 0.5rem;
-    border-radius: ${({ theme }) => theme.borderRadius.full};
-    background-color: ${({ theme }) => theme.colors['grey-800-75%']};
-    color: ${({ theme }) => theme.colors['grey-500']};
+    border-radius: var(--radius-full);
+    background-color: var(--color-grey-800-75);
+    color: var(--color-grey-500);
     padding: 1rem;
     max-width: 180px;
     width: 100%;

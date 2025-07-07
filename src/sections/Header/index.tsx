@@ -6,7 +6,7 @@ import Menu from './Menu';
 
 const Styled = {
   Header: styled.header`
-    background-color: ${({ theme }) => theme.colors['grey-900']};
+    background-color: var(--color-grey-900);
     position: fixed;
     left: 0;
     right: 0;
@@ -15,7 +15,7 @@ const Styled = {
   `,
 
   HeaderBorder: styled(BorderInset)`   
-    border-radius: ${({ theme }) => theme.borderRadius.full};
+    border-radius: var(--radius-full);
     width: 100%;
   `,
 
@@ -23,8 +23,8 @@ const Styled = {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: ${({ theme }) => theme.colors['grey-800-75%']};
-    border-radius: ${({ theme }) => theme.borderRadius.full};
+    background-color: var(--color-grey-800-75);
+    border-radius: var(--radius-full);
     padding: .75rem;
   `,
 };

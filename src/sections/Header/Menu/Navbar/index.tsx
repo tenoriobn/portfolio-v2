@@ -11,7 +11,7 @@ const Styled = {
   NavigationWrapper: styled(motion.div)<{$isMenuActive: boolean}>`
     @media (max-width: 991px) {
       pointer-events: ${({ $isMenuActive }) => $isMenuActive ? 'auto' : 'none'};
-      border-radius: ${({ theme }) => theme.borderRadius.md};
+      border-radius: var(--radius-md);
       right: 12px;
       top: 90px;
       ${borderInsetMixin}
@@ -28,8 +28,8 @@ const Styled = {
 
   Navigation: styled.nav`
     @media (max-width: 991px) {
-      background-color: ${({ theme }) => theme.colors['grey-800-75%']};
-      border-radius: ${({ theme }) => theme.borderRadius.md};
+      background-color: var(--color-grey-800-75);
+      border-radius: var(--radius-md);
       padding: 1rem;
     }
   `,
@@ -50,16 +50,16 @@ const Styled = {
 
   NavLink: styled(Link)<{$forceActive?: boolean; $forceInactive?: boolean}>`
     cursor: pointer;
-    color: ${({ theme, $forceActive,  }) => theme.colors[$forceActive ? 'grey-200' : 'grey-500']};
+    color: ${({ $forceActive }) => $forceActive ? 'var(--color-grey-200)' : 'var(--color-grey-500)'};
     white-space: nowrap;
-    transition: color ${({ theme }) => theme.transitions.default};
+    transition: var(--transition-default);
 
     &.active {
-      color: ${({ theme, $forceInactive }) => theme.colors[$forceInactive ? 'grey-500' : 'grey-200']};
+      color: ${({ $forceInactive }) => $forceInactive ? 'var(--color-grey-500)' : 'var(--color-grey-200)'};
     }
 
     &:hover {
-      color: ${({ theme }) => theme.colors['grey-300']};
+      color: var(--color-grey-300);
     }
   `,
 

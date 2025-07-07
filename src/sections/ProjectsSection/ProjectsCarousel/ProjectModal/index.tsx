@@ -34,7 +34,7 @@ const Styled = {
   Container: styled(motion.div)<{ $maxWidth?: string; $isGalleryModal?: boolean }>`
     ${borderInsetMixin}
     ${shadowSM}
-    border-radius: ${({ theme }) => theme.borderRadius.md};
+    border-radius: var(--radius-md);
     width: 100%;
     height: ${({ $isGalleryModal }) => $isGalleryModal ? '100%' : 'auto'};
     max-height: ${({ $isGalleryModal }) => $isGalleryModal ? '702px' : ''};
@@ -46,8 +46,8 @@ const Styled = {
     flex-direction: column;
     gap: 1rem;
     height: ${({ $isGalleryModal }) => $isGalleryModal ? '100%' : 'auto'};
-    background-color: ${({ theme }) => theme.colors['grey-800-75%']};
-    border-radius: ${({ theme }) => theme.borderRadius.md};
+    background-color: var(--color-grey-800-75);
+    border-radius: var(--radius-md);
     overflow: hidden;
     padding: 1rem;
 

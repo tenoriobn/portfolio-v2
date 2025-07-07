@@ -1,10 +1,8 @@
 import Head from 'next/head';
 import { useCMSSection } from 'src/hook';
-import { useTheme } from 'styled-components';
 
 export default function DefaultSEO() {
   const { title, description, image, websiteUrl, keywords, author, siteName, favicon } = useCMSSection('SeoRecord');
-  const theme = useTheme();
 
   return (
     <Head>
@@ -26,10 +24,10 @@ export default function DefaultSEO() {
       <link rel="icon" href={favicon.url} type="image/svg" sizes="32x32" />
       <link rel="apple-touch-icon" href={favicon.url} />
 
-      <meta name="theme-color" content={theme.colors['grey-900']} />
+      {/* <meta name="theme-color" content={theme.colors['grey-900']} />
       <meta name="msapplication-TileColor" content={theme.colors['grey-900']} />
       <meta name="msapplication-navbutton-color" content={theme.colors['grey-900']} />
-      <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+      <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" /> */}
     </Head>
   );
 }

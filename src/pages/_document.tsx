@@ -1,6 +1,18 @@
 import Document, { Html, Head, Main, NextScript, DocumentContext} from 'next/document';
 import { ServerStyleSheet } from 'styled-components';
 
+const setInitialTheme = `
+(function() {
+  try {
+    var theme = document.cookie.split('; ').find(row => row.startsWith('theme='));
+    var value = theme ? theme.split('=')[1] : 'dark';
+    document.documentElement.setAttribute('data-theme', value);
+  } catch(e) {
+    document.documentElement.setAttribute('data-theme', 'dark');
+  }
+})();
+`;
+
 export default class MyDocument extends Document {
   static async getInitialProps(ctx: DocumentContext) {
     const sheet = new ServerStyleSheet();
@@ -32,6 +44,7 @@ export default class MyDocument extends Document {
       <Html>
         <Head />
         <body>
+          <script dangerouslySetInnerHTML={{ __html: setInitialTheme }} />
           <Main />
           <NextScript />
         </body>
