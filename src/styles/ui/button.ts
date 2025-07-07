@@ -3,12 +3,12 @@ import styled from 'styled-components';
 
 export const BaseButton = styled(motion.button)`
   display: grid;
-  border-radius: ${({ theme }) => theme.borderRadius.full};
-  background-color: ${({ theme }) => theme.colors['grey-800-75%']};
+  border-radius: var(--radius-full);
+  background-color: var(--color-grey-800-75);
 `;
 
 export const CircularButton = styled(BaseButton)`
-  color: ${({ theme }) => theme.colors['grey-300']};
+  color: var(--color-grey-300);
   place-items: center;
   font-size: 1.25rem;
   font-weight: 700;
@@ -22,7 +22,7 @@ export const OptionButton = styled(BaseButton)`
   align-items: center;
   grid-template-columns: auto 1fr auto;
   gap: .5rem;
-  color: ${({ theme }) => theme.colors['grey-500']};
+  color: var(--color-grey-500);
   text-align: left;
   padding: .75rem 1rem;
   width: 100%;

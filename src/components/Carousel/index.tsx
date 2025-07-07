@@ -27,8 +27,8 @@ const Styled = {
       margin: 0!important;
 
       .pagination-bullet {
-        background-color: ${({ theme }) => theme.colors['grey-800-75%']};
-        border-radius: ${({ theme }) => theme.borderRadius.full};
+        background-color: var(--color-grey-800-75);
+        border-radius: var(--radius-full);
         width: 22px!important;
         height: 22px!important;
       }

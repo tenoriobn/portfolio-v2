@@ -25,16 +25,16 @@ const Styled = {
   JobTitle: styled.h3`
     font-size: .875rem;
     font-weight: 400;
-    color: ${({ theme }) => theme.colors['grey-200']};
+    color: var(--color-grey-200);
   `,
 
   ResumeButtonBorder: styled(BorderButton)`
-    border-radius: ${({ theme }) => theme.borderRadius.full};
+    border-radius: var(--radius-full);
     max-width: 180px;
     width: 100%;
     
     &:active {
-      background: ${({ theme }) => theme.gradient['grey-light-dark-reserve']};
+      background: var(--gradient-grey-light-dark-reserve);
     }
   `,
 
@@ -43,9 +43,9 @@ const Styled = {
     justify-content: center;
     align-items: center;
     gap: .5rem;
-    border-radius: ${({ theme }) => theme.borderRadius.full};
-    background-color: ${({ theme }) => theme.colors['grey-800-75%']};
-    color: ${({ theme }) => theme.colors['grey-500']};
+    border-radius: var(--radius-full);
+    background-color: var(--color-grey-800-75);
+    color: var(--color-grey-500);
     padding: 1rem 1.5rem;
     max-width: 180px;
     width: 100%;

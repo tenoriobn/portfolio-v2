@@ -13,15 +13,15 @@ const Styled = {
     width: 100%;
     height: 100%;
     ${shadowSM}
-    border-radius: ${({ theme }) => theme.borderRadius.md};
+    border-radius: var(--radius-md);
   `,
 
   ProjectImageWrapper: styled.div`
-    background: ${({ theme }) => theme.colors['grey-800-75%']};
+    background: var(--color-grey-800-75);
     display: flex;
     justify-content: center;
     align-items: flex-start;
-    border-radius: ${({ theme }) => theme.borderRadius.md};
+    border-radius: var(--radius-md);
     height: 100%;
     overflow-x: hidden;
     scrollbar-width: none; 

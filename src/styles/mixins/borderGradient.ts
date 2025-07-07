@@ -9,10 +9,10 @@ export const borderBase = css`
 
 export const borderInsetMixin = css`
   ${borderBase};
-  background: ${({ theme }) => theme.gradient['grey-light-dark']};
+  background: var(--gradient-grey-light-dark);
 `;
 
 export const borderRaisedMixin = css`
   ${borderBase};
-  background: ${({ theme }) => theme.gradient['grey-light-dark-reserve']};
+  background: var(--gradient-grey-light-dark-reserve);
 `;

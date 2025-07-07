@@ -22,14 +22,14 @@ const Styled = {
   IconWrapper: styled.div`
     ${borderRaisedMixin}
     ${shadowSM}
-    border-radius: ${({ theme }) => theme.borderRadius.full};
+    border-radius: var(--radius-full);
     width: 100px;
     height: 100px;
   `,
 
   ContactIcon: styled(TalkingIcon)`
-    background-color: ${({ theme }) => theme.colors['grey-800-75%']};
-    border-radius: ${({ theme }) => theme.borderRadius.full};
+    background-color: var(--color-grey-800-75);
+    border-radius: var(--radius-full);
   `,
 
   Title: styled.h2`

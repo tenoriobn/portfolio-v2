@@ -22,8 +22,8 @@ const Styled = {
   ExpandButton: styled.button<{ $isExpanded: boolean}>`
     display: grid;
     place-items: center;
-    background-color: ${({ theme }) => theme.colors['grey-800-75%']};
-    border-radius: ${({ theme }) => theme.borderRadius.full};
+    background-color: var(--color-grey-800-75);
+    border-radius: var(--radius-full);
     width: 20px;
     height: 20px;
 
@@ -37,15 +37,15 @@ const Styled = {
     ${borderInsetMixin}
     ${shadowSM}
     cursor: pointer;
-    border-radius: ${({ theme }) => theme.borderRadius.md};
+    border-radius: var(--radius-md);
     width: 100%;
     height: 100%;
     overflow: hidden;
   `,
 
   ExperienceCard: styled.div`
-    background-color: ${({ theme }) => theme.colors['grey-800-75%']};
-    border-radius: ${({ theme }) => theme.borderRadius.md};
+    background-color: var(--color-grey-800-75);
+    border-radius: var(--radius-md);
     padding: 1rem;
 
     @media (min-width: 768px) {
@@ -62,7 +62,7 @@ const Styled = {
   CompanyLogoWrapper: styled.div`
     ${borderRaisedMixin}
     ${shadowSM}
-    border-radius: ${({ theme }) => theme.borderRadius.full};
+    border-radius: var(--radius-full);
   `,
 
   ExperienceInfo: styled.div`

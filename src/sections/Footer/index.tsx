@@ -10,7 +10,7 @@ const Styled = {
   `,
 
   CopyrightWrapper: styled.div`
-    background-color: ${({ theme }) => theme.colors['grey-800-75%']};
+    background-color: var(--color-grey-800-75);
     padding: 2rem 1rem;
 
     @media (min-width: 768px) {
@@ -19,7 +19,7 @@ const Styled = {
   `,
 
   Copyright: styled.p`
-    color: ${({ theme }) => theme.colors['grey-300']};
+    color: var(--color-grey-300);
     text-align: center;
     
     @media (max-width: 474px) {

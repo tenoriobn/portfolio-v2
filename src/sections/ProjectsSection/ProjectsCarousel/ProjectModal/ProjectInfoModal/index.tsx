@@ -7,7 +7,7 @@ import { ProjectInfoModalProps } from './projectInfoModal.type';
 
 const Styled = {
   Divider: styled.span`
-    background: ${({ theme }) => theme.gradient['grey-dark-light-dark-reserve']};
+    background: var(--gradient-grey-dark-light-dark-reserve);
     width: 100%;
     height: 1px;
   `,

@@ -13,7 +13,7 @@ const Styled = {
   BorderSection: styled.div`
     ${borderInsetMixin}
     ${shadowSM}
-    border-radius: ${({ theme }) => theme.borderRadius.md};
+    border-radius: var(--radius-md);
     width: 100%;
   `,
 
@@ -22,8 +22,8 @@ const Styled = {
     place-items: center;
     gap: 1.5rem;
 
-    border-radius: ${({ theme }) => theme.borderRadius.md};
-    background-color: ${({ theme }) => theme.colors['grey-800-75%']};
+    border-radius: var(--radius-md);
+    background-color: var(--color-grey-800-75);
     padding: 1rem;
 
     @media (min-width: 768px) {

@@ -7,14 +7,14 @@ const Styled = {
   ProjectBorder: styled.div`
     ${borderInsetMixin}
     ${shadowSM}
-    border-radius: ${({ theme }) => theme.borderRadius.md};
+    border-radius: var(--radius-md);
     width: 100%;
     overflow: hidden;
   `,
 
   Spacing: styled.div`
-    background-color: ${({ theme }) => theme.colors['grey-800-75%']};
-    border-radius: ${({ theme }) => theme.borderRadius.md};
+    background-color: var(--color-grey-800-75);
+    border-radius: var(--radius-md);
     padding: 1rem;
 
     @media (min-width: 768px) {
