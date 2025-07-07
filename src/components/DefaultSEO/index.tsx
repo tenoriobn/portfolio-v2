@@ -1,9 +1,9 @@
 import Head from 'next/head';
-import { useCMSSection } from 'src/hook';
 import { useTheme } from 'styled-components';
+import { SEORecordProps } from './defaultSEO.type';
 
-export default function DefaultSEO() {
-  const { title, description, image, websiteUrl, keywords, author, siteName, favicon } = useCMSSection('SeoRecord');
+export default function DefaultSEO({ seo }: SEORecordProps) {
+  const { title, description, image, websiteUrl, keywords, author, siteName, favicon } = seo;
   const theme = useTheme();
 
   return (

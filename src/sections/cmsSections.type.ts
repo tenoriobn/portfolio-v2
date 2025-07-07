@@ -1,4 +1,3 @@
-import { SeoRecord } from 'src/components/DefaultSEO/defaultSEO.type';
 import { AboutMeSectionBlockRecord } from './AboutSection/aboutme.type';
 import { ContactSectionBlockRecord } from './ContactSection/ContactSection.type';
 import { ExperienceSectionBlockRecord } from './ExperienceSection/experience.type';
@@ -9,7 +8,6 @@ import { ProjectsSectionBlockRecord } from './ProjectsSection/projects.type';
 import { SkillsSectionBlockRecord } from './SkillsSection/skills.type';
 
 export type ComponentNameMap = {
-  SeoRecord: SeoRecord;
   HeaderBlockRecord: HeaderBlockRecord;
   HeroSectionBlockRecord: HeroSectionBlockRecord;
   SkillsSectionBlockRecord: SkillsSectionBlockRecord;
@@ -21,7 +19,6 @@ export type ComponentNameMap = {
 };
 
 export type PageContentBlock = 
-  SeoRecord |
   HeaderBlockRecord | 
   HeroSectionBlockRecord | 
   SkillsSectionBlockRecord |
