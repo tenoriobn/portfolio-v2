@@ -56,6 +56,7 @@ export default function DefaultSEO() {
       <meta name="msapplication-TileColor" content={theme.colors['grey-900']} />
       <meta name="msapplication-navbutton-color" content={theme.colors['grey-900']} />
       <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" /> */}
+      {/* <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />  */}
     </Head>
   );
 }
