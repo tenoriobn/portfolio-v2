@@ -1,6 +1,5 @@
 import { dehydrate, QueryClient } from '@tanstack/react-query';
-import DefaultSEO from 'components/DefaultSEO';
-import { SEORecord, SEORecordProps } from 'src/components/DefaultSEO/defaultSEO.type';
+import { SEORecord } from 'src/components/DefaultSEO/defaultSEO.type';
 import RenderCMSSections from 'src/components/RenderCMSSections';
 import { cmsService } from 'src/service/cmsService';
 
@@ -257,10 +256,9 @@ export async function getStaticProps({ locale }: { locale: string }) {
   };
 };
 
-export default function Home({ seo }: SEORecordProps) {
+export default function Home() {
   return (
     <>
-      <DefaultSEO seo={seo} />
       <RenderCMSSections />
     </>
   );

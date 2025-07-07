@@ -1,33 +1,23 @@
 import Head from 'next/head';
-import { SEORecordProps } from './defaultSEO.type';
 
-export default function DefaultSEO({ seo }: SEORecordProps) {
-  const { title, description, image, websiteUrl, keywords, author, siteName } = seo;
+export default function DefaultSEO() {
 
   return (
     <Head>
-
-
-      <title>{title}</title>
-      <meta name="description" content={description} />
-      <meta name="keywords" content={keywords} />
-      <meta name="author" content={author} />
+      <title>Bruno</title>
+      <meta name="description" content='aqui uam descrição' />
+      <meta name="keywords" content='tags aqui' />
+      <meta name="author" content='Bruno' />
       <meta name="robots" content="index, follow" />
-      <link rel="canonical" href={websiteUrl} />
+      <link rel="canonical" href='https://tenoriobn-portfolio.vercel.app/' />
 
       <meta property="og:type" content="website" />
-      <meta property="og:title" content={title} />
-      <meta property="og:description" content={description} />
-      <meta property="og:url" content={websiteUrl} />
-      <meta property="og:site_name" content={siteName} />
+      <meta property="og:url" content="https://tenoriobn-portfolio.vercel.app/" />
+      <meta property="og:title" content="Bruno Tenorio — Desenvolvedor Front-end" />
+      <meta property="og:description" content="Portfólio de Bruno Tenorio, especialista em interfaces modernas e acessíveis." />
+      <meta property="og:image" content="https://www.datocms-assets.com/157441/1746975121-eduardo-com-fundo.jpg?w=1200" />
+      <meta property="og:site_name" content="Bruno Tenorio" />
       <meta property="og:locale" content="pt_BR" />
-
-      <meta name="twitter:card" content="summary_large_image" />
-      <meta name="twitter:title" content={title} />
-      <meta name="twitter:description" content={description} />
-      <meta name="twitter:image" content={image.url} />
-      <meta name="twitter:site" content={websiteUrl} />
-      <meta name="twitter:creator" content={websiteUrl} />
 
 
 
