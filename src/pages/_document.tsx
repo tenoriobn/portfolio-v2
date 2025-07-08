@@ -1,4 +1,3 @@
-// pages/_document.tsx
 import Document, { Html, Head, Main, NextScript, DocumentContext } from 'next/document';
 import { ServerStyleSheet } from 'styled-components';
 
@@ -20,6 +19,12 @@ export default class MyDocument extends Document<{ theme: 'dark' | 'light' }> {
   static async getInitialProps(ctx: DocumentContext) {
     const sheet = new ServerStyleSheet();
     const originalRenderPage = ctx.renderPage;
+    const themeCookie = ctx.req?.headers.cookie
+      ?.split('; ')
+      .find(cookie => cookie.startsWith('theme='))
+      ?.split('=')[1];
+    
+    const theme = (themeCookie as 'dark' | 'light') || 'dark';
 
     try {
       ctx.renderPage = () =>
@@ -31,6 +36,7 @@ export default class MyDocument extends Document<{ theme: 'dark' | 'light' }> {
 
       return {
         ...initialProps,
+        theme,
         styles: (
           <>
             {initialProps.styles}
@@ -44,10 +50,17 @@ export default class MyDocument extends Document<{ theme: 'dark' | 'light' }> {
   }
 
   render() {
+    const { theme } = this.props;
+    const themeColor = theme === 'dark' ? 'rgb(47, 47, 47)' : 'rgb(212, 212, 212)';
+
     return (
-      <Html>
+      <Html lang="pt_BR" data-theme={theme}>
         <Head>
           <script dangerouslySetInnerHTML={{ __html: setInitialTheme }} />
+          <meta name="theme-color" content={themeColor} />
+          <meta name="msapplication-TileColor" content={themeColor} />
+          <meta name="msapplication-navbutton-color" content={themeColor} />
+          <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
         </Head>
         <body>
           <Main />
