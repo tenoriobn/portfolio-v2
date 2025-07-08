@@ -1,32 +1,42 @@
-import Document, { Html, Head, Main, NextScript, DocumentContext} from 'next/document';
+import Document, { Html, Head, Main, NextScript, DocumentContext } from 'next/document';
 import { ServerStyleSheet } from 'styled-components';
 
 const setInitialTheme = `
 (function() {
   try {
-    var theme = document.cookie.split('; ').find(row => row.startsWith('theme='));
-    var value = theme ? theme.split('=')[1] : 'dark';
+    const cookieTheme = document.cookie.split('; ').find(t => t.startsWith('theme='));
+    const value = cookieTheme ? cookieTheme.split('=')[1] : 'dark';
     document.documentElement.setAttribute('data-theme', value);
-  } catch(e) {
+    window.__theme = value;
+  } catch (e) {
     document.documentElement.setAttribute('data-theme', 'dark');
+    window.__theme = 'dark';
   }
 })();
 `;
 
-export default class MyDocument extends Document {
+export default class MyDocument extends Document<{ theme: 'dark' | 'light' }> {
   static async getInitialProps(ctx: DocumentContext) {
     const sheet = new ServerStyleSheet();
     const originalRenderPage = ctx.renderPage;
+    const themeCookie = ctx.req?.headers.cookie
+      ?.split('; ')
+      .find(cookie => cookie.startsWith('theme='))
+      ?.split('=')[1];
+    
+    const theme = (themeCookie as 'dark' | 'light') || 'dark';
 
     try {
-      ctx.renderPage = () => originalRenderPage({
-        enhanceApp: (App) => (props) => sheet.collectStyles(<App {...props} />),
-      });
+      ctx.renderPage = () =>
+        originalRenderPage({
+          enhanceApp: App => props => sheet.collectStyles(<App {...props} />),
+        });
 
       const initialProps = await Document.getInitialProps(ctx);
 
       return {
         ...initialProps,
+        theme,
         styles: (
           <>
             {initialProps.styles}
@@ -40,11 +50,19 @@ export default class MyDocument extends Document {
   }
 
   render() {
+    const { theme } = this.props;
+    const themeColor = theme === 'dark' ? 'rgb(47, 47, 47)' : 'rgb(212, 212, 212)';
+
     return (
-      <Html>
-        <Head />
-        <body>
+      <Html lang="pt_BR" data-theme={theme}>
+        <Head>
           <script dangerouslySetInnerHTML={{ __html: setInitialTheme }} />
+          <meta name="theme-color" content={themeColor} />
+          <meta name="msapplication-TileColor" content={themeColor} />
+          <meta name="msapplication-navbutton-color" content={themeColor} />
+          <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+        </Head>
+        <body>
           <Main />
           <NextScript />
         </body>
