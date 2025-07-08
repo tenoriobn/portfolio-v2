@@ -3,6 +3,7 @@ import { useCMSSection } from 'src/hook';
 
 export default function DefaultSEO() {
   const { title, description, image, websiteUrl, keywords, author, siteName, favicon } = useCMSSection('SeoRecord');
+
   return (
     <Head>
       <title>{title}</title>
