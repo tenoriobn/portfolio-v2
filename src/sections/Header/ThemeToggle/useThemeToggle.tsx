@@ -5,6 +5,21 @@ function getTheme(): 'dark' | 'light' {
   return document.documentElement.getAttribute('data-theme') === 'light' ? 'light' : 'dark';
 }
 
+function updateThemeMetaTags(theme: 'dark' | 'light') {
+  const themeColor = theme === 'dark' ? 'rgb(47, 47, 47)' : 'rgb(212, 212, 212)';
+  
+  const metaSelectors = [
+    'meta[name="theme-color"]',
+    'meta[name="msapplication-TileColor"]',
+    'meta[name="msapplication-navbutton-color"]'
+  ];
+  
+  metaSelectors.forEach(selector => {
+    const meta = document.querySelector(selector);
+    if (meta) meta.setAttribute('content', themeColor);
+  });
+}
+
 function subscribe(callback: () => void) {
   const observer = new MutationObserver(() => callback());
 
@@ -25,6 +40,7 @@ export const useThemeToggle = () => {
   const setTheme = (newTheme: 'dark' | 'light') => {
     document.cookie = `theme=${newTheme}; path=/; max-age=31536000`;
     document.documentElement.setAttribute('data-theme', newTheme);
+    updateThemeMetaTags(newTheme);
   };
 
   const toggleTheme = () => setTheme(isDark ? 'light' : 'dark');
