@@ -16,7 +16,8 @@ const Styled = {
 
 export default function ThemeToggle() {
   const { themeOptions } = useCMSSection('HeaderBlockRecord');
-  const { isDark, toggleTheme, isClient } = useThemeToggle();
+  const { toggleTheme, isDark } = useThemeToggle();
+  
   const iconTheme = isDark ? themeOptions.theme[1] : themeOptions.theme[0];
 
   return (
@@ -24,7 +25,13 @@ export default function ThemeToggle() {
       <CircularButton onClick={toggleTheme}>
         <AnimatePresence mode="wait" initial={false}>
           <motion.span key={isDark ? 'dark' : 'light'} {...scaleFade}>
-            {isClient && <Image src={iconTheme.icon.url} alt={iconTheme.linkName} width={24} height={24} />}
+            <Image
+              src={iconTheme.icon.url}
+              alt={iconTheme.linkName}
+              width={24}
+              height={24}
+              priority
+            />
           </motion.span>
         </AnimatePresence>
       </CircularButton>

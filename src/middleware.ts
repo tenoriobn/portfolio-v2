@@ -19,5 +19,13 @@ export function middleware(req: NextRequest) {
     return NextResponse.redirect(url);
   }
 
+  const themeCookie = req.cookies.get('theme')?.value || 'dark';
+
+  if (themeCookie) {
+    const res = NextResponse.next();
+    res.headers.set('x-theme', themeCookie);
+    return res;
+  }
+
   return NextResponse.next();
 }

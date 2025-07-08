@@ -1,27 +1,31 @@
-import Document, { Html, Head, Main, NextScript, DocumentContext} from 'next/document';
+// pages/_document.tsx
+import Document, { Html, Head, Main, NextScript, DocumentContext } from 'next/document';
 import { ServerStyleSheet } from 'styled-components';
 
 const setInitialTheme = `
 (function() {
   try {
-    var theme = document.cookie.split('; ').find(row => row.startsWith('theme='));
-    var value = theme ? theme.split('=')[1] : 'dark';
+    const cookieTheme = document.cookie.split('; ').find(t => t.startsWith('theme='));
+    const value = cookieTheme ? cookieTheme.split('=')[1] : 'dark';
     document.documentElement.setAttribute('data-theme', value);
-  } catch(e) {
+    window.__theme = value;
+  } catch (e) {
     document.documentElement.setAttribute('data-theme', 'dark');
+    window.__theme = 'dark';
   }
 })();
 `;
 
-export default class MyDocument extends Document {
+export default class MyDocument extends Document<{ theme: 'dark' | 'light' }> {
   static async getInitialProps(ctx: DocumentContext) {
     const sheet = new ServerStyleSheet();
     const originalRenderPage = ctx.renderPage;
 
     try {
-      ctx.renderPage = () => originalRenderPage({
-        enhanceApp: (App) => (props) => sheet.collectStyles(<App {...props} />),
-      });
+      ctx.renderPage = () =>
+        originalRenderPage({
+          enhanceApp: App => props => sheet.collectStyles(<App {...props} />),
+        });
 
       const initialProps = await Document.getInitialProps(ctx);
 
@@ -42,9 +46,10 @@ export default class MyDocument extends Document {
   render() {
     return (
       <Html>
-        <Head />
-        <body>
+        <Head>
           <script dangerouslySetInnerHTML={{ __html: setInitialTheme }} />
+        </Head>
+        <body>
           <Main />
           <NextScript />
         </body>

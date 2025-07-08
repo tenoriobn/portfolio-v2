@@ -1,34 +1,33 @@
-import { useState, useEffect } from 'react';
+import { useSyncExternalStore } from 'react';
 
-export const useThemeToggle = () => {
-  const [isDark, setIsDark] = useState(false);
-  const [isClient, setIsClient] = useState(false);
+function getTheme(): 'dark' | 'light' {
+  if (typeof document === 'undefined') return 'dark';
+  return document.documentElement.getAttribute('data-theme') === 'light' ? 'light' : 'dark';
+}
 
-  const setTheme = (theme: 'dark' | 'light') => {
-    document.cookie = `theme=${theme}; path=/; max-age=31536000`;
-    document.documentElement.setAttribute('data-theme', theme);
-    setIsDark(theme === 'dark');
-  };
+function subscribe(callback: () => void) {
+  const observer = new MutationObserver(() => callback());
 
-  const toggleTheme = () => setTheme(isDark ? 'light' : 'dark');
-
-  useEffect(() => {
-    if (typeof document === 'undefined') return;
-
-    setIsDark(document.documentElement.dataset.theme === 'dark');
-    setIsClient(true);
-
-    const observer = new MutationObserver(() => {
-      setIsDark(document.documentElement.dataset.theme === 'dark');
-    });
-
+  if (typeof document !== 'undefined') {
     observer.observe(document.documentElement, {
       attributes: true,
       attributeFilter: ['data-theme'],
     });
+  }
 
-    return () => observer.disconnect();
-  }, []);
+  return () => observer.disconnect();
+}
 
-  return { isDark, toggleTheme, setTheme, isClient };
+export const useThemeToggle = () => {
+  const theme = useSyncExternalStore(subscribe, getTheme, () => 'dark');
+  const isDark = theme === 'dark';
+
+  const setTheme = (newTheme: 'dark' | 'light') => {
+    document.cookie = `theme=${newTheme}; path=/; max-age=31536000`;
+    document.documentElement.setAttribute('data-theme', newTheme);
+  };
+
+  const toggleTheme = () => setTheme(isDark ? 'light' : 'dark');
+
+  return { theme, isDark, toggleTheme, setTheme };
 };
