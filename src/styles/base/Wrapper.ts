@@ -15,3 +15,16 @@ export const Wrapper = styled(motion.div)`
     padding: 0;
   }
 `;
+
+export const Section = styled.section`
+  position: relative;
+  display: grid;
+  place-items: center;
+  padding-bottom: 7.5rem;
+  gap: .5rem;
+
+  @media (min-width: 768px) {
+    gap: 1rem;
+  }
+`;
+

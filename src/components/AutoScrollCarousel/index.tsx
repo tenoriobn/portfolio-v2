@@ -9,6 +9,7 @@ const Styled = {
   Swiper: styled(Swiper)`
     --swiper-wrapper-transition-timing-function: linear !important;
     margin-left: 0;
+    cursor: grab;
   `,
 
   SwiperSlide: styled(SwiperSlide)`

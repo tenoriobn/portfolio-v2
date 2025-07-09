@@ -1,5 +1,5 @@
 import { useCMSSection } from 'src/hook';
-import { textGradient, Wrapper } from 'src/styles';
+import { Description, Section, textGradient, Title, Wrapper } from 'src/styles';
 import styled from 'styled-components';
 import ExperienceTimelineItem from './ExperienceTimelineItem';
 import { revealOnScroll } from 'src/utils';
@@ -63,15 +63,15 @@ export default function ExperienceSection() {
 
   return (
     <Wrapper {...revealOnScroll}>
-      <Styled.Section id={componentName}>
-        <Styled.Title>{title}</Styled.Title>
-        <Styled.Description>{description}</Styled.Description>
+      <Section id={componentName}>
+        <Title>{title}</Title>
+        <Description>{description}</Description>
 
         <Styled.TimelineContainer>
           <Styled.TimelineConnector />
           <ExperienceTimelineItem />
         </Styled.TimelineContainer>
-      </Styled.Section>
+      </Section>
     </Wrapper>
   );
 }
