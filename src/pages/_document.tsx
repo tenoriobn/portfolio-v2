@@ -7,7 +7,6 @@ const setInitialTheme = `
     const cookieTheme = document.cookie.split('; ').find(t => t.startsWith('theme='));
     const value = cookieTheme ? cookieTheme.split('=')[1] : 'dark';
     
-    // Atualizar meta tags PRIMEIRO
     const themeColor = value === 'dark' ? 'rgb(47, 47, 47)' : 'rgb(212, 212, 212)';
     const metaSelectors = [
       'meta[name="theme-color"]',
@@ -20,7 +19,6 @@ const setInitialTheme = `
       if (meta) meta.setAttribute('content', themeColor);
     });
     
-    // Depois atualizar o data-theme
     document.documentElement.setAttribute('data-theme', value);
     window.__theme = value;
     
@@ -36,8 +34,6 @@ export default class MyDocument extends Document<{ theme: 'dark' | 'light' }> {
     const sheet = new ServerStyleSheet();
     const originalRenderPage = ctx.renderPage;
 
-    // Sempre usar dark no servidor para evitar mismatch
-    // O cliente corrige imediatamente via script
     const theme: 'dark' | 'light' = 'dark';
 
     try {
@@ -65,8 +61,6 @@ export default class MyDocument extends Document<{ theme: 'dark' | 'light' }> {
 
   render() {
     const { theme } = this.props;
-    
-    // Sempre usar dark no servidor - o cliente corrige
     const themeColor = 'rgb(47, 47, 47)';
 
     return (

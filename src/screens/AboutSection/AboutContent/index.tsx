@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { useCMSSection } from 'src/hook';
-import { BaseButton, BorderButton, textGradient } from 'src/styles';
+import { BaseButton, BorderButton, Description, Title } from 'src/styles';
 import styled from 'styled-components';
 
 const Styled = {
@@ -13,12 +13,8 @@ const Styled = {
     }
   `,
 
-  Title: styled.h2`
+  Title: styled(Title)`
     justify-self: center;
-    font-size: 1.5rem;
-    font-weight: 700;
-    text-align: center;
-    ${textGradient}
     margin-bottom: 1rem;
 
     @media (max-width: 424px) {
@@ -26,15 +22,12 @@ const Styled = {
     }
 
     @media (min-width: 768px) {
-      font-size: 1.75rem;
       margin-bottom: 1.5rem;
     }
   `,
 
-  Description: styled.p`
-    font-size: 1rem;
+  Description: styled(Description)`
     font-style: italic;
-    text-align: center;
     margin-bottom: 1.5rem;
     white-space: pre-line;
 

@@ -1,6 +1,6 @@
 import { atom } from 'recoil';
-import { ProjectItem } from 'src/sections/ProjectsSection/projects.type';
-import { ModalType, } from 'src/sections/ProjectsSection/ProjectsCarousel/ProjectModal/projectModal.type';
+import { ProjectItem } from 'src/screens/ProjectsSection/projects.type';
+import { ModalType, } from 'src/screens/ProjectsSection/ProjectsCarousel/ProjectModal/projectModal.type';
 
 export const isMenuActiveState = atom({
   key: 'isMenuActive',
