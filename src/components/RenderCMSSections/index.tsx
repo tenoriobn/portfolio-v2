@@ -1,5 +1,5 @@
 import { useCMSContent } from 'src/hook';
-import { cmsSections } from 'src/sections';
+import { cmsSections } from 'src/screens';
 
 export default function RenderCMSSections() {
   const pageContent = useCMSContent();

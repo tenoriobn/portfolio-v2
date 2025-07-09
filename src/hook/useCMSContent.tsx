@@ -1,7 +1,7 @@
 import { useQuery, useQueryClient } from '@tanstack/react-query';
 import { get } from 'lodash';
 import { useRouter } from 'next/router';
-import { PageContentBlock } from 'src/sections/cmsSections.type';
+import { PageContentBlock } from 'src/screens/cmsSections.type';
 
 export function useCMSContent(pageName = 'landingPage') {
   const { locale } = useRouter();

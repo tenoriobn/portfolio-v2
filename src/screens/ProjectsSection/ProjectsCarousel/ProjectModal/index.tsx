@@ -4,7 +4,7 @@ import ProjectInfoModal from './ProjectInfoModal';
 import ModalHeader from './ModalHeader';
 import ModalFooter from './ModalFooter';
 import { useClickOutside } from 'src/hook';
-import { useBodyScrollLock } from 'src/hook/useBodyScrollLock';
+import { useBodyScrollLock } from 'src/hook';
 import { useRef } from 'react';
 import styled from 'styled-components';
 import { borderInsetMixin, shadowSM } from 'src/styles';
