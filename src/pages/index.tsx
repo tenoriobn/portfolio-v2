@@ -1,15 +1,26 @@
-import { dehydrate, QueryClient } from '@tanstack/react-query';
 import DefaultSEO from 'components/DefaultSEO';
+import { GetStaticPropsContext } from 'next';
 import RenderCMSSections from 'src/components/RenderCMSSections';
+import { CMSProvider } from 'src/provider/CMSContext';
+import { PageContentBlock } from 'src/screens/cmsSections.type';
 import { cmsService } from 'src/service/cmsService';
 
-export async function getStaticProps({ locale }: { locale: string }) {
-  const queryClient = new QueryClient();
+interface HomeProps {
+  cmsData: {
+    landingPage: {
+      pageContent: PageContentBlock[];
+    };
+  }
+  locale: string;
+}
+
+
+export async function getStaticProps({ locale }: GetStaticPropsContext) {
   const year = new Date().getFullYear();
 
-  await queryClient.prefetchQuery(['cmsContent', locale], () =>
-    cmsService({
-      query:`
+  try {
+    const response = await cmsService({
+      query: `
         query MyQuery {
           landingPage(locale: ${locale}) {
             pageContent {
@@ -205,31 +216,43 @@ export async function getStaticProps({ locale }: { locale: string }) {
           }
         }
       `
-    }).then(res => ({
-      ...res.data,
+    });
+
+    const cmsData = {
+      ...response.data,
       landingPage: {
-        ...res.data.landingPage,
-        pageContent: res.data.landingPage.pageContent.map((item: { componentName: string; }) => 
+        ...response.data.landingPage,
+        pageContent: response.data.landingPage.pageContent.map((item: { componentName: string; }) => 
           item.componentName === 'FooterBlockRecord' 
             ? { ...item, year } as const
             : item
         )
       }
-    }))
-  );
+    };
 
-  return {
-    props: {
-      dehydratedState: dehydrate(queryClient),
-    },
-  };
+    return {
+      props: {
+        cmsData,
+        locale,
+      },
+    };
+  } catch (error) {
+    console.error('Erro ao carregar dados do CMS:', error);
+    return {
+      props: {
+        cmsData: { landingPage: { pageContent: [] } },
+        locale,
+      },
+    };
+  }
 };
 
-export default function Home() {
+export default function Home({ cmsData, locale }: HomeProps) {
+
   return (
-    <>
+    <CMSProvider data={cmsData} locale={locale}>
       <DefaultSEO />
       <RenderCMSSections />
-    </>
+    </CMSProvider>
   );
 }

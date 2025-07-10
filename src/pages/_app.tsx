@@ -1,11 +1,13 @@
 import type { AppProps } from 'next/app';
-import { AppProviders } from 'src/lib';
+import { RecoilRoot } from 'recoil';
 import 'src/lib/atom/recoil';
+import { GlobalStyles } from 'src/styles';
 
-export default function App({ Component, pageProps, router }: AppProps) {
+export default function App({ Component, pageProps }: AppProps) {
   return (
-    <AppProviders dehydratedState={pageProps.dehydratedState}>
-      <Component {...pageProps} key={router.route} />
-    </AppProviders>
+    <RecoilRoot>
+      <GlobalStyles />
+      <Component {...pageProps} />
+    </RecoilRoot>
   );
 }
