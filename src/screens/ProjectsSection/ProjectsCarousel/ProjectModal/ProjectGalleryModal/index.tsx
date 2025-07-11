@@ -9,11 +9,11 @@ import { useBreakpoint } from './useBreakpoint';
 const Styled = {
   GalleryContainer: styled.main`
     ${borderRaisedMixin}
-    overflow: hidden;
-    width: 100%;
-    height: 100%;
     ${shadowSM}
     border-radius: var(--radius-md);
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
   `,
 
   ProjectImageWrapper: styled.div`
