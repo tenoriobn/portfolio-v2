@@ -24,6 +24,16 @@ export const GlobalStyles = createGlobalStyle`
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     text-rendering: optimizeLegibility;
+
+    &::-webkit-scrollbar {
+      width: 10px;
+      background: var(--color-grey-800-75);
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background-color: var(--color-grey-500);
+      border-radius: var(--radius-full); 
+    }
   }
 
   #root, #__next {
