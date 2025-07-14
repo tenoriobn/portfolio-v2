@@ -6,3 +6,16 @@ export interface projectModal {
   project: ProjectItem
   type: ModalType;
 }
+
+interface CardPosition {
+  x: number;
+  y: number;
+  width: number;
+  height: number;
+};
+
+export interface ProjectModalState {
+  project: ProjectItem;
+  type: ModalType;
+  cardPosition?: CardPosition | null;
+};
