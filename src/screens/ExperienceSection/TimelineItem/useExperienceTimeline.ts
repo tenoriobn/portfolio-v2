@@ -1,5 +1,5 @@
 import { useRef, useState } from 'react';
-import { useCMSSection } from 'src/hook';
+import { useCMSSection } from 'src/hooks';
 
 export const useExperienceTimeline = () => {
   const { experienceContent } = useCMSSection('ExperienceSectionBlockRecord');

@@ -1,11 +1,11 @@
 import Image from 'next/image';
 import Link from 'next/link';
-import { useCMSSection } from 'src/hook';
+import { useCMSSection } from 'src/hooks';
 import { BaseButton, BorderButton, Description, Title } from 'src/styles';
 import styled from 'styled-components';
 
 const Styled = {
-  AboutContentWrapper: styled.div`
+  Content: styled.div`
     display: grid;
 
     @media (min-width: 992px) {
@@ -36,7 +36,7 @@ const Styled = {
     }
   `,
 
-  SocialLinksContainer: styled.div`
+  SocialList: styled.div`
     display: flex;
     justify-content: center;
     gap: 1rem;
@@ -48,7 +48,7 @@ const Styled = {
     }
   `,
 
-  SocialLinkBorder: styled(BorderButton)`
+  Border: styled(BorderButton)`
     border-radius: var(--radius-full);
     max-width: 180px;
     width: 100%;
@@ -70,25 +70,23 @@ const Styled = {
 
 export default function AboutContent() {
   const { title, description, socialLink } = useCMSSection('AboutMeSectionBlockRecord');
-  const paragraph = description.value.document.children
-    .map(child => child.children?.[0]?.value || '').join('\n')
-  ;
+  const paragraph = description.value.document.children.map(child => child.children?.[0]?.value || '').join('\n');
 
   return (
-    <Styled.AboutContentWrapper>
+    <Styled.Content>
       <Styled.Title>{title}</Styled.Title>
       <Styled.Description>{paragraph}</Styled.Description>
 
-      <Styled.SocialLinksContainer>
+      <Styled.SocialList>
         {socialLink.map((link) => (
-          <Styled.SocialLinkBorder key={link.id}>
+          <Styled.Border key={link.id}>
             <Styled.SocialLink as={Link} href={link.href} target='_blank' rel='noopener noreferrer'> 
               <Image src={link.icon.url} alt={link.linkName} width={20} height={20} />
               {link.linkName}
             </Styled.SocialLink>
-          </Styled.SocialLinkBorder>
+          </Styled.Border>
         ))}
-      </Styled.SocialLinksContainer>
-    </Styled.AboutContentWrapper>
+      </Styled.SocialList>
+    </Styled.Content>
   );
 }

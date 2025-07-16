@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import { LargeBorderButton, OptionButton } from 'src/styles';
 import { useChangeLanguage } from './useChangeLanguage';
-import { useCMSSection } from 'src/hook';
+import { useCMSSection } from 'src/hooks';
 import useOptionsToggle from '../useOptionsToggle';
 import CheckIcon from 'public/icons/check.svg';
 import { scaleFade } from 'src/utils';

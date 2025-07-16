@@ -1,4 +1,4 @@
-import { useCMSSection } from 'src/hook';
+import { useCMSSection } from 'src/hooks';
 import { borderInsetMixin } from 'src/styles';
 import styled from 'styled-components';
 
@@ -9,7 +9,7 @@ const Styled = {
     width: 100%;
   `,
 
-  CopyrightWrapper: styled.div`
+  ContentContainer: styled.div`
     background-color: var(--color-grey-800-75);
     padding: 2rem 1rem;
 
@@ -18,7 +18,7 @@ const Styled = {
     }
   `,
 
-  Copyright: styled.p`
+  Text: styled.p`
     color: var(--color-grey-300);
     text-align: center;
     
@@ -34,9 +34,9 @@ export default function Footer() {
   
   return (
     <Styled.Footer>
-      <Styled.CopyrightWrapper>
-        <Styled.Copyright>{year} {copyrighttext}</Styled.Copyright>
-      </Styled.CopyrightWrapper>
+      <Styled.ContentContainer>
+        <Styled.Text>{year} {copyrighttext}</Styled.Text>
+      </Styled.ContentContainer>
     </Styled.Footer>
   );
 }

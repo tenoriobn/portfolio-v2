@@ -19,7 +19,7 @@ const Styled = {
     }
   `,
 
-  ExpandButton: styled.button<{ $isExpanded: boolean}>`
+  ToggleButton: styled.button<{ $isExpanded: boolean}>`
     display: grid;
     place-items: center;
     background-color: var(--color-grey-800-75);
@@ -33,7 +33,7 @@ const Styled = {
     }
   `,
 
-  ExperienceCardWrapper: styled(motion.div)`
+  CardWrapper: styled(motion.div)`
     ${borderInsetMixin}
     ${shadowSM}
     cursor: pointer;
@@ -43,7 +43,7 @@ const Styled = {
     overflow: hidden;
   `,
 
-  ExperienceCard: styled.div`
+  Card: styled.div`
     background-color: var(--color-grey-800-75);
     border-radius: var(--radius-md);
     padding: 1rem;
@@ -59,18 +59,18 @@ const Styled = {
     gap: .75rem;
   `,
 
-  CompanyLogoWrapper: styled.div`
+  Logo: styled.div`
     ${borderRaisedMixin}
     ${shadowSM}
     border-radius: var(--radius-full);
   `,
 
-  ExperienceInfo: styled.div`
+  Info: styled.div`
     display: grid;
     gap: .25rem;
   `,
 
-  CompanyName: styled.h3`
+  Company: styled.h3`
     font-size: .875rem;
     font-weight: 600;
 
@@ -79,12 +79,12 @@ const Styled = {
     }
   `,
 
-  RoleName: styled.p`
+  Role: styled.p`
     font-size: .875rem;
     font-weight: 600;
   `,
 
-  PeriodText: styled.p`
+  Period: styled.p`
     font-size: .875rem;
   `,
 
@@ -98,7 +98,7 @@ const Styled = {
   `,
 };
 
-export default function ExperienceTimelineItem() {
+export default function TimelineItem() {
   const { experiences, toggleExpand, isExpanded, refs } = useExperienceTimeline();
 
   return (
@@ -106,26 +106,26 @@ export default function ExperienceTimelineItem() {
       {experiences.map((experience) => (
         <Styled.TimelineItem key={experience.id}>
           <BorderButton onClick={() => toggleExpand(experience.id)}>
-            <Styled.ExpandButton $isExpanded={isExpanded(experience.id)}>
+            <Styled.ToggleButton $isExpanded={isExpanded(experience.id)}>
               <ArrowIcon />
-            </Styled.ExpandButton>
+            </Styled.ToggleButton>
           </BorderButton>
 
-          <Styled.ExperienceCardWrapper 
+          <Styled.CardWrapper 
             ref={(el) => {refs.current[experience.id] = el;}}
             onClick={() => toggleExpand(experience.id)}
           >
-            <Styled.ExperienceCard>
+            <Styled.Card>
               <Styled.ExperienceHeader>
-                <Styled.CompanyLogoWrapper>
+                <Styled.Logo>
                   <Image src={experience.companyLogo.url} alt={experience.companyName} width={66} height={66}/>
-                </Styled.CompanyLogoWrapper>
+                </Styled.Logo>
 
-                <Styled.ExperienceInfo>
-                  <Styled.CompanyName>{experience.companyName}</Styled.CompanyName>
-                  <Styled.RoleName>{experience.roleArea}</Styled.RoleName>
-                  <Styled.PeriodText>{experience.period}</Styled.PeriodText>
-                </Styled.ExperienceInfo>
+                <Styled.Info>
+                  <Styled.Company>{experience.companyName}</Styled.Company>
+                  <Styled.Role>{experience.roleArea}</Styled.Role>
+                  <Styled.Period>{experience.period}</Styled.Period>
+                </Styled.Info>
               </Styled.ExperienceHeader>
 
               <AnimatePresence initial={false}>
@@ -136,16 +136,14 @@ export default function ExperienceTimelineItem() {
                     animate="animate"
                     exit="exit"
                     variants={expandCollapseFade}
-
-                    // {...expandCollapseFade}
                     onAnimationComplete={() => handleScrollAfterExpand(experience.id, refs)}
                   >
                     <Styled.JobDescription>{experience.jobDescription}</Styled.JobDescription>
                   </motion.div>
                 )}
               </AnimatePresence>
-            </Styled.ExperienceCard>
-          </Styled.ExperienceCardWrapper>
+            </Styled.Card>
+          </Styled.CardWrapper>
         </Styled.TimelineItem>
       ))}
     </>

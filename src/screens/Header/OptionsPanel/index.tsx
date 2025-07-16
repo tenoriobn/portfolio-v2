@@ -5,7 +5,7 @@ import OptionsList from './OptionsList';
 import Language from './Language';
 import Theme from './Theme';
 import { useRef } from 'react';
-import { useClickOutside } from 'src/hook';
+import { useClickOutside } from 'src/hooks';
 
 export default function OptionsPanel() {
   const { isActiveOption, setActiveOption, toggleOptions } = useOptionsToggle();

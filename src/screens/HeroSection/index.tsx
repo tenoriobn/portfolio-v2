@@ -1,10 +1,10 @@
-import { useCMSSection } from 'src/hook';
+import { useCMSSection } from 'src/hooks';
 import DownloadIcon from 'public/icons/download.svg';
 import styled from 'styled-components';
 import { BorderButton, BaseButton, Wrapper } from 'src/styles';
 import Link from 'next/link';
 import Profile from './Profile';
-import HighlightRotatingTexts from './TitleHeroSection';
+import AnimatedHeadlines from './AnimatedHeadlines';
 
 const Styled = {
   HeroSection: styled.section`
@@ -28,7 +28,7 @@ const Styled = {
     color: var(--color-grey-200);
   `,
 
-  ResumeButtonBorder: styled(BorderButton)`
+  Border: styled(BorderButton)`
     border-radius: var(--radius-full);
     max-width: 180px;
     width: 100%;
@@ -38,7 +38,7 @@ const Styled = {
     }
   `,
 
-  ResumeButton: styled(BaseButton)`
+  Button: styled(BaseButton)`
     display: flex;
     justify-content: center;
     align-items: center;
@@ -60,14 +60,14 @@ export default function HeroSection() {
       <Styled.HeroSection id={componentName}>
         <Profile />
         <Styled.JobTitle>{jobTitle}</Styled.JobTitle>
-        <HighlightRotatingTexts />
+        <AnimatedHeadlines />
 
-        <Styled.ResumeButtonBorder>
-          <Styled.ResumeButton as={Link} href={resumeLabel.href} target='_blank' rel='noopener noreferrer'>
+        <Styled.Border>
+          <Styled.Button as={Link} href={resumeLabel.href} target='_blank' rel='noopener noreferrer'>
             <DownloadIcon />
             {resumeLabel.linkName}
-          </Styled.ResumeButton>
-        </Styled.ResumeButtonBorder>
+          </Styled.Button>
+        </Styled.Border>
       </Styled.HeroSection>
     </Wrapper>
   );

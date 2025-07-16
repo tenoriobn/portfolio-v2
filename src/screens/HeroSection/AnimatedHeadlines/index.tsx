@@ -1,13 +1,13 @@
 import { AnimatePresence, motion } from 'motion/react';
 import React from 'react';
-import { useCMSSection } from 'src/hook';
+import { useCMSSection } from 'src/hooks';
 import { textGradient } from 'src/styles';
 import { blurInFade } from 'src/utils';
 import styled from 'styled-components';
 import { useRotatingText } from './useRotatingTextIndex';
 
 const Styled = {
-  Text: styled(motion.h2)`
+  Headline: styled(motion.h2)`
     display: inline-block;
     min-height: 1.2em;
     text-align: center;
@@ -33,15 +33,15 @@ const Styled = {
   `,
 };
 
-export default function HighlightRotatingTexts() {
+export default function AnimatedHeadlines() {
   const { highlightRotatingTexts } = useCMSSection('HeroSectionBlockRecord');
   const activeTextIndex = useRotatingText(highlightRotatingTexts.length);
 
   return (
     <AnimatePresence mode="wait" initial={false}>
-      <Styled.Text key={activeTextIndex} {...blurInFade}>
+      <Styled.Headline key={activeTextIndex} {...blurInFade}>
         {highlightRotatingTexts[activeTextIndex].text}
-      </Styled.Text>
+      </Styled.Headline>
     </AnimatePresence>
   );
 }

@@ -3,11 +3,11 @@ import { borderRaisedMixin, shadowSM } from 'src/styles';
 import Image from 'next/image';
 import 'swiper/css';
 import 'swiper/css/pagination';
-import { ProjectGalleryModalProps } from './ProjectGalleryModal.type';
 import { useBreakpoint } from './useBreakpoint';
+import { ProjectModalProps } from 'src/screens/ProjectsSection/projects.type';
 
 const Styled = {
-  GalleryContainer: styled.main`
+  GalleryBox: styled.main`
     ${borderRaisedMixin}
     ${shadowSM}
     border-radius: var(--radius-md);
@@ -16,7 +16,7 @@ const Styled = {
     overflow: hidden;
   `,
 
-  ProjectImageWrapper: styled.div`
+  ImagePanel: styled.div`
     background: var(--color-grey-800-75);
     display: flex;
     justify-content: center;
@@ -33,7 +33,7 @@ const Styled = {
     } 
   `,
 
-  ProjectImage: styled(Image)`
+  ResponsiveImage: styled(Image)`
     height: auto!important;
     max-width: 100%;
     object-fit: cover;
@@ -42,7 +42,7 @@ const Styled = {
   `,
 };
 
-export default function ProjectGalleryModal({ project }: ProjectGalleryModalProps) {
+export default function ProjectGalleryModal({ project }: ProjectModalProps) {
   const { projectTitle, projectGallery } = project;
   const breakpoint = useBreakpoint();
 
@@ -53,15 +53,15 @@ export default function ProjectGalleryModal({ project }: ProjectGalleryModalProp
   }[breakpoint];
 
   return (
-    <Styled.GalleryContainer>
-      <Styled.ProjectImageWrapper >
-        <Styled.ProjectImage 
+    <Styled.GalleryBox>
+      <Styled.ImagePanel >
+        <Styled.ResponsiveImage 
           src={selectedImage}
           alt={projectTitle}
           fill
           sizes="(max-width: 767px) 100vw, (max-width: 991px) 100vw, 100vw"
         />
-      </Styled.ProjectImageWrapper>
-    </Styled.GalleryContainer>
+      </Styled.ImagePanel>
+    </Styled.GalleryBox>
   );
 }

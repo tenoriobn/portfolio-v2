@@ -2,7 +2,7 @@ import { borderRaisedMixin, shadowSM } from 'src/styles';
 import styled from 'styled-components';
 
 const Styled = {
-  BorderImage: styled.div`
+  Border: styled.div`
     ${borderRaisedMixin}
     ${shadowSM}
     border-radius: var(--radius-md);
@@ -14,7 +14,7 @@ const Styled = {
     }
   `,
 
-  BackgroundImage: styled.div`
+  ImageBackground: styled.div`
     background: url('/video/running.gif') center/cover no-repeat;
     width: 100%;
     border-radius: var(--radius-md);
@@ -32,11 +32,11 @@ const Styled = {
 
 export default function AboutImage() {
   return (
-    <Styled.BorderImage>
-      <Styled.BackgroundImage 
+    <Styled.Border>
+      <Styled.ImageBackground 
         role="img"
         aria-label="Gif animado de um homem correndo em uma paisagem natural"
       />
-    </Styled.BorderImage>
+    </Styled.Border>
   );
 }

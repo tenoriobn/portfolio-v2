@@ -3,8 +3,8 @@ import ProjectGalleryModal from './ProjectGalleryModal';
 import ProjectInfoModal from './ProjectInfoModal';
 import ModalHeader from './ModalHeader';
 import ModalFooter from './ModalFooter';
-import { useClickOutside } from 'src/hook';
-import { useBodyScrollLock } from 'src/hook';
+import { useClickOutside } from 'src/hooks';
+import { useBodyScrollLock } from 'src/hooks';
 import { useRef } from 'react';
 import styled from 'styled-components';
 import { borderInsetMixin, shadowSM } from 'src/styles';
@@ -31,7 +31,7 @@ const Styled = {
     }
   `,
 
-  Container: styled(motion.div)<{ $maxWidth?: string; $isGalleryModal?: boolean }>`
+  Wrapper: styled(motion.div)<{ $maxWidth?: string; $isGalleryModal?: boolean }>`
     ${borderInsetMixin}
     ${shadowSM}
     border-radius: var(--radius-md);
@@ -77,7 +77,7 @@ export default function ProjectModal() {
           exit="exit"
           variants={overlayFade}
         >
-          <Styled.Container 
+          <Styled.Wrapper 
             ref={modalRef} 
             $isGalleryModal={isGalleryModal}
             initial="initial"
@@ -94,7 +94,7 @@ export default function ProjectModal() {
 
               <ModalFooter projectLinks={currentProject.projectLinks} />
             </Styled.Content>
-          </Styled.Container>
+          </Styled.Wrapper>
         </Styled.Overlay>
       )}
     </AnimatePresence>

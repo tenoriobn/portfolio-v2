@@ -1,4 +1,4 @@
-import { useCMSContent } from 'src/hook';
+import { useCMSContent } from 'src/hooks';
 import { ComponentNameMap } from 'src/screens/cmsSections.type';
 
 export function useCMSSection<K extends keyof ComponentNameMap>(

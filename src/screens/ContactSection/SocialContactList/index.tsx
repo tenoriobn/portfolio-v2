@@ -1,36 +1,37 @@
 import styled from 'styled-components';
 import Image from 'next/image';
-import { useCMSSection } from 'src/hook';
+import { useCMSSection } from 'src/hooks';
 import { BaseButton, BorderButton } from 'src/styles';
 import ContactDropdown from './ContactDropdown';
 import { useSocialContactList } from './SocialContactList';
 import { AnimatePresence } from 'motion/react';
 
 const Styled = {
-  ContactsGrid: styled.div`
+  ButtonGroup: styled.div`
     display: flex;
     justify-content: center;
     gap: 1rem;
     width: 100%;
     height: max-content;
+
     @media (min-width: 768px) {
       gap: 1.5rem;
     }
   `,
 
-  ContactItemWrapper: styled.div`
+  Item: styled.div`
     position: relative;
     max-width: 180px;
     width: 100%;
   `,
 
-  ContactBorderButton: styled(BorderButton)`
+  Border: styled(BorderButton)`
     border-radius: var(--radius-full);
       max-width: 180px;
       width: 100%;
   `,
 
-  ContactButton: styled(BaseButton)`
+  Button: styled(BaseButton)`
     display: flex;
     justify-content: center;
     align-items: center;
@@ -49,21 +50,21 @@ export default function SocialContactList() {
   const { dropdownRef, toggleContact, isContactActive } = useSocialContactList();
 
   return (
-    <Styled.ContactsGrid >
+    <Styled.ButtonGroup >
       {socialLink.map(({ id, linkName, icon, dropdown }) => (
-        <Styled.ContactItemWrapper key={id} ref={isContactActive(id) ? dropdownRef : null}>
-          <Styled.ContactBorderButton>
-            <Styled.ContactButton onClick={() => toggleContact(id)}>
+        <Styled.Item key={id} ref={isContactActive(id) ? dropdownRef : null}>
+          <Styled.Border>
+            <Styled.Button onClick={() => toggleContact(id)}>
               <Image src={icon.url} alt={`${linkName} icon`} width={20} height={20} />
               {linkName}
-            </Styled.ContactButton>
-          </Styled.ContactBorderButton>
+            </Styled.Button>
+          </Styled.Border>
 
           <AnimatePresence mode="wait" initial={false}>
             {isContactActive(id) && (<ContactDropdown dropdown={dropdown} linkName={linkName} />)}
           </AnimatePresence>
-        </Styled.ContactItemWrapper>
+        </Styled.Item>
       ))}
-    </Styled.ContactsGrid>
+    </Styled.ButtonGroup>
   );
 }

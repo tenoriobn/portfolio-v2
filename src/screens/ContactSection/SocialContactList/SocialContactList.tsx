@@ -1,6 +1,6 @@
 import { useRef } from 'react';
 import { useRecoilState } from 'recoil';
-import { useClickOutside } from 'src/hook';
+import { useClickOutside } from 'src/hooks';
 import { isActiveContactState } from 'src/lib';
 
 export const useSocialContactList = () => {

@@ -1,4 +1,4 @@
-import { useCMSContent } from 'src/hook';
+import { useCMSContent } from 'src/hooks';
 import { cmsSections } from 'src/screens';
 
 export default function RenderCMSSections() {

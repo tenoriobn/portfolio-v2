@@ -1,10 +1,9 @@
 import DefaultSEO from 'components/DefaultSEO';
 import { GetStaticPropsContext } from 'next';
 import RenderCMSSections from 'src/components/RenderCMSSections';
-import { GET_LANDING_PAGE_QUERY } from 'src/graphql/getHomePageQuery';
 import { CMSProvider } from 'src/provider/CMSContext';
-import { cmsService } from 'src/service/cmsService';
-import { HomeProps } from 'src/types/home.type';
+import { cmsService, GET_LANDING_PAGE_QUERY } from 'src/service';
+import { CMSContextValue } from 'src/types/cms.type';
 
 export async function getStaticProps({ locale }: GetStaticPropsContext) {
   const year = new Date().getFullYear();
@@ -31,10 +30,10 @@ export async function getStaticProps({ locale }: GetStaticPropsContext) {
   };
 };
 
-export default function Home({ cmsData, locale }: HomeProps) {
+export default function Home({ cmsData, locale }: CMSContextValue) {
 
   return (
-    <CMSProvider data={cmsData} locale={locale}>
+    <CMSProvider cmsData={cmsData} locale={locale}>
       <DefaultSEO />
       <RenderCMSSections />
     </CMSProvider>

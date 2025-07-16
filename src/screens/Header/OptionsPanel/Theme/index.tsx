@@ -1,6 +1,6 @@
 import Image from 'next/image';
 import { LargeBorderButton, OptionButton } from 'src/styles';
-import { useCMSSection } from 'src/hook';
+import { useCMSSection } from 'src/hooks';
 import useOptionsToggle from '../useOptionsToggle';
 import CheckIcon from 'public/icons/check.svg';
 import { useThemeToggle } from '../../ThemeToggle/useThemeToggle';

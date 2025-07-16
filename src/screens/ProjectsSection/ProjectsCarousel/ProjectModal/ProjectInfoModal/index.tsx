@@ -3,26 +3,26 @@ import ToolsIcon from 'public/icons/tools.svg';
 import DartIcon from 'public/icons/dart.svg';
 import MobileIcon from 'public/icons/mobile.svg';
 import AutoScrollCarousel from 'src/components/AutoScrollCarousel';
-import { ProjectInfoModalProps } from './projectInfoModal.type';
+import { ProjectModalProps } from 'src/screens/ProjectsSection/projects.type';
 
 const Styled = {
-  Divider: styled.span`
+  Line: styled.span`
     background: var(--gradient-grey-dark-light-dark-reserve);
     width: 100%;
     height: 1px;
   `,
 
-  Main: styled.main`
+  Content: styled.main`
     display: grid;
     gap: 1.5rem;
   `,
 
-  Section: styled.div`
+  Block: styled.div`
     display: grid;
     gap: 0.75rem;
   `,
 
-  SectionTitle: styled.h4`
+  BlockTitle: styled.h4`
     font-size: 1.125rem;
     font-weight: 600;
     display: flex;
@@ -30,14 +30,14 @@ const Styled = {
     gap: 0.5rem;
   `,
 
-  List: styled.ul`
+  ItemList: styled.ul`
     display: grid;
     gap: 0.5rem;
     list-style: disc;
     padding-left: 1.5rem;
   `,
 
-  SkillsGrid: styled.div`
+  SkillList: styled.div`
     display: flex;
     align-items: center;
     gap: 0.75rem;
@@ -45,59 +45,59 @@ const Styled = {
   `,
 };
 
-export default function ProjectInfoModal({ project }: ProjectInfoModalProps) {
+export default function ProjectInfoModal({ project }: ProjectModalProps) {
   const {  projectDescription,  appliedSolutions, challenges, skills, } = project;
 
   return (
     <>
-      <Styled.Divider />
+      <Styled.Line />
       
-      <Styled.Main>
+      <Styled.Content>
         <p>{projectDescription}</p>
         
         {appliedSolutions && (
-          <Styled.Section>
-            <Styled.SectionTitle>
+          <Styled.Block>
+            <Styled.BlockTitle>
               <ToolsIcon aria-hidden="true" />
               {appliedSolutions.title}
-            </Styled.SectionTitle>
+            </Styled.BlockTitle>
 
-            <Styled.List>
+            <Styled.ItemList>
               {appliedSolutions.solution?.map((item) => (
                 <li key={item.id}>{item.solution}</li>
               ))}
-            </Styled.List>
-          </Styled.Section>
+            </Styled.ItemList>
+          </Styled.Block>
         )}
 
         {challenges && (
-          <Styled.Section>
-            <Styled.SectionTitle>
+          <Styled.Block>
+            <Styled.BlockTitle>
               <DartIcon aria-hidden="true" />
               {challenges.title}
-            </Styled.SectionTitle>
+            </Styled.BlockTitle>
             
-            <Styled.List>
+            <Styled.ItemList>
               {challenges.challenge?.map((item) => (
                 <li key={item.id}>{item.solution}</li>
               ))}
-            </Styled.List>
-          </Styled.Section>
+            </Styled.ItemList>
+          </Styled.Block>
         )}
 
         {skills && (
-          <Styled.Section>      
-            <Styled.SectionTitle>
+          <Styled.Block>      
+            <Styled.BlockTitle>
               <MobileIcon aria-hidden="true" />
               {skills.title}
-            </Styled.SectionTitle>
+            </Styled.BlockTitle>
 
             <AutoScrollCarousel icons={skills.skill} />
-          </Styled.Section>
+          </Styled.Block>
         )}
-      </Styled.Main>
+      </Styled.Content>
 
-      <Styled.Divider />
+      <Styled.Line />
     </>
   );
 }

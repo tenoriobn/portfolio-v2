@@ -1,8 +1,8 @@
 import React, { useRef } from 'react';
-import MobileMenuToggle from './MobileMenuToggle';
+import MenuToggle from './MenuToggle';
 import Navbar from './Navbar';
-import useMenuToggle from './MobileMenuToggle/useMenuToggle';
-import { useClickOutside } from 'src/hook';
+import useMenuToggle from './MenuToggle/useMenuToggle';
+import { useClickOutside } from 'src/hooks';
 
 export default function Menu() {
   const { closeMenu } = useMenuToggle();
@@ -11,7 +11,7 @@ export default function Menu() {
 
   return (
     <div ref={navBarRef}>
-      <MobileMenuToggle />
+      <MenuToggle />
       <Navbar />
     </div>
   );

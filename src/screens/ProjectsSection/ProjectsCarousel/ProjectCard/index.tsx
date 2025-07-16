@@ -35,7 +35,7 @@ const Styled = {
     cursor: pointer;
   `,
 
-  ProjectImage: styled(Image)`
+  Image: styled(Image)`
     border-radius: var(--radius-md);
     object-position: top;
     object-fit: cover;
@@ -80,7 +80,7 @@ const Styled = {
     }
   `,
 
-  ActionButton: styled(BorderButton)`
+  BorderButton: styled(BorderButton)`
     border-radius: var(--radius-full);
   `,
 
@@ -115,7 +115,7 @@ export default function ProjectCard({ project }: ProjectCardProps) {
             onClick={() => openModal(project, 'gallery', cardRef.current)}
             aria-label={`Ver imagem ampliada do projeto ${projectTitle}`}
           >
-            <Styled.ProjectImage 
+            <Styled.Image 
               src={firstImage.url} 
               alt={`Imagem do projeto ${projectTitle}`}
               width={400} 
@@ -128,7 +128,7 @@ export default function ProjectCard({ project }: ProjectCardProps) {
           <Styled.Content>
             <Styled.Title>{projectTitle}</Styled.Title>
 
-            <Styled.ActionButton>
+            <Styled.BorderButton>
               <Styled.Button 
                 type="button"
                 aria-label={`Ver detalhes do projeto ${projectTitle}`}
@@ -137,7 +137,7 @@ export default function ProjectCard({ project }: ProjectCardProps) {
                 <MagnifyingGlass aria-hidden="true" /> 
                 {modalButtonLabel}
               </Styled.Button>
-            </Styled.ActionButton>
+            </Styled.BorderButton>
           </Styled.Content>
         </Styled.ContentWrapper>
       </Styled.Card>

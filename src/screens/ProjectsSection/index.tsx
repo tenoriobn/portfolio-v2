@@ -1,5 +1,5 @@
 import { Description, Section, Title, Wrapper } from 'src/styles';
-import { useCMSSection } from 'src/hook';
+import { useCMSSection } from 'src/hooks';
 import styled from 'styled-components';
 import ProjectsCarousel from './ProjectsCarousel';
 import { revealOnScroll } from 'src/utils';
