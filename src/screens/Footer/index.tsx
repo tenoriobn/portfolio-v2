@@ -1,4 +1,4 @@
-import { useCMSSection } from 'src/hook';
+import { useCMSSection } from 'src/hooks';
 import { borderInsetMixin } from 'src/styles';
 import styled from 'styled-components';
 

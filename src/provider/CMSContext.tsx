@@ -1,28 +1,11 @@
-import React, { createContext, useContext, ReactNode } from 'react';
-import { PageContentBlock } from 'src/screens/cmsSections.type';
+import React, { createContext, useContext } from 'react';
+import { CMSProviderProps, CMSContextValue } from 'src/types/cms.type';
 
-interface CMSData {
-  landingPage: {
-    pageContent: PageContentBlock[];
-  };
-}
+const CMSContext = createContext<CMSContextValue | undefined>(undefined);
 
-interface CMSContextType {
-  data: CMSData;
-  locale: string;
-}
-
-const CMSContext = createContext<CMSContextType | undefined>(undefined);
-
-interface CMSProviderProps {
-  children: ReactNode;
-  data: CMSData;
-  locale: string;
-}
-
-export function CMSProvider({ children, data, locale }: CMSProviderProps) {
+export function CMSProvider({ children, cmsData, locale }: CMSProviderProps) {
   return (
-    <CMSContext.Provider value={{ data, locale }}>
+    <CMSContext.Provider value={{ cmsData, locale }}>
       {children}
     </CMSContext.Provider>
   );

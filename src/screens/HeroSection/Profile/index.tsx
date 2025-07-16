@@ -2,7 +2,7 @@ import Image from 'next/image';
 import { BorderInset, borderInsetMixin, borderRaisedMixin, shadowSM } from 'src/styles';
 import styled from 'styled-components';
 import WavingIcon from 'public/icons/waving.svg';
-import { useCMSSection } from 'src/hook';
+import { useCMSSection } from 'src/hooks';
 
 const Styled = {
   Wrapper: styled.div`

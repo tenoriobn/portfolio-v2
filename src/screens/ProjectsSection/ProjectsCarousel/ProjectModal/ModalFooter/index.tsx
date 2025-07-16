@@ -2,7 +2,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { BaseButton, BorderButton } from 'src/styles';
 import styled from 'styled-components';
-import { ModalFooterProps } from './modalFooter.type';
+import { ProjectLinks } from 'src/screens/ProjectsSection/projects.type';
 
 const StyledProjectInfo = {
   Footer: styled.footer`
@@ -37,7 +37,7 @@ const StyledProjectInfo = {
   `,
 };
 
-export default function ModalFooter({ projectLinks }: ModalFooterProps) {
+export default function ModalFooter({ projectLinks }: ProjectLinks) {
   return (
     <>
       {projectLinks && projectLinks.length > 0 && (

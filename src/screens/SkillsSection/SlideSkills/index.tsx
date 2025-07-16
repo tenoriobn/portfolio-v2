@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { borderInsetMixin, shadowSM } from 'src/styles';
-import { useCMSSection } from 'src/hook';
+import { useCMSSection } from 'src/hooks';
 import AutoScrollCarousel from 'src/components/AutoScrollCarousel';
 
 const Styled = {

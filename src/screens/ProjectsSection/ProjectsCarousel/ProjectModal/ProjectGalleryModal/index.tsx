@@ -3,8 +3,8 @@ import { borderRaisedMixin, shadowSM } from 'src/styles';
 import Image from 'next/image';
 import 'swiper/css';
 import 'swiper/css/pagination';
-import { ProjectGalleryModalProps } from './projectGalleryModal.type';
 import { useBreakpoint } from './useBreakpoint';
+import { ProjectModalProps } from 'src/screens/ProjectsSection/projects.type';
 
 const Styled = {
   GalleryBox: styled.main`
@@ -42,7 +42,7 @@ const Styled = {
   `,
 };
 
-export default function ProjectGalleryModal({ project }: ProjectGalleryModalProps) {
+export default function ProjectGalleryModal({ project }: ProjectModalProps) {
   const { projectTitle, projectGallery } = project;
   const breakpoint = useBreakpoint();
 

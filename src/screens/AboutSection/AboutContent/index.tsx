@@ -1,6 +1,6 @@
 import Image from 'next/image';
 import Link from 'next/link';
-import { useCMSSection } from 'src/hook';
+import { useCMSSection } from 'src/hooks';
 import { BaseButton, BorderButton, Description, Title } from 'src/styles';
 import styled from 'styled-components';
 

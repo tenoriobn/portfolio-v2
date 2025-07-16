@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import Image from 'next/image';
-import { useCMSSection } from 'src/hook';
+import { useCMSSection } from 'src/hooks';
 import { BaseButton, BorderButton } from 'src/styles';
 import ContactDropdown from './ContactDropdown';
 import { useSocialContactList } from './SocialContactList';

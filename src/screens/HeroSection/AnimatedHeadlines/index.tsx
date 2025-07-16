@@ -1,6 +1,6 @@
 import { AnimatePresence, motion } from 'motion/react';
 import React from 'react';
-import { useCMSSection } from 'src/hook';
+import { useCMSSection } from 'src/hooks';
 import { textGradient } from 'src/styles';
 import { blurInFade } from 'src/utils';
 import styled from 'styled-components';

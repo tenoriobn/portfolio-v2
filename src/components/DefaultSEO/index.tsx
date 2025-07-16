@@ -1,5 +1,5 @@
 import Head from 'next/head';
-import { useCMSSection } from 'src/hook';
+import { useCMSSection } from 'src/hooks';
 
 export default function DefaultSEO() {
   const { title, description, image, websiteUrl, keywords, author, siteName, favicon } = useCMSSection('SeoRecord');

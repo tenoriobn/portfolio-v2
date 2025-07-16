@@ -10,7 +10,7 @@ export interface HeaderProps {
       href: string;
     }[];
   };
-    language: {
+  language: {
     title: string;
     options: {
       id: string;

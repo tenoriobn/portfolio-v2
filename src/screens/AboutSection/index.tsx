@@ -2,7 +2,7 @@ import { borderInsetMixin, shadowSM, Wrapper } from 'src/styles';
 import styled from 'styled-components';
 import AboutContent from './AboutContent';
 import AboutImage from './AboutImage';
-import { useCMSSection } from 'src/hook';
+import { useCMSSection } from 'src/hooks';
 import { revealOnScroll } from 'src/utils';
 
 const Styled = {

@@ -4,7 +4,7 @@ import { BorderButton, borderInsetMixin, shadowSM } from 'src/styles';
 import useMenuToggle from '../MenuToggle/useMenuToggle';
 import useScrollSpyInit from './useScrollSpyInit';
 import { Link } from 'react-scroll';
-import { useCMSSection } from 'src/hook';
+import { useCMSSection } from 'src/hooks';
 import { slideFadeDown } from 'src/utils';
 
 const Styled = {

@@ -9,7 +9,11 @@ export interface ProjectsSectionProps {
   projects: ProjectItem[];
 };
 
-export interface ProjectItem {
+export interface ProjectModalProps {
+  project: ProjectItem;
+}
+
+export interface ProjectItem extends ProjectLinks {
   id: string;
   modalButtonLabel: string;
   projectTitle: string;
@@ -43,6 +47,9 @@ export interface ProjectItem {
       }
     }[];
   }
+}
+
+export interface ProjectLinks {
   projectLinks: {
     id: string;
     linkName: string;

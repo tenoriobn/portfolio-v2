@@ -3,7 +3,7 @@ import ToolsIcon from 'public/icons/tools.svg';
 import DartIcon from 'public/icons/dart.svg';
 import MobileIcon from 'public/icons/mobile.svg';
 import AutoScrollCarousel from 'src/components/AutoScrollCarousel';
-import { ProjectInfoModalProps } from './projectInfoModal.type';
+import { ProjectModalProps } from 'src/screens/ProjectsSection/projects.type';
 
 const Styled = {
   Line: styled.span`
@@ -45,7 +45,7 @@ const Styled = {
   `,
 };
 
-export default function ProjectInfoModal({ project }: ProjectInfoModalProps) {
+export default function ProjectInfoModal({ project }: ProjectModalProps) {
   const {  projectDescription,  appliedSolutions, challenges, skills, } = project;
 
   return (

@@ -1,4 +1,4 @@
-import { useCMSSection } from 'src/hook';
+import { useCMSSection } from 'src/hooks';
 import useOptionsToggle from '../useOptionsToggle';
 import GlobeIcon from 'public/icons/globe.svg';
 import ThemeIcon from 'public/icons/theme.svg';

@@ -20,14 +20,13 @@ export type ComponentNameMap = {
   FooterBlockRecord: FooterBlockRecord;
 };
 
-export type PageContentBlock = 
-  SeoRecord |
-  HeaderBlockRecord | 
-  HeroSectionBlockRecord | 
-  SkillsSectionBlockRecord |
-  ProjectsSectionBlockRecord | 
-  AboutMeSectionBlockRecord | 
-  ExperienceSectionBlockRecord | 
-  ContactSectionBlockRecord | 
-  FooterBlockRecord
-;
+export type PageContentBlock =
+  | SeoRecord
+  | HeaderBlockRecord
+  | HeroSectionBlockRecord
+  | SkillsSectionBlockRecord
+  | ProjectsSectionBlockRecord
+  | AboutMeSectionBlockRecord
+  | ExperienceSectionBlockRecord
+  | ContactSectionBlockRecord
+  | FooterBlockRecord;

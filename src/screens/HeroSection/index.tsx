@@ -1,4 +1,4 @@
-import { useCMSSection } from 'src/hook';
+import { useCMSSection } from 'src/hooks';
 import DownloadIcon from 'public/icons/download.svg';
 import styled from 'styled-components';
 import { BorderButton, BaseButton, Wrapper } from 'src/styles';

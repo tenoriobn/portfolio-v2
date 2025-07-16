@@ -2,7 +2,7 @@ import React, { useRef } from 'react';
 import MenuToggle from './MenuToggle';
 import Navbar from './Navbar';
 import useMenuToggle from './MenuToggle/useMenuToggle';
-import { useClickOutside } from 'src/hook';
+import { useClickOutside } from 'src/hooks';
 
 export default function Menu() {
   const { closeMenu } = useMenuToggle();

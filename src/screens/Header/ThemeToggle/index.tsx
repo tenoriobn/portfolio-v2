@@ -3,7 +3,7 @@ import Image from 'next/image';
 import { AnimatePresence, motion } from 'motion/react';
 import { scaleFade } from 'src/utils';
 import { CircularButton, BorderButton } from 'src/styles';
-import { useCMSSection } from 'src/hook';
+import { useCMSSection } from 'src/hooks';
 import { useThemeToggle } from './useThemeToggle';
 
 const Styled = {

@@ -14,8 +14,6 @@ interface CardPosition {
   height: number;
 };
 
-export interface ProjectModalState {
-  project: ProjectItem;
-  type: ModalType;
+export interface ProjectModalState extends projectModal {
   cardPosition?: CardPosition | null;
 };

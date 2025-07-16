@@ -1,4 +1,4 @@
-import { useCMSSection } from 'src/hook';
+import { useCMSSection } from 'src/hooks';
 import {borderRaisedMixin, Description, Section, shadowSM, Title, Wrapper } from 'src/styles';
 import TalkingIcon from 'public/icons/talking.svg';
 import styled from 'styled-components';

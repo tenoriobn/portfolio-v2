@@ -1,5 +1,5 @@
 import { SwiperSlide } from 'swiper/react';
-import { useCMSSection } from 'src/hook';
+import { useCMSSection } from 'src/hooks';
 import ProjectCard from './ProjectCard';
 import ProjectModal from './ProjectModal';
 import Carousel from 'src/components/Carousel';
