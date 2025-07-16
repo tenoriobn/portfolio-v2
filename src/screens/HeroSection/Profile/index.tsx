@@ -5,13 +5,13 @@ import WavingIcon from 'public/icons/waving.svg';
 import { useCMSSection } from 'src/hook';
 
 const Styled = {
-  ProfileContainer: styled.div`
+  Wrapper: styled.div`
     position: relative;
     width: max-content;
     height: max-content;
   `,
 
-  BorderName: styled(BorderInset)`
+  BorderBadge: styled(BorderInset)`
     border-radius: var(--radius-full);
     position: absolute;
     left: 32%;
@@ -25,7 +25,7 @@ const Styled = {
     }
   `,
 
-  Name: styled.p`
+  BadgeText: styled.p`
     font-size: 1.25rem;
     font-weight: 400;
     text-align: center;
@@ -40,7 +40,7 @@ const Styled = {
     border-radius: var(--radius-full);
   `,
 
-  AvatarBorderRaisedContainer: styled.div`
+  AvatarBorderRaisedWrapper: styled.div`
     background-color: var(--color-grey-800-75);
     border-radius: var(--radius-full);
     padding: .75rem;
@@ -70,13 +70,13 @@ export default function Profile() {
   const { avatar } = useCMSSection('HeroSectionBlockRecord');
 
   return (
-    <Styled.ProfileContainer>
-      <Styled.BorderName>
-        <Styled.Name>Bruno Tenório <WavingIcon /></Styled.Name>
-      </Styled.BorderName>
+    <Styled.Wrapper>
+      <Styled.BorderBadge>
+        <Styled.BadgeText>Bruno Tenório <WavingIcon /></Styled.BadgeText>
+      </Styled.BorderBadge>
       
       <Styled.AvatarBorderInset>
-        <Styled.AvatarBorderRaisedContainer>
+        <Styled.AvatarBorderRaisedWrapper>
           <Styled.AvatarBorderRaised>
             <Styled.Avatar 
               src={avatar.url} 
@@ -86,8 +86,8 @@ export default function Profile() {
               alt="Foto de perfil do Bruno Tenório" 
             />
           </Styled.AvatarBorderRaised>
-        </Styled.AvatarBorderRaisedContainer>
+        </Styled.AvatarBorderRaisedWrapper>
       </Styled.AvatarBorderInset>
-    </Styled.ProfileContainer>
+    </Styled.Wrapper>
   );
 }

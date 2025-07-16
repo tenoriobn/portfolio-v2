@@ -7,7 +7,7 @@ import CloseIcon from 'public/icons/close.svg';
 import useMenuToggle from './useMenuToggle';
 
 const Styled = {
-  MenuButtonContainer: styled(BorderButton)`
+  Wrapper: styled(BorderButton)`
     @media (min-width: 992px) {
       display: none;
     }
@@ -20,11 +20,11 @@ const Styled = {
   `,
 };
 
-export default function MobileMenuToggle() {
+export default function MenuToggle() {
   const { isMenuActive, toggleMenu} = useMenuToggle();
 
   return (
-    <Styled.MenuButtonContainer>
+    <Styled.Wrapper>
       <CircularButton onClick={toggleMenu}>
         <AnimatePresence mode="wait" initial={false}>
           <motion.span 
@@ -38,6 +38,6 @@ export default function MobileMenuToggle() {
           </motion.span>
         </AnimatePresence>
       </CircularButton>
-    </Styled.MenuButtonContainer>
+    </Styled.Wrapper>
   );
 }

@@ -14,12 +14,12 @@ const Styled = {
     padding-top: 1.5rem;
   `,
 
-  HeaderBorder: styled(BorderInset)`   
+  Border: styled(BorderInset)`   
     border-radius: var(--radius-full);
     width: 100%;
   `,
 
-  HeaderContent: styled.div`
+  Content: styled.div`
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -33,13 +33,13 @@ export default function Header() {
   return (
     <Styled.Header>
       <Wrapper>
-        <Styled.HeaderBorder>
-          <Styled.HeaderContent>
+        <Styled.Border>
+          <Styled.Content>
             <OptionsPanel />
             <Menu />
             <ThemeToggle />
-          </Styled.HeaderContent>
-        </Styled.HeaderBorder>
+          </Styled.Content>
+        </Styled.Border>
       </Wrapper>
     </Styled.Header>
   );

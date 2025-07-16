@@ -4,7 +4,7 @@ import { useCMSSection } from 'src/hook';
 import AutoScrollCarousel from 'src/components/AutoScrollCarousel';
 
 const Styled = {
-  ProjectBorder: styled.div`
+  Border: styled.div`
     ${borderInsetMixin}
     ${shadowSM}
     border-radius: var(--radius-md);
@@ -12,7 +12,7 @@ const Styled = {
     overflow: hidden;
   `,
 
-  Spacing: styled.div`
+  Wrapper: styled.div`
     background-color: var(--color-grey-800-75);
     border-radius: var(--radius-md);
     padding: 1rem;
@@ -27,10 +27,10 @@ export default function SlideSkills() {
   const { skills } = useCMSSection('SkillsSectionBlockRecord');
 
   return (
-    <Styled.ProjectBorder>    
-      <Styled.Spacing>
+    <Styled.Border>    
+      <Styled.Wrapper>
         <AutoScrollCarousel icons={skills} iconSize={44} />
-      </Styled.Spacing>  
-    </Styled.ProjectBorder>
+      </Styled.Wrapper>  
+    </Styled.Border>
   );
 }

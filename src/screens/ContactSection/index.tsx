@@ -7,7 +7,7 @@ import WinkingFaceIcon from 'public/icons/winking-face.svg';
 import { revealOnScroll } from 'src/utils';
 
 const Styled = {
-  IconWrapper: styled.div`
+  AvatarContainer: styled.div`
     ${borderRaisedMixin}
     ${shadowSM}
     border-radius: var(--radius-full);
@@ -15,12 +15,12 @@ const Styled = {
     height: 100px;
   `,
 
-  ContactIcon: styled(TalkingIcon)`
+  AvatarIcon: styled(TalkingIcon)`
     background-color: var(--color-grey-800-75);
     border-radius: var(--radius-full);
   `,
 
-  WinkingFaceIcon: styled(WinkingFaceIcon)`
+  Emoji: styled(WinkingFaceIcon)`
     height: 1.25rem;
     margin-left: .125rem;
     vertical-align: middle;
@@ -33,12 +33,12 @@ export default function ContactSection() {
   return (
     <Wrapper {...revealOnScroll}>
       <Section id={componentName}>
-        <Styled.IconWrapper>
-          <Styled.ContactIcon />
-        </Styled.IconWrapper>
+        <Styled.AvatarContainer>
+          <Styled.AvatarIcon />
+        </Styled.AvatarContainer>
         
         <Title>{title}</Title>
-        <Description>{description} <Styled.WinkingFaceIcon /></Description>
+        <Description>{description} <Styled.Emoji /></Description>
 
         <SocialContactList />
       </Section>

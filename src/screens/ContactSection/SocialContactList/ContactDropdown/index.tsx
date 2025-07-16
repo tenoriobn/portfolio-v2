@@ -50,6 +50,5 @@ export default function ContactDropdown({ dropdown, linkName }: ContactDropdownP
         ))}
       </Styled.DropdownList>
     </Styled.DropdownWrapper>
-    // </AnimatePresence>
   );
 }

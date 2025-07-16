@@ -7,7 +7,7 @@ import { useCMSSection } from 'src/hook';
 import { useThemeToggle } from './useThemeToggle';
 
 const Styled = {
-  ThemeButtonContainer: styled(BorderButton)`
+  ThemeButtonWrapper: styled(BorderButton)`
     @media (max-width: 991px) {
       display: none;
     }
@@ -21,7 +21,7 @@ export default function ThemeToggle() {
   const iconTheme = isDark ? themeOptions.theme[1] : themeOptions.theme[0];
 
   return (
-    <Styled.ThemeButtonContainer>
+    <Styled.ThemeButtonWrapper>
       <CircularButton onClick={toggleTheme}>
         <AnimatePresence mode="wait" initial={false}>
           <motion.span key={isDark ? 'dark' : 'light'} {...scaleFade}>
@@ -35,6 +35,6 @@ export default function ThemeToggle() {
           </motion.span>
         </AnimatePresence>
       </CircularButton>
-    </Styled.ThemeButtonContainer>
+    </Styled.ThemeButtonWrapper>
   );
 }

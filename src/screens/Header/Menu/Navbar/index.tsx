@@ -1,14 +1,14 @@
 import styled from 'styled-components';
 import { AnimatePresence, motion } from 'motion/react';
 import { BorderButton, borderInsetMixin, shadowSM } from 'src/styles';
-import useMenuToggle from '../MobileMenuToggle/useMenuToggle';
+import useMenuToggle from '../MenuToggle/useMenuToggle';
 import useScrollSpyInit from './useScrollSpyInit';
 import { Link } from 'react-scroll';
 import { useCMSSection } from 'src/hook';
 import { slideFadeDown } from 'src/utils';
 
 const Styled = {
-  NavigationWrapper: styled(motion.div)<{$isMenuActive: boolean}>`
+  Wrapper: styled(motion.div)<{$isMenuActive: boolean}>`
     @media (max-width: 991px) {
       pointer-events: ${({ $isMenuActive }) => $isMenuActive ? 'auto' : 'none'};
       border-radius: var(--radius-md);
@@ -63,13 +63,13 @@ const Styled = {
     }
   `,
 
-  MenuButtonContainer: styled(BorderButton)`
+  MenuButtonWrapper: styled(BorderButton)`
     @media (min-width: 992px) {
       display: none;
     }
   `,
 
-  ThemeButtonContainer: styled(BorderButton)`
+  ThemeButtonWrapper: styled(BorderButton)`
     @media (max-width: 991px) {
       display: none;
     }
@@ -83,7 +83,7 @@ export default function Navbar() {
 
   return (
     <AnimatePresence mode="wait" initial={false}>
-      <Styled.NavigationWrapper 
+      <Styled.Wrapper 
         $isMenuActive={isMenuActive}
         key="navlinks"
         animate={isMenuActive ? 'animate' : 'exit'}
@@ -111,7 +111,7 @@ export default function Navbar() {
             ))}
           </Styled.NavList>
         </Styled.Navigation>
-      </Styled.NavigationWrapper>
+      </Styled.Wrapper>
     </AnimatePresence>
   );
 }

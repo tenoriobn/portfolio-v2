@@ -10,14 +10,14 @@ const Styled = {
     padding-bottom: 7.5rem;
   `,
 
-  BorderSection: styled.div`
+  Border: styled.div`
     ${borderInsetMixin}
     ${shadowSM}
     border-radius: var(--radius-md);
     width: 100%;
   `,
 
-  SectionContent: styled.div`
+  Content: styled.div`
     display: grid;
     place-items: center;
     gap: 1.5rem;
@@ -42,12 +42,12 @@ export default function AboutSection() {
   return (
     <Wrapper {...revealOnScroll}>
       <Styled.Section id={componentName}>
-        <Styled.BorderSection>
-          <Styled.SectionContent>
+        <Styled.Border>
+          <Styled.Content>
             <AboutContent />
             <AboutImage />
-          </Styled.SectionContent>
-        </Styled.BorderSection>
+          </Styled.Content>
+        </Styled.Border>
       </Styled.Section>
     </Wrapper>
   );
