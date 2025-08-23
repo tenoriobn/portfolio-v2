@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import Image from 'next/image';
 import { AnimatePresence, motion } from 'motion/react';
 import { scaleFade } from 'src/utils';
 import { CircularButton, BorderButton } from 'src/styles';
@@ -7,32 +6,41 @@ import { useCMSSection } from 'src/hooks';
 import { useThemeToggle } from './useThemeToggle';
 
 const Styled = {
-  ThemeButtonWrapper: styled(BorderButton)`
-    @media (max-width: 991px) {
-      display: none;
+  ThemeButtonWrapper: styled(BorderButton)<{ $sun: string; $moon: string }>`
+    @media (max-width: 991px) { display: none; }
+
+    --icon-sun: url('${(props) => props.$sun}');
+    --icon-moon: url('${(props) => props.$moon}');
+    --theme-icon: var(--icon-sun);
+
+    [data-theme='dark'] & {
+      --theme-icon: var(--icon-moon);
     }
+  `,
+
+  Icon: styled(motion.span)`
+    width: 24px;
+    height: 24px;
+    display: inline-block;
+    background-image: var(--theme-icon);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
   `,
 };
 
 export default function ThemeToggle() {
   const { themeOptions } = useCMSSection('HeaderBlockRecord');
-  const { toggleTheme, isDark } = useThemeToggle();
-  
-  const iconTheme = isDark ? themeOptions.theme[1] : themeOptions.theme[0];
+  const sunUrl  = themeOptions.theme[0].icon.url;
+  const moonUrl = themeOptions.theme[1].icon.url;
+
+  const { toggleTheme } = useThemeToggle();
 
   return (
-    <Styled.ThemeButtonWrapper>
-      <CircularButton onClick={toggleTheme}>
+    <Styled.ThemeButtonWrapper $sun={sunUrl} $moon={moonUrl}>
+      <CircularButton onClick={toggleTheme} aria-label="Alternar tema">
         <AnimatePresence mode="wait" initial={false}>
-          <motion.span key={isDark ? 'dark' : 'light'} {...scaleFade}>
-            <Image
-              src={iconTheme.icon.url}
-              alt={iconTheme.linkName}
-              width={24}
-              height={24}
-              priority
-            />
-          </motion.span>
+          <Styled.Icon {...scaleFade} />
         </AnimatePresence>
       </CircularButton>
     </Styled.ThemeButtonWrapper>
