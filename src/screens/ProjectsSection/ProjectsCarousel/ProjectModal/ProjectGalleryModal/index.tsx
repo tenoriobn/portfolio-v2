@@ -3,8 +3,9 @@ import { borderRaisedMixin, shadowSM } from 'src/styles';
 import Image from 'next/image';
 import 'swiper/css';
 import 'swiper/css/pagination';
-import { useBreakpoint } from './useBreakpoint';
 import { ProjectModalProps } from 'src/screens/ProjectsSection/projects.type';
+import { useState } from 'react';
+import ImageSkeleton from './ImageSkeleton';
 
 const Styled = {
   GalleryBox: styled.main`
@@ -16,7 +17,7 @@ const Styled = {
     overflow: hidden;
   `,
 
-  ImagePanel: styled.div`
+  ImagePanel: styled.picture`
     background: var(--color-grey-800-75);
     display: flex;
     justify-content: center;
@@ -44,22 +45,24 @@ const Styled = {
 
 export default function ProjectGalleryModal({ project }: ProjectModalProps) {
   const { projectTitle, projectGallery } = project;
-  const breakpoint = useBreakpoint();
-
-  const selectedImage = {
-    mobile: projectGallery[1]?.url,
-    tablet: projectGallery[2]?.url,
-    desktop: projectGallery[0]?.url,
-  }[breakpoint];
+  const [isLoaded, setIsLoaded] = useState(false);
 
   return (
     <Styled.GalleryBox>
-      <Styled.ImagePanel >
-        <Styled.ResponsiveImage 
-          src={selectedImage}
+      <Styled.ImagePanel>
+        {!isLoaded && <ImageSkeleton />} 
+
+        <source srcSet={projectGallery[1]?.url} media="(max-width: 767px)" />
+        <source srcSet={projectGallery[2]?.url} media="(max-width: 991px)" />
+        
+        <Styled.ResponsiveImage
+          src={projectGallery[0]?.url}
           alt={projectTitle}
           fill
+          priority
           sizes="(max-width: 767px) 100vw, (max-width: 991px) 100vw, 100vw"
+          onLoad={() => setIsLoaded(true)}
+          style={{ opacity: isLoaded ? 1 : 0 }}
         />
       </Styled.ImagePanel>
     </Styled.GalleryBox>
