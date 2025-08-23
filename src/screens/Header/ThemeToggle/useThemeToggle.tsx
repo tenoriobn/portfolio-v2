@@ -2,45 +2,37 @@ import { useSyncExternalStore } from 'react';
 
 function getTheme(): 'dark' | 'light' {
   if (typeof document === 'undefined') return 'dark';
-  return document.documentElement.getAttribute('data-theme') === 'light' ? 'light' : 'dark';
+  return document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'light';
+}
+
+function subscribe(callback: () => void) {
+  if (typeof document === 'undefined') return () => {};
+  const observer = new MutationObserver(callback);
+  observer.observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
+  return () => observer.disconnect();
 }
 
 function updateThemeMetaTags(theme: 'dark' | 'light') {
   const themeColor = theme === 'dark' ? 'rgb(47, 47, 47)' : 'rgb(212, 212, 212)';
-  
-  const metaSelectors = [
+  const selectors = [
     'meta[name="theme-color"]',
     'meta[name="msapplication-TileColor"]',
-    'meta[name="msapplication-navbutton-color"]'
+    'meta[name="msapplication-navbutton-color"]',
   ];
-  
-  metaSelectors.forEach(selector => {
-    const meta = document.querySelector(selector);
-    if (meta) meta.setAttribute('content', themeColor);
+  selectors.forEach((selector) => {
+    const element = document.querySelector(selector);
+    if (element) element.setAttribute('content', themeColor);
   });
-}
-
-function subscribe(callback: () => void) {
-  const observer = new MutationObserver(() => callback());
-
-  if (typeof document !== 'undefined') {
-    observer.observe(document.documentElement, {
-      attributes: true,
-      attributeFilter: ['data-theme'],
-    });
-  }
-
-  return () => observer.disconnect();
 }
 
 export const useThemeToggle = () => {
   const theme = useSyncExternalStore(subscribe, getTheme, () => 'dark');
   const isDark = theme === 'dark';
 
-  const setTheme = (newTheme: 'dark' | 'light') => {
-    document.cookie = `theme=${newTheme}; path=/; max-age=31536000`;
-    document.documentElement.setAttribute('data-theme', newTheme);
-    updateThemeMetaTags(newTheme);
+  const setTheme = (next: 'dark' | 'light') => {
+    document.cookie = `theme=${next}; path=/; max-age=31536000`;
+    document.documentElement.setAttribute('data-theme', next);
+    updateThemeMetaTags(next);
   };
 
   const toggleTheme = () => setTheme(isDark ? 'light' : 'dark');
