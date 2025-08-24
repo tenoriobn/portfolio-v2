@@ -1,6 +1,5 @@
 import styled from 'styled-components';
 import { borderRaisedMixin, shadowSM } from 'src/styles';
-import Image from 'next/image';
 import 'swiper/css';
 import 'swiper/css/pagination';
 import { ProjectModalProps } from 'src/screens/ProjectsSection/projects.type';
@@ -34,7 +33,7 @@ const Styled = {
     } 
   `,
 
-  ResponsiveImage: styled(Image)`
+  ResponsiveImage: styled.img`
     height: auto!important;
     max-width: 100%;
     object-fit: cover;
@@ -57,8 +56,7 @@ export default function ProjectGalleryModal({ project }: ProjectModalProps) {
         <Styled.ResponsiveImage
           src={projectGallery[0]?.url}
           alt={projectTitle}
-          fill
-          priority
+
           sizes="(max-width: 767px) 100vw, (max-width: 991px) 100vw, 100vw"
           onLoad={() => setIsLoaded(true)}
           style={{ display: isLoaded ? 'block' : 'none' }}
