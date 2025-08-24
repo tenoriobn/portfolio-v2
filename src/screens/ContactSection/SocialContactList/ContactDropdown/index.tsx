@@ -4,6 +4,8 @@ import Image from 'next/image';
 import { slideFadeDown } from 'src/utils';
 import { useContactActions } from './useContactActions';
 import { ContactDropdownProps } from './contactDropdown.type';
+import { useState } from 'react';
+import { IconSkeleton } from 'src/components/skeleton';
 
 const Styled = {
   DropdownWrapper: styled(DropdownWrapper)<{$linkName: string}>`
@@ -23,6 +25,7 @@ const Styled = {
 
 export default function ContactDropdown({ dropdown, linkName }: ContactDropdownProps) {
   const { handleOptionClick, dropdownRef } = useContactActions();
+  const [isLoaded, setIsLoaded] = useState(false);
 
   return (
     <Styled.DropdownWrapper 
@@ -43,7 +46,17 @@ export default function ContactDropdown({ dropdown, linkName }: ContactDropdownP
               rel={iscopy ? undefined : 'noopener noreferrer'}
               onClick={() => handleOptionClick(href, iscopy)}
             >
-              <Image src={icon.url} alt="" width={20} height={20} />
+              {!isLoaded && <IconSkeleton $width={20} $height={20} />}
+
+              <Image 
+                src={icon.url} 
+                alt="Icon" 
+                width={20} 
+                height={20} 
+                priority
+                onLoad={() => setIsLoaded(true)}
+                style={{ display: isLoaded ? 'block' : 'none' }}
+              />
               {text}
             </OptionButton>
           </LargeBorderButton>

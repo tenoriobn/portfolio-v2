@@ -5,6 +5,8 @@ import { BaseButton, BorderButton } from 'src/styles';
 import ContactDropdown from './ContactDropdown';
 import { useSocialContactList } from './SocialContactList';
 import { AnimatePresence } from 'motion/react';
+import { useState } from 'react';
+import { IconSkeleton } from 'src/components/skeleton';
 
 const Styled = {
   ButtonGroup: styled.div`
@@ -48,6 +50,7 @@ const Styled = {
 export default function SocialContactList() {
   const { socialLink } = useCMSSection('ContactSectionBlockRecord');
   const { dropdownRef, toggleContact, isContactActive } = useSocialContactList();
+  const [isLoaded, setIsLoaded] = useState(false);
 
   return (
     <Styled.ButtonGroup >
@@ -55,7 +58,18 @@ export default function SocialContactList() {
         <Styled.Item key={id} ref={isContactActive(id) ? dropdownRef : null}>
           <Styled.Border>
             <Styled.Button onClick={() => toggleContact(id)}>
-              <Image src={icon.url} alt={`${linkName} icon`} width={20} height={20} />
+              {!isLoaded && <IconSkeleton $width={20} $height={20} />}
+
+              <Image 
+                src={icon.url} 
+                alt={`${linkName} icon`} 
+                width={20} 
+                height={20} 
+                priority
+                onLoad={() => setIsLoaded(true)}
+                style={{ display: isLoaded ? 'block' : 'none' }}
+              
+              />
               {linkName}
             </Styled.Button>
           </Styled.Border>
