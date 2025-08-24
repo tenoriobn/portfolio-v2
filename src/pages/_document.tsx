@@ -8,11 +8,9 @@ const setInitialTheme = `
     const value = cookieTheme ? cookieTheme.split('=')[1] : 'dark';
     const themeColor = value === 'dark' ? 'rgb(47, 47, 47)' : 'rgb(212, 212, 212)';
     
-    // aplica no <html>
     document.documentElement.setAttribute('data-theme', value);
     window.__theme = value;
     
-    // cria/atualiza metas ANTES da pintura
     var metas = [
       { name: "theme-color", content: themeColor },
       { name: "msapplication-TileColor", content: themeColor },

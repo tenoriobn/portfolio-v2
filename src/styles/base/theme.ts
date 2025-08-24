@@ -20,9 +20,6 @@ export const Theme = css`
     --font-weight-bold: 700;
 
     --transition-default: 0.5s ease-in-out;
-
-    --color-theme-dark: rgb(47, 47, 47);
-    --color-theme-light: rgb(212, 212, 212);
   }
 
   [data-theme='dark'] {
