@@ -4,7 +4,8 @@ import styled from 'styled-components';
 import { BaseButton, BorderButton, borderInsetMixin, borderRaisedMixin, shadowSM, textGradient } from 'src/styles';
 import { ProjectCardProps } from './projectCard.type';
 import { useProjectModal } from '../ProjectModal/useProjectModal';
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
+import { ImageSkeleton } from 'src/components/skeleton';
 
 const Styled = {
   CardWrapper: styled.div`
@@ -33,6 +34,11 @@ const Styled = {
     width: 100%;
     overflow: hidden;
     cursor: pointer;
+    height: 312px;
+
+    @media (min-width: 768px) {
+      height: 334px;
+    }
   `,
 
   Image: styled(Image)`
@@ -40,11 +46,7 @@ const Styled = {
     object-position: top;
     object-fit: cover;
     width: 100%;
-    height: 312px;
-
-    @media (min-width: 768px) {
-      height: 334px;
-    }
+    height: 100%;
   `,
 
   ContentWrapper: styled.div`
@@ -101,6 +103,7 @@ const Styled = {
 export default function ProjectCard({ project }: ProjectCardProps) {
   const { openModal } = useProjectModal();
   const cardRef = useRef<HTMLDivElement>(null);
+  const [isLoaded, setIsLoaded] = useState(false);
   
   if (!project) return null;
 
@@ -115,6 +118,10 @@ export default function ProjectCard({ project }: ProjectCardProps) {
             onClick={() => openModal(project, 'gallery', cardRef.current)}
             aria-label={`Ver imagem ampliada do projeto ${projectTitle}`}
           >
+            {!isLoaded && (
+              <ImageSkeleton />
+            )}
+
             <Styled.Image 
               src={firstImage.url} 
               alt={`Imagem do projeto ${projectTitle}`}
@@ -122,8 +129,11 @@ export default function ProjectCard({ project }: ProjectCardProps) {
               height={600}
               loading="eager"
               priority
+              onLoad={() => setIsLoaded(true)}
+              style={{ display: isLoaded ? 'block' : 'none' }}
             />
           </Styled.ImageWrapper>
+
         )}
 
         <Styled.ContentWrapper>

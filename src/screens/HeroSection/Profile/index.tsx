@@ -3,6 +3,8 @@ import { BorderInset, borderInsetMixin, borderRaisedMixin, shadowSM } from 'src/
 import styled from 'styled-components';
 import WavingIcon from 'public/icons/waving.svg';
 import { useCMSSection } from 'src/hooks';
+import { useState } from 'react';
+import { ImageSkeleton } from 'src/components/skeleton';
 
 const Styled = {
   Wrapper: styled.div`
@@ -52,22 +54,36 @@ const Styled = {
     border-radius: var(--radius-full);
   `,
 
-  Avatar: styled(Image)`
-    border-radius: var(--radius-full);
-    background-color: var(--color-grey-800-75);
+  AvatarWrapper: styled.div`
+    position: relative;
     width: 178px;
     height: 178px;
+    border-radius: var(--radius-full);
+    overflow: hidden;
+
+    & > * {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+    }
 
     @media (min-width: 768px) {
       width: 220px;
       height: 220px;
     }
   `,
+
+  Avatar: styled(Image)`
+    border-radius: var(--radius-full);
+    background-color: var(--color-grey-800-75);
+  `,
 };
 
 
 export default function Profile() {
   const { avatar } = useCMSSection('HeroSectionBlockRecord');
+  const [isLoaded, setIsLoaded] = useState(false);
 
   return (
     <Styled.Wrapper>
@@ -78,13 +94,19 @@ export default function Profile() {
       <Styled.AvatarBorderInset>
         <Styled.AvatarBorderRaisedWrapper>
           <Styled.AvatarBorderRaised>
-            <Styled.Avatar 
-              src={avatar.url} 
-              width={224} 
-              height={224} 
-              priority 
-              alt="Foto de perfil do Bruno Tenório" 
-            />
+            <Styled.AvatarWrapper>
+              {!isLoaded && <ImageSkeleton />}
+
+              <Styled.Avatar
+                src={avatar.url}
+                width={224}
+                height={224}
+                priority
+                alt="Foto de perfil do Bruno Tenório"
+                onLoad={() => setIsLoaded(true)}
+                style={{ opacity: isLoaded ? 1 : 0 }}
+              />
+            </Styled.AvatarWrapper>
           </Styled.AvatarBorderRaised>
         </Styled.AvatarBorderRaisedWrapper>
       </Styled.AvatarBorderInset>

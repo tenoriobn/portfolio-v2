@@ -4,6 +4,8 @@ import { AutoScrollCarouselProps } from './autoScrollCarousel.type';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Autoplay } from 'swiper/modules';
 import styled from 'styled-components';
+import { useState } from 'react';
+import { IconSkeleton } from '../skeleton';
 
 const Styled = {
   Swiper: styled(Swiper)`
@@ -19,6 +21,10 @@ const Styled = {
 };
 
 export default function AutoScrollCarousel({ icons, iconSize }: AutoScrollCarouselProps) {
+  const [isLoaded, setIsLoaded] = useState(false);
+
+  const skeletons = Array.from({ length: 24 });
+
   return (
     <Styled.Swiper
       spaceBetween={16}
@@ -32,6 +38,14 @@ export default function AutoScrollCarousel({ icons, iconSize }: AutoScrollCarous
       }}
       modules={[Autoplay]}
     >
+      {!isLoaded &&
+        skeletons.map((_, index) => (
+          <Styled.SwiperSlide key={`skeleton-${index}`}>
+            <IconSkeleton $height={iconSize ?? 40} $width={iconSize ?? 40} />
+          </Styled.SwiperSlide>
+        ))
+      }
+          
       {icons.map((item) => (
         <Styled.SwiperSlide key={item.id}>
           <Link
@@ -46,6 +60,9 @@ export default function AutoScrollCarousel({ icons, iconSize }: AutoScrollCarous
               alt={item.linkName}
               width={iconSize ?? 40}
               height={iconSize ?? 40}
+              priority
+              onLoad={() => setIsLoaded(true)}
+              style={{ display: isLoaded ? 'block' : 'none' }}
             />
           </Link>
         </Styled.SwiperSlide>
