@@ -127,7 +127,6 @@ export default function ProjectCard({ project }: ProjectCardProps) {
               alt={`Imagem do projeto ${projectTitle}`}
               width={400} 
               height={600}
-              loading="eager"
               priority
               onLoad={() => setIsLoaded(true)}
               style={{ display: isLoaded ? 'block' : 'none' }}
