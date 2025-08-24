@@ -51,7 +51,6 @@ export default function ProjectGalleryModal({ project }: ProjectModalProps) {
     <Styled.GalleryBox>
       <Styled.ImagePanel>
         {!isLoaded && <ImageSkeleton />} 
-
         <source srcSet={projectGallery[1]?.url} media="(max-width: 767px)" />
         <source srcSet={projectGallery[2]?.url} media="(max-width: 991px)" />
         
