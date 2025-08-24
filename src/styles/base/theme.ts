@@ -28,6 +28,7 @@ export const Theme = css`
     --color-grey-200: rgb(222, 222, 222);
     --color-grey-300: rgb(195, 196, 200);
     --color-grey-500: rgb(134, 135, 139);
+    --color-grey-600: rgb(71 71 71);
     --color-grey-800-75: rgba(51, 51, 51, 1);
     --color-grey-900: rgb(47, 47, 47);
     --color-grey-700: rgb(255 255 255 / 20%);
@@ -44,6 +45,7 @@ export const Theme = css`
     --color-grey-200: rgb(81, 81, 81);
     --color-grey-300: rgb(108, 108, 108);
     --color-grey-500: rgb(142, 142, 142);
+    --color-grey-600: rgb(177 177 177);
     --color-grey-800-75: rgba(219, 219, 219, 1);
     --color-grey-900: rgb(212, 212, 212);
     --color-grey-700: rgb(62 62 62 / 50%);
