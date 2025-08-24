@@ -18,13 +18,13 @@ const Skeleton = styled.div`
   height: 100%;
   width: 100%;
   border-radius: var(--radius-md);
-  background: rgb(71 71 71);
+  background: var(--color-grey-600);
   animation: ${pulse} 1.5s ease-in-out infinite;
 
   svg {
     width: 2.5rem;
     height: 2.5rem;
-    color: var(--color-grey-200);
+    color: var(--color-grey-500);
   }
 `;
 
