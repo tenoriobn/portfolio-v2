@@ -1,5 +1,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
+import { useState } from 'react';
+import { IconSkeleton } from 'src/components/skeleton';
 import { useCMSSection } from 'src/hooks';
 import { BaseButton, BorderButton, Description, Title } from 'src/styles';
 import styled from 'styled-components';
@@ -71,6 +73,7 @@ const Styled = {
 export default function AboutContent() {
   const { title, description, socialLink } = useCMSSection('AboutMeSectionBlockRecord');
   const paragraph = description.value.document.children.map(child => child.children?.[0]?.value || '').join('\n');
+  const [isLoaded, setIsLoaded] = useState(false);
 
   return (
     <Styled.Content>
@@ -81,7 +84,18 @@ export default function AboutContent() {
         {socialLink.map((link) => (
           <Styled.Border key={link.id}>
             <Styled.SocialLink as={Link} href={link.href} target='_blank' rel='noopener noreferrer'> 
-              <Image src={link.icon.url} alt={link.linkName} width={20} height={20} />
+              {!isLoaded && <IconSkeleton />}
+
+              <Image 
+                src={link.icon.url} 
+                alt={link.linkName} 
+                width={20} 
+                height={20} 
+                priority
+                onLoad={() => setIsLoaded(true)}
+                style={{ display: isLoaded ? 'block' : 'none' }}
+              />
+
               {link.linkName}
             </Styled.SocialLink>
           </Styled.Border>

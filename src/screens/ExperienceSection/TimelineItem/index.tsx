@@ -6,6 +6,8 @@ import { AnimatePresence, motion } from 'motion/react';
 import { useExperienceTimeline } from './useExperienceTimeline';
 import { expandCollapseFade } from 'src/utils';
 import { handleScrollAfterExpand } from './handleScrollAfterExpand';
+import { useState } from 'react';
+import { IconSkeleton } from 'src/components/skeleton';
 
 const Styled = {
   TimelineItem: styled.div`
@@ -100,6 +102,7 @@ const Styled = {
 
 export default function TimelineItem() {
   const { experiences, toggleExpand, isExpanded, refs } = useExperienceTimeline();
+  const [isLoaded, setIsLoaded] = useState(false);
 
   return (
     <>    
@@ -118,7 +121,17 @@ export default function TimelineItem() {
             <Styled.Card>
               <Styled.ExperienceHeader>
                 <Styled.Logo>
-                  <Image src={experience.companyLogo.url} alt={experience.companyName} width={66} height={66}/>
+                  {!isLoaded && <IconSkeleton $width={66} $height={66} />}
+                  
+                  <Image 
+                    src={experience.companyLogo.url} 
+                    alt={experience.companyName} 
+                    priority
+                    width={66} 
+                    height={66}
+                    onLoad={() => setIsLoaded(true)}
+                    style={{ display: isLoaded ? 'block' : 'none' }}
+                  />
                 </Styled.Logo>
 
                 <Styled.Info>

@@ -5,7 +5,7 @@ import 'swiper/css';
 import 'swiper/css/pagination';
 import { ProjectModalProps } from 'src/screens/ProjectsSection/projects.type';
 import { useState } from 'react';
-import ImageSkeleton from './ImageSkeleton';
+import { ImageSkeleton } from 'src/components/skeleton';
 
 const Styled = {
   GalleryBox: styled.main`
