@@ -62,7 +62,7 @@ export default function ProjectGalleryModal({ project }: ProjectModalProps) {
           priority
           sizes="(max-width: 767px) 100vw, (max-width: 991px) 100vw, 100vw"
           onLoad={() => setIsLoaded(true)}
-          style={{ opacity: isLoaded ? 1 : 0 }}
+          style={{ display: isLoaded ? 'block' : 'none' }}
         />
       </Styled.ImagePanel>
     </Styled.GalleryBox>
