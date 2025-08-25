@@ -69,6 +69,7 @@ export default class MyDocument extends Document<{ theme: 'dark' | 'light' }> {
     return (
       <Html lang="pt_BR" data-theme={theme}>
         <Head>
+          <meta name="viewport" content="width=device-width, initial-scale=1" />
           <script dangerouslySetInnerHTML={{ __html: setInitialTheme }} />
           <meta name="theme-color" content="" />
           <meta name="msapplication-TileColor" content="" />
