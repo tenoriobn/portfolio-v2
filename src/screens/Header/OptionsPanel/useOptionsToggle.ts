@@ -1,4 +1,4 @@
-import { useLayoutEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useRecoilState } from 'recoil';
 import { isActiveOptionState } from 'src/lib';
 import Cookies from 'js-cookie';
@@ -6,11 +6,11 @@ import Cookies from 'js-cookie';
 function useOptionsToggle() {
   const [isActiveOption, setActiveOption] = useRecoilState(isActiveOptionState);
   const [disablePulse, setDisablePulse] = useState(true);
-  const alreadyClicked = Cookies.get('optionsClicked') === 'true';
 
-  useLayoutEffect(() => {
+  useEffect(() => {
+    const alreadyClicked = Cookies.get('optionsClicked') === 'true';
     setDisablePulse(alreadyClicked);
-  }, [alreadyClicked]);
+  }, []);
 
   const toggleOptions = () => {
     setActiveOption(prev => (prev === null ? 'main' : null));
